@@ -1,4 +1,4 @@
-package com.illinimotorsports;
+package com.illinimotorsports.gui;
 
 import javax.swing.*;
 import java.awt.*;
