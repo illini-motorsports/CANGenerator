@@ -1,0 +1,11 @@
+This week:
+	Create CAN spec schema in JSON
+	Start on basic MVC layout for GUI
+	Parse JSON into verbose java structure
+	Adequate testing for model
+
+Next week:
+	Generate CAN header files (define statements)
+	Create selector window to choose messages to parse
+	Generate parse function
+	Make GUI fancier
