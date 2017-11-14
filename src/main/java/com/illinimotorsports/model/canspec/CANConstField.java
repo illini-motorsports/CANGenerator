@@ -1,5 +1,8 @@
 package com.illinimotorsports.model.canspec;
 
+/**
+ * Simple constant value field
+ */
 public class CANConstField extends CANDataField {
   private int value;
 
