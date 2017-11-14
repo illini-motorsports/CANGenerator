@@ -1,4 +1,4 @@
-package com.illinimotorsports.parse;
+package com.illinimotorsports.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,9 +20,16 @@ public class CANParser {
 
   /**
    * Constructor for CANParser class
+   */
+  public CANParser() {
+    canSpec = null;
+  }
+
+  /**
+   * Sets canSpec for parser
    * @param file
    */
-  public CANParser(File file) {
+  public void setCanSpec(File file) {
     // Create Reader for file
     BufferedReader reader;
     try {
@@ -74,6 +81,12 @@ public class CANParser {
     return true;
   }
 
+  /**
+   * Verifies a specific CAN message has the proper fields
+   * @param message
+   * @return
+   * @throws JSONException
+   */
   private boolean verifyCANMessage(JSONObject message) throws JSONException {
     String id = message.getString("id");
     if(id.length() != 5 || !id.substring(0,2).equals("0x")) {
@@ -85,34 +98,56 @@ public class CANParser {
       return false;
     }
 
-    if(message.get("bigEndian") == null) {
-      return false;
-    }
-    int dlc = (Integer) message.get("dlc");
-    JSONArray bytes = (JSONArray) message.get("bytes");
     return true;
   }
 
+  /**
+   * Simple getter for the can spec version
+   * @return
+   */
   public String getVersion() {
     return Double.toString(canSpec.getDouble("version"));
   }
 
+  /**
+   * Get every data field that is in any CAN message
+   * @return
+   */
   public List<String> getFields() {
     JSONArray messages = canSpec.getJSONArray("messages");
     Iterator msgIter = messages.iterator();
     List<String> fields = new ArrayList<String>();
-    while(msgIter.hasNext()) {
+
+    while(msgIter.hasNext()) { // Iterate through all messages
       JSONObject curMsg = (JSONObject) msgIter.next();
+
       JSONArray bytes = curMsg.getJSONArray("bytes");
       Iterator bytesIter = bytes.iterator();
-      while(bytesIter.hasNext()) {
+      while(bytesIter.hasNext()) { // Iterate through all bytes
         JSONObject field = (JSONObject)  bytesIter.next();
+
         String type = field.getString("type");
+
         if(!(type.equals("reserved") || type.equals("constant"))) {
+          // add the field if it isn't reserved or constant
           fields.add(field.getString("name"));
         }
       }
     }
+
     return fields;
+  }
+
+  public List<String> getMessages() {
+    JSONArray messages = canSpec.getJSONArray("messages");
+    Iterator msgIter = messages.iterator();
+    List<String> messageList = new ArrayList<String>();
+
+    while(msgIter.hasNext()) { // Iterate through all messages
+      JSONObject curMsg = (JSONObject) msgIter.next();
+      messageList.add(curMsg.getString("node") + " " + curMsg.getString("id"));
+    }
+
+    return messageList;
   }
 }
