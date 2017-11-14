@@ -3,6 +3,7 @@ package com.illinimotorsports.model.canspec;
 import com.illinimotorsports.model.Endianness;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CANMessage {
@@ -31,6 +32,26 @@ public class CANMessage {
 
   public void addField(CANDataField field) {
     data.add(field);
+  }
+
+  public List<String> getFieldNames() {
+    List<String> names = new ArrayList<>();
+    Iterator fieldIter = data.iterator();
+    while(fieldIter.hasNext()) {
+      CANDataField field = (CANDataField) fieldIter.next();
+      if(field instanceof CANNumericField) {
+        names.add(((CANNumericField) field).getName());
+      }
+      else if(field instanceof CANBitmapField) {
+        names.addAll(((CANBitmapField) field).getBits());
+      }
+      else if(field instanceof CANNibbleField) {
+        CANNibbleField nibble = (CANNibbleField) field;
+        names.add(nibble.getMsbName());
+        names.add(nibble.getLsbName());
+      }
+    }
+    return names;
   }
 
   public int getId() {

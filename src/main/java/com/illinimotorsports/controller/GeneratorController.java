@@ -48,7 +48,7 @@ public class GeneratorController {
     if(fileRet == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
       model.generateModel(file);
-      la.append(model.getCanSpec().getMessages().toString());
+      la.append(model.getCanSpec().getMessagesWithFields().toString());
     } else {
       la.append("User Canceled ");
     }

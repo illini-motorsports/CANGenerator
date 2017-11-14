@@ -1,6 +1,7 @@
 package com.illinimotorsports.model.canspec;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CANSpec {
@@ -18,8 +19,23 @@ public class CANSpec {
 
   public List<String> getMessages() {
     List<String> messagesList = new ArrayList<>();
-    for(int i = 0; i < messages.size(); i ++) {
-      messagesList.add(messages.get(i).getNode() + messages.get(i).getId());
+    Iterator messagesIter = messages.iterator();
+    while(messagesIter.hasNext()) {
+      CANMessage message = (CANMessage) messagesIter.next();
+      messagesList.add(message.getNode() + message.getId());
+    }
+    return messagesList;
+  }
+
+  public List<List<String>> getMessagesWithFields() {
+    List<List<String>> messagesList = new ArrayList<>();
+    Iterator messagesIter = messages.iterator();
+    while(messagesIter.hasNext()) {
+      CANMessage message = (CANMessage) messagesIter.next();
+      List<String> fields = new ArrayList<>();
+      fields.add(message.getNode() + ": 0x" + Integer.toHexString(message.getId()));
+      fields.addAll(message.getFieldNames());
+      messagesList.add(fields);
     }
     return messagesList;
   }
