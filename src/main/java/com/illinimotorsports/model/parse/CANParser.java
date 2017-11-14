@@ -50,7 +50,7 @@ public class CANParser {
       spec.addMessage(canMessage);
     }
 
-    return null;
+    return spec;
   }
 
   private static JSONObject getJSONFromFile(File file) {
@@ -96,8 +96,6 @@ public class CANParser {
       return null;
     }
 
-    System.out.println(strID);
-
     int id = 0;
     try {
       id = Integer.parseInt(strID.substring(2), 16);
@@ -125,22 +123,20 @@ public class CANParser {
   private static CANDataField parseCANDataField(JSONObject field) {
     String type;
     int position;
-    int length;
     try {
       type = field.getString("type");
       position = field.getInt("byte");
-      length = field.getInt("length");
     } catch (JSONException e) {
       return null;
     }
 
-    System.out.println(position);
 
     CANDataField canField = null;
 
     try {
       switch (type) {
         case "number": {
+          int length = field.getInt("length");
           String name = field.getString("name");
           String unit = field.getString("unit");
           boolean signed = field.getBoolean("signed");
@@ -150,6 +146,7 @@ public class CANParser {
           break;
         }
         case "bitmap": {
+          int length = field.getInt("length");
           String name = field.getString("name");
           JSONArray bits = field.getJSONArray("bits");
           if(bits.length() != length * 8) { break; }
@@ -159,15 +156,33 @@ public class CANParser {
           break;
         }
         case "constant": {
+          int length = field.getInt("length");
           int value = Integer.parseInt(field.getString("value").substring(2), 16);
           canField = new CANConstField(position, length, value);
           break;
         }
         case "reserved": {
+          int length = field.getInt("length");
           canField = new CANReservedField(position, length);
           break;
         }
-        //TODO: Handle nibbles
+        case "nibble": {
+          JSONObject msb = field.getJSONObject("msb");
+          String msbName = msb.getString("name");
+          String msbUnit = msb.getString("unit");
+          boolean msbSigned = msb.getBoolean("signed");
+          double msbScale = msb.getDouble("scale");
+          double msbOffset = msb.getDouble("offset");
+          JSONObject lsb = field.getJSONObject("lsb");
+          String lsbName = lsb.getString("name");
+          String lsbUnit = lsb.getString("unit");
+          boolean lsbSigned = lsb.getBoolean("signed");
+          double lsbScale = lsb.getDouble("scale");
+          double lsbOffset = lsb.getDouble("offset");
+          canField = new CANNibbleField(position, msbName, lsbName,
+              msbUnit, lsbUnit, msbSigned, lsbSigned, msbScale, lsbScale, msbOffset, lsbOffset);
+          break;
+        }
       }
     } catch (JSONException e) {
       return null;
