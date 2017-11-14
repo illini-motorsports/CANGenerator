@@ -138,6 +138,10 @@ public class CANParser {
     return fields;
   }
 
+  /**
+   * Get list of messages from parser
+   * @return
+   */
   public List<String> getMessages() {
     JSONArray messages = canSpec.getJSONArray("messages");
     Iterator msgIter = messages.iterator();
