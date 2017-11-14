@@ -4,6 +4,9 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * View to be used to select messages from CAN Spec
+ */
 public class MessageSelect {
 
   private static class CheckListModel extends AbstractTableModel {

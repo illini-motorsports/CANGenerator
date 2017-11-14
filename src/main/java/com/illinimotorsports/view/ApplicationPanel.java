@@ -3,12 +3,18 @@ package com.illinimotorsports.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Main application JPanel
+ */
 public class ApplicationPanel extends JPanel {
 
   JButton openFileButton;
   JTextArea logArea;
   JFileChooser fileChooser;
 
+  /**
+   * Initializes all components
+   */
   public ApplicationPanel() {
     super(new BorderLayout());
     logArea = new JTextArea(5,20);
@@ -25,6 +31,10 @@ public class ApplicationPanel extends JPanel {
     add(logScrollPane, BorderLayout.CENTER);
   }
 
+  /**
+   * Accessor for button to set actionListener
+   * @return
+   */
   public JButton getOpenFileButton() {
     return openFileButton;
   }

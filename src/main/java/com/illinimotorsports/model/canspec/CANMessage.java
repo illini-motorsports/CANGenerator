@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * CAN Message class, contains all descriptive fields for a message,
+ * and a list of CANDataFields
+ */
 public class CANMessage {
 
   private int id;
@@ -14,14 +18,13 @@ public class CANMessage {
   private int dlc;
   private List<CANDataField> data;
 
-  public CANMessage() {
-    id = 0;
-    node = "";
-    endianness = Endianness.BIG;
-    dlc = 0;
-    data = new ArrayList<>();
-  }
-
+  /**
+   * Constructor for all primitive fields
+   * @param id
+   * @param node
+   * @param endianness
+   * @param dlc
+   */
   public CANMessage(int id, String node, Endianness endianness, int dlc) {
     this.id = id;
     this.node = node;
@@ -30,10 +33,20 @@ public class CANMessage {
     this.data = new ArrayList<>();
   }
 
+  /**
+   * Add field to list, so the message can be built up while being parsed
+   * @param field
+   */
   public void addField(CANDataField field) {
     data.add(field);
   }
 
+  /**
+   * Iterate through all fields in message, put field names in list.
+   * Not all fields have the same format for names,
+   * so instanceof calls need to be made
+   * @return
+   */
   public List<String> getFieldNames() {
     List<String> names = new ArrayList<>();
     Iterator fieldIter = data.iterator();

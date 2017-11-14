@@ -5,6 +5,9 @@ import com.illinimotorsports.model.parse.CANParser;
 
 import java.io.File;
 
+/**
+ * Top level model class to hold can spec
+ */
 public class GeneratorModel {
   private CANSpec spec;
 
@@ -12,6 +15,11 @@ public class GeneratorModel {
     spec = null;
   }
 
+  /**
+   * Generates model from file, returns 0 on success
+   * @param file
+   * @return
+   */
   public int generateModel(File file) {
     spec = CANParser.parseCanSpec(file);
     if(spec == null) {

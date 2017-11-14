@@ -1,5 +1,9 @@
 package com.illinimotorsports.model.canspec;
 
+/**
+ * Nibble CAN Data class.  Two fields occupy the same byte,
+ * so special handling is required
+ */
 public class CANNibbleField extends CANDataField {
 
   private String msbName;
@@ -13,6 +17,20 @@ public class CANNibbleField extends CANDataField {
   private double msbOffset;
   private double lsbOffset;
 
+  /**
+   * Very long constructor initializing all fields for MSB and LSB of byte
+   * @param pos
+   * @param msbName
+   * @param lsbName
+   * @param msbUnit
+   * @param lsbUnit
+   * @param msbSigned
+   * @param lsbSigned
+   * @param msbScale
+   * @param lsbScale
+   * @param msbOffset
+   * @param lsbOffset
+   */
   public CANNibbleField(int pos, String msbName, String lsbName,
                         String msbUnit, String lsbUnit, boolean msbSigned,
                         boolean lsbSigned, double msbScale, double lsbScale,

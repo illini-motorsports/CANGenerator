@@ -13,22 +13,34 @@ import java.util.List;
 
 /**
  * Main CAN Spec parsing class
- * CANParser will take a JSON CAN spec, verify the schema,
- * and deliver individual
+ * CANParser will take a JSON CAN spec and
+ * output a parsed spec with the proper application structure
+ *
+ * This is a utility class, and cannot be instantiated.
+ * All methods are static
  */
 public class CANParser {
 
   /**
-   * Constructor for CANParser class
+   * Private constructor, not allowing instantiation
    */
   private CANParser() {}
 
+  /**
+   * Only public method in class, will call
+   * other private methods to accomplish main
+   * task of this utility class
+   * @param file
+   * @return Full CANSpec if JSON was formatted correctly, null otherwise
+   */
   public static CANSpec parseCanSpec(File file) {
+    // Try to parse the file as JSON
     JSONObject canJson = getJSONFromFile(file);
     if(canJson == null) {
       return null;
     }
 
+    // Create top level spec object
     String version;
     JSONArray messages;
     try {
@@ -40,6 +52,7 @@ public class CANParser {
 
     CANSpec spec = new CANSpec(version);
 
+    // Add each message to spec
     Iterator messagesIter = messages.iterator();
     while(messagesIter.hasNext()) {
       JSONObject message = (JSONObject) messagesIter.next();
@@ -53,6 +66,12 @@ public class CANParser {
     return spec;
   }
 
+  /**
+   * Takes in file, outputs parsed JSON object
+   * Returns null on parse failure
+   * @param file
+   * @return
+   */
   private static JSONObject getJSONFromFile(File file) {
     BufferedReader reader;
     try {
@@ -78,35 +97,33 @@ public class CANParser {
     return canJson;
   }
 
+  /**
+   * Takes in a JSONObject of a message and outputs a CANMessage object
+   * Null if incorrect format
+   * @param message
+   * @return
+   */
   //TODO: make custom exception with more verbose parse error messages
   private static CANMessage parseCANMessage(JSONObject message) {
-    String strID;
-    String node;
-    boolean bigEndian;
-    int dlc;
-    JSONArray bytes;
 
+    // Initialize primitive canMessage fields
+    JSONArray bytes;
+    CANMessage canMessage;
     try {
-      strID = message.getString("id");
-      node = message.getString("node");
-      bigEndian = message.getBoolean("bigEndian");
-      dlc = message.getInt("dlc");
+      int id = Integer.parseInt(message.getString("id").substring(2), 16);
+      String node = message.getString("node");
+      boolean bigEndian = message.getBoolean("bigEndian");
+      Endianness endianness = bigEndian ? Endianness.BIG : Endianness.LITTLE;
+      int dlc = message.getInt("dlc");
       bytes = message.getJSONArray("bytes");
+      canMessage = new CANMessage(id, node, endianness, dlc);
     } catch (JSONException e) {
       return null;
-    }
-
-    int id = 0;
-    try {
-      id = Integer.parseInt(strID.substring(2), 16);
     } catch (NumberFormatException e) {
       return null;
     }
 
-    Endianness endianness = bigEndian ? Endianness.BIG : Endianness.LITTLE;
-
-    CANMessage canMessage = new CANMessage(id, node, endianness, dlc);
-
+    // Add each field to message
     Iterator bytesIter = bytes.iterator();
     while(bytesIter.hasNext()) {
       JSONObject field = (JSONObject) bytesIter.next();
@@ -120,6 +137,12 @@ public class CANParser {
     return canMessage;
   }
 
+  /**
+   * Parse message field
+   * Needs to handle every possible field type
+   * @param field
+   * @return
+   */
   private static CANDataField parseCANDataField(JSONObject field) {
     String type;
     int position;
