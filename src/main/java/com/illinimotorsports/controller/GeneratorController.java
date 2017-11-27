@@ -1,10 +1,14 @@
 package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.GeneratorModel;
+import com.illinimotorsports.model.MessageCheckBoxListModel;
+import com.illinimotorsports.view.MessageCheckBoxList;
 import com.illinimotorsports.view.MainView;
+import com.illinimotorsports.view.MessageCheckBox;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.List;
 
 /**
  * Main controller for the application
@@ -48,11 +52,21 @@ public class GeneratorController {
     if(fileRet == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
       model.generateModel(file);
-      la.append(model.getCanSpec().getMessagesWithFields().toString());
+      List<List<String>> messageList = model.getCanSpec().getMessagesWithFields();
+      la.append(messageList.toString());
+      openMessageSelector(messageList);
     } else {
       la.append("User Canceled ");
     }
     la.setCaretPosition(la.getDocument().getLength());
+  }
+
+  public void openMessageSelector(List<List<String>> messageList) {
+      MessageCheckBoxList listView = new MessageCheckBoxList(new MessageCheckBoxListModel(messageList));
+      JFrame listFrame = new JFrame("Checkbox");
+      listFrame.add(new JScrollPane(listView));
+      listFrame.pack();
+      listFrame.setVisible(true);
   }
 
   /**
@@ -64,10 +78,6 @@ public class GeneratorController {
     GeneratorModel m = new GeneratorModel();
     GeneratorController controller = new GeneratorController(v, m);
     controller.initController();
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        controller.initView();
-      }
-    });
+    javax.swing.SwingUtilities.invokeLater(() -> controller.initView());
   }
 }
