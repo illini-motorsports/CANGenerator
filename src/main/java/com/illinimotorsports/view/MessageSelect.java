@@ -13,6 +13,10 @@ public class MessageSelect extends JFrame {
   private JButton deselectAllButton;
   private JButton submitButton;
 
+  /**
+   * Contains list area, and three buttons
+   * @param checkBoxList
+   */
   public MessageSelect(MessageCheckBoxList checkBoxList) {
     super();
 

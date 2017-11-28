@@ -2,6 +2,10 @@ package com.illinimotorsports.view;
 
 import javax.swing.*;
 
+/**
+ * Generic view for showing generated code.
+ * TODO: Syntax highlighting, copy to clipboard button
+ */
 public class GeneratedCodeView extends JFrame {
   private JTextArea code;
 

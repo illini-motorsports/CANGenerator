@@ -5,12 +5,19 @@ import com.illinimotorsports.model.canspec.CANMessage;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Custom panel for checkbox list
+ */
 public class MessageCheckBox extends JPanel {
 
   private JCheckBox checkBox;
   private JTextArea text;
   private CANMessage message;
 
+  /**
+   * show all the fields underneath the box
+   * @param canMessage
+   */
   public MessageCheckBox(CANMessage canMessage) {
     message = canMessage;
     checkBox = new JCheckBox(message.getNode());

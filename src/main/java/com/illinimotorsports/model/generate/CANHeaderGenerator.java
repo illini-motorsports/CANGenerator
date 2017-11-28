@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Generator class for header files
+ */
 public class CANHeaderGenerator {
   Map<String, List<CANMessage>> nodeMap;
 
@@ -16,6 +19,11 @@ public class CANHeaderGenerator {
     generateNodeMap(canSpec);
   }
 
+  /**
+   * Generate map from node to message, for better organization
+   * @param spec
+   * @return
+   */
   private Map<String, List<CANMessage>> generateNodeMap(CANSpec spec) {
     nodeMap = new HashMap<>();
     for(CANMessage message: spec.getMessages()) {
@@ -27,6 +35,10 @@ public class CANHeaderGenerator {
     return nodeMap;
   }
 
+  /**
+   * Main template fill function
+   * @return
+   */
   public String fillTemplate() {
     Theme theme = new Theme();
 
@@ -38,6 +50,10 @@ public class CANHeaderGenerator {
     return header.toString();
   }
 
+  /**
+   * Uses node map to get ID names
+   * @return
+   */
   public List<Map<String, String>> generateIDs() {
     List<Map<String, String>> canIDs = new ArrayList<>();
     for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
@@ -54,6 +70,10 @@ public class CANHeaderGenerator {
     return canIDs;
   }
 
+  /**
+   * Generates main list of maps for all field definitions
+   * @return
+   */
   public List<Map<String, String>> generateFieldDefs() {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
@@ -67,6 +87,12 @@ public class CANHeaderGenerator {
     return fieldDefs;
   }
 
+  /**
+   * Generates a list for individual fields
+   * @param message
+   * @param field
+   * @return
+   */
   public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     if (field instanceof CANNumericField) {

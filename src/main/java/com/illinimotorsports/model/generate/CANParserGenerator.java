@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Main generator for parser function
+ */
 public class CANParserGenerator {
   List<CANMessage> messages;
 
@@ -18,6 +21,10 @@ public class CANParserGenerator {
     this.messages = canMessages;
   }
 
+  /**
+   * Top Level function which fills the main template
+   * @return
+   */
   public String fillTemplate() {
     Theme theme = new Theme();
     Chunk parse = theme.makeChunk("parse", "c");
@@ -26,6 +33,12 @@ public class CANParserGenerator {
     return parse.toString();
   }
 
+  /**
+   * Templates cannot have nested loops, so this is a template filler
+   * for the inner loop of the parsing function (fields)
+   * @param message
+   * @return
+   */
   public String fillSubtemplate(CANMessage message) {
     Theme theme = new Theme();
     Chunk parse = theme.makeChunk("subParse", "c");
@@ -34,6 +47,13 @@ public class CANParserGenerator {
     return parse.toString();
   }
 
+  /**
+   * Produces the list of maps required for the field template fill.
+   * This will be sent to the fillSubTemplate function, then to the
+   * upper level generate function
+   * @param message
+   * @return
+   */
   public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
     for(CANDataField field: message.getData()) {
@@ -57,6 +77,11 @@ public class CANParserGenerator {
     return fieldList;
   }
 
+  /**
+   * Produces the list of maps required for the top level template fill.
+   * Executes a subtemplate fill for each message
+   * @return
+   */
   public List<Map<String, String>> generateMessageParseMap() {
     List<Map<String, String>> parseList = new ArrayList<>();
     for(CANMessage message: messages) {
