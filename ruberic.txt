@@ -9,3 +9,9 @@ Next week:
 	Create selector window to choose messages to parse
 	Generate parse function
 	Make GUI fancier
+
+Last week:
+	Improve parser generator to parse all message types
+	Copy generated code to clipboard and save dialogue
+	Basic generation of dbc file
+	Basic generation of CSV spec
