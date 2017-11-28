@@ -2,8 +2,11 @@ package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.GeneratorModel;
 import com.illinimotorsports.model.MessageCheckBoxListModel;
+import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.generate.CANHeaderGenerator;
 import com.illinimotorsports.model.generate.CANParserGenerator;
+import com.illinimotorsports.model.parse.CANParser;
+import com.illinimotorsports.view.GeneratedCodeView;
 import com.illinimotorsports.view.MainView;
 import com.illinimotorsports.view.MessageCheckBoxList;
 import com.illinimotorsports.view.MessageSelect;
@@ -44,6 +47,8 @@ public class GeneratorController {
    */
   public void initController() {
     view.getAppPanel().getOpenFileButton().addActionListener(e -> openFileChooser());
+    view.getAppPanel().getGenParserButton().addActionListener(e -> openMessageSelector());
+    view.getAppPanel().getGenHeaderButton().addActionListener(e -> generateHeaderListener());
   }
 
   /**
@@ -51,22 +56,11 @@ public class GeneratorController {
    */
   public void openFileChooser() {
     JFileChooser fc = view.getAppPanel().getFileChooser();
-    JTextArea la = view.getAppPanel().getLogArea();
     int fileRet = fc.showOpenDialog(view.getAppPanel());
     if(fileRet == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
       model.generateModel(file);
-      List<List<String>> messageList = model.getCanSpec().getMessagesWithFields();
-      la.append(messageList.toString() + "\n");
-      CANHeaderGenerator generator = new CANHeaderGenerator(model.getCanSpec());
-      System.out.println(generator.fillTemplate());
-      CANParserGenerator parserGenerator = new CANParserGenerator(model.getCanSpec().getMessages());
-      System.out.println(parserGenerator.fillTemplate());
-      openMessageSelector();
-    } else {
-      la.append("User Canceled ");
     }
-    la.setCaretPosition(la.getDocument().getLength());
   }
 
   public void openMessageSelector() {
@@ -80,8 +74,17 @@ public class GeneratorController {
   }
 
   public void selectorDoneListener() {
-    view.getAppPanel().getLogArea().append(selectModel.getSelectedMessages().toString());
     selectView.setVisible(false);
+    List<CANMessage> messages = selectModel.getSelectedMessages();
+    CANParserGenerator parserGenerator = new CANParserGenerator(messages);
+    GeneratedCodeView genCode = new GeneratedCodeView(parserGenerator.fillTemplate());
+    genCode.init();
+  }
+
+  public void generateHeaderListener() {
+    CANHeaderGenerator headerGenerator = new CANHeaderGenerator(model.getCanSpec());
+    GeneratedCodeView genCode = new GeneratedCodeView(headerGenerator.fillTemplate());
+    genCode.init();
   }
 
   /**

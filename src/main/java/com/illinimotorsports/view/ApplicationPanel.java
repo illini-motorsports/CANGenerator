@@ -9,7 +9,8 @@ import java.awt.*;
 public class ApplicationPanel extends JPanel {
 
   JButton openFileButton;
-  JTextArea logArea;
+  JButton genHeaderButton;
+  JButton genParserButton;
   JFileChooser fileChooser;
 
   /**
@@ -17,18 +18,19 @@ public class ApplicationPanel extends JPanel {
    */
   public ApplicationPanel() {
     super(new BorderLayout());
-    logArea = new JTextArea(5,20);
-    logArea.setMargin(new Insets(5,5,5,5));
-    logArea.setEditable(false);
-    JScrollPane logScrollPane = new JScrollPane(logArea);
 
     fileChooser = new JFileChooser();
 
     openFileButton = new JButton("Open CAN Spec");
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.add(openFileButton);
-    add(buttonPanel, BorderLayout.PAGE_START);
-    add(logScrollPane, BorderLayout.CENTER);
+    genHeaderButton = new JButton("Generate Header");
+    genParserButton = new JButton("Generate Parser");
+    JPanel openButtonPanel = new JPanel();
+    JPanel genButtonPanel = new JPanel();
+    openButtonPanel.add(openFileButton);
+    genButtonPanel.add(genHeaderButton);
+    genButtonPanel.add(genParserButton);
+    add(openButtonPanel, BorderLayout.PAGE_START);
+    add(genButtonPanel, BorderLayout.CENTER);
   }
 
   /**
@@ -39,11 +41,15 @@ public class ApplicationPanel extends JPanel {
     return openFileButton;
   }
 
-  public JTextArea getLogArea() {
-    return logArea;
-  }
-
   public JFileChooser getFileChooser() {
     return fileChooser;
+  }
+
+  public JButton getGenHeaderButton() {
+    return genHeaderButton;
+  }
+
+  public JButton getGenParserButton() {
+    return genParserButton;
   }
 }
