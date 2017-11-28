@@ -5,6 +5,9 @@
 #ifndef CAN_H
 #define CAN_H
 
+#include "CAN.c"
+typedef enum endian {BIG, LITTLE} Endian;
+
 /**
  * CAN message IDs
  */

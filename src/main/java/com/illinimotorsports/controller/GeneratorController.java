@@ -3,6 +3,7 @@ package com.illinimotorsports.controller;
 import com.illinimotorsports.model.GeneratorModel;
 import com.illinimotorsports.model.MessageCheckBoxListModel;
 import com.illinimotorsports.model.generate.CANHeaderGenerator;
+import com.illinimotorsports.model.generate.CANParserGenerator;
 import com.illinimotorsports.view.MainView;
 import com.illinimotorsports.view.MessageCheckBoxList;
 import com.illinimotorsports.view.MessageSelect;
@@ -58,9 +59,9 @@ public class GeneratorController {
       List<List<String>> messageList = model.getCanSpec().getMessagesWithFields();
       la.append(messageList.toString() + "\n");
       CANHeaderGenerator generator = new CANHeaderGenerator(model.getCanSpec());
-      generator.generateIDs();
-      generator.generateFieldDefs();
-      generator.fillTemplate();
+      System.out.println(generator.fillTemplate());
+      CANParserGenerator parserGenerator = new CANParserGenerator(model.getCanSpec().getMessages());
+      System.out.println(parserGenerator.fillTemplate());
       openMessageSelector();
     } else {
       la.append("User Canceled ");
