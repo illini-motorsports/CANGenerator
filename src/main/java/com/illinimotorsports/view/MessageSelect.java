@@ -1,32 +1,55 @@
 package com.illinimotorsports.view;
 
-import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * View to be used to select messages from CAN Spec
  */
-public class MessageSelect {
+public class MessageSelect extends JFrame {
 
-  private static class CheckListModel extends AbstractTableModel {
+  private MessageCheckBoxList list;
+  private JButton selectAllButton;
+  private JButton deselectAllButton;
+  private JButton submitButton;
 
-    List<String> rows;
+  public MessageSelect(MessageCheckBoxList checkBoxList) {
+    super();
 
-    public CheckListModel(List<String> messages) {
-      rows = new ArrayList<String>(messages);
-    }
+    setLayout(new BorderLayout());
 
-    public int getRowCount() {
-      return rows.size();
-    }
+    list = checkBoxList;
+    selectAllButton = new JButton("Select All");
+    deselectAllButton = new JButton("Deselect All");
+    submitButton = new JButton("Done");
 
-    public int getColumnCount() {
-      return 1;
-    }
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.add(selectAllButton);
+    buttonPanel.add(deselectAllButton);
+    buttonPanel.add(submitButton);
 
-    public Object getValueAt(int rowIndex, int columnIndex) {
-      return rows.get(rowIndex);
-    }
+    this.add(new JScrollPane(list), BorderLayout.NORTH);
+    this.add(buttonPanel, BorderLayout.SOUTH);
+  }
+
+  public void init() {
+    this.pack();
+    this.setVisible(true);
+  }
+
+  public MessageCheckBoxList getList() {
+    return list;
+  }
+
+  public JButton getSelectAllButton() {
+    return selectAllButton;
+  }
+
+  public JButton getDeselectAllButton() {
+    return deselectAllButton;
+  }
+
+  public JButton getSubmitButton() {
+    return submitButton;
   }
 }

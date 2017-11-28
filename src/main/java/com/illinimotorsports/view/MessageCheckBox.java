@@ -1,20 +1,23 @@
 package com.illinimotorsports.view;
 
+import com.illinimotorsports.model.canspec.CANMessage;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class MessageCheckBox extends JPanel {
 
   private JCheckBox checkBox;
   private JTextArea text;
+  private CANMessage message;
 
-  public MessageCheckBox(String messageName, List<String> fields) {
-    checkBox = new JCheckBox(messageName);
+  public MessageCheckBox(CANMessage canMessage) {
+    message = canMessage;
+    checkBox = new JCheckBox(message.getNode());
 
     String fieldText = "Fields:\n";
-    for(String field: fields) {
-      fieldText += "\t" + field + "\n";
+    for(String field: message.getFieldNames()) {
+      fieldText += "  " + field + "\n";
     }
 
     text = new JTextArea(fieldText);
@@ -26,5 +29,9 @@ public class MessageCheckBox extends JPanel {
 
   public JCheckBox getCheckBox() {
     return checkBox;
+  }
+
+  public CANMessage getMessage() {
+    return message;
   }
 }

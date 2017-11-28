@@ -33,7 +33,7 @@ public class CANSpec {
    * Simple getter for all message names
    * @return
    */
-  public List<String> getMessages() {
+  public List<String> getMessagesString() {
     List<String> messagesList = new ArrayList<>();
     Iterator messagesIter = messages.iterator();
     while(messagesIter.hasNext()) {
@@ -41,6 +41,10 @@ public class CANSpec {
       messagesList.add(message.getNode() + ": 0x" + Integer.toHexString(message.getId()));
     }
     return messagesList;
+  }
+
+  public List<CANMessage> getMessages() {
+    return messages;
   }
 
   /**

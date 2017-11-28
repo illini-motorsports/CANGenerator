@@ -3,7 +3,6 @@ package com.illinimotorsports.model.canspec;
 import com.illinimotorsports.model.Endianness;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -49,9 +48,7 @@ public class CANMessage {
    */
   public List<String> getFieldNames() {
     List<String> names = new ArrayList<>();
-    Iterator fieldIter = data.iterator();
-    while(fieldIter.hasNext()) {
-      CANDataField field = (CANDataField) fieldIter.next();
+    for(CANDataField field: data) {
       if(field instanceof CANNumericField) {
         names.add(((CANNumericField) field).getName());
       }
@@ -85,5 +82,10 @@ public class CANMessage {
 
   public List<CANDataField> getData() {
     return data;
+  }
+
+  @Override
+  public String toString() {
+    return getNode();
   }
 }

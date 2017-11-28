@@ -29,12 +29,6 @@ public class MainView {
     viewFrame.setVisible(true);
   }
 
-  public void addPanel(JComponent component) {
-    viewFrame.add(component);
-    viewFrame.pack();
-    viewFrame.setVisible(true);
-  }
-
   public ApplicationPanel getAppPanel() {
     return appPanel;
   }

@@ -1,5 +1,7 @@
 package com.illinimotorsports.model;
 
+import com.illinimotorsports.model.canspec.CANMessage;
+import com.illinimotorsports.model.canspec.CANSpec;
 import com.illinimotorsports.view.MessageCheckBox;
 
 import javax.swing.*;
@@ -10,12 +12,28 @@ public class MessageCheckBoxListModel extends AbstractListModel<MessageCheckBox>
 
   private List<MessageCheckBox> data;
 
-  public MessageCheckBoxListModel(List<List<String>> messageList) {
+  public MessageCheckBoxListModel(CANSpec spec) {
     super();
     data = new ArrayList<>();
-    for(List<String> message: messageList) {
-      data.add(new MessageCheckBox(message.get(0), message.subList(1, message.size())));
+    for(CANMessage message: spec.getMessages()) {
+      data.add(new MessageCheckBox(message));
     }
+  }
+
+  public void setAll(boolean selected) {
+    for(MessageCheckBox box: data) {
+      box.getCheckBox().setSelected(selected);
+    }
+  }
+
+  public List<CANMessage> getSelectedMessages() {
+    List<CANMessage> messages = new ArrayList<>();
+    for(MessageCheckBox box: data) {
+      if(box.getCheckBox().isSelected()) {
+        messages.add(box.getMessage());
+      }
+    }
+    return messages;
   }
 
   @Override

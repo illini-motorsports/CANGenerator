@@ -2,9 +2,10 @@ package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.GeneratorModel;
 import com.illinimotorsports.model.MessageCheckBoxListModel;
-import com.illinimotorsports.view.MessageCheckBoxList;
+import com.illinimotorsports.model.generate.CANHeaderGenerator;
 import com.illinimotorsports.view.MainView;
-import com.illinimotorsports.view.MessageCheckBox;
+import com.illinimotorsports.view.MessageCheckBoxList;
+import com.illinimotorsports.view.MessageSelect;
 
 import javax.swing.*;
 import java.io.File;
@@ -17,6 +18,8 @@ public class GeneratorController {
 
   private MainView view;
   private GeneratorModel model;
+  private MessageSelect selectView;
+  private MessageCheckBoxListModel selectModel;
 
   /**
    * Constructor for controller, takes in model and view
@@ -53,24 +56,35 @@ public class GeneratorController {
       File file = fc.getSelectedFile();
       model.generateModel(file);
       List<List<String>> messageList = model.getCanSpec().getMessagesWithFields();
-      la.append(messageList.toString());
-      openMessageSelector(messageList);
+      la.append(messageList.toString() + "\n");
+      CANHeaderGenerator generator = new CANHeaderGenerator(model.getCanSpec());
+      generator.generateIDs();
+      generator.generateFieldDefs();
+      generator.fillTemplate();
+      openMessageSelector();
     } else {
       la.append("User Canceled ");
     }
     la.setCaretPosition(la.getDocument().getLength());
   }
 
-  public void openMessageSelector(List<List<String>> messageList) {
-      MessageCheckBoxList listView = new MessageCheckBoxList(new MessageCheckBoxListModel(messageList));
-      JFrame listFrame = new JFrame("Checkbox");
-      listFrame.add(new JScrollPane(listView));
-      listFrame.pack();
-      listFrame.setVisible(true);
+  public void openMessageSelector() {
+    selectModel = new MessageCheckBoxListModel(model.getCanSpec());
+    MessageCheckBoxList listView = new MessageCheckBoxList(selectModel);
+    selectView = new MessageSelect(listView);
+    selectView.getSelectAllButton().addActionListener(e -> selectView.getList().setAll(true));
+    selectView.getDeselectAllButton().addActionListener(e -> selectView.getList().setAll(false));
+    selectView.getSubmitButton().addActionListener(e -> selectorDoneListener());
+    selectView.init();
+  }
+
+  public void selectorDoneListener() {
+    view.getAppPanel().getLogArea().append(selectModel.getSelectedMessages().toString());
+    selectView.setVisible(false);
   }
 
   /**
-   * Main function, sets up MVC and initializes view in seperate thread
+   * Main function, sets up MVC and initializes view in separate thread
    * @param args
    */
   public static void main(String[] args) {
