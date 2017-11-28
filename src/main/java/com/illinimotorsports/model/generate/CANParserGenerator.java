@@ -29,20 +29,28 @@ public class CANParserGenerator {
   public String fillSubtemplate(CANMessage message) {
     Theme theme = new Theme();
     Chunk parse = theme.makeChunk("subParse", "c");
-    parse.set("fields", generateFieldParseMap(message.getData()));
+    parse.set("fields", generateFieldParseMap(message));
 
     return parse.toString();
   }
 
-  public List<Map<String, String>> generateFieldParseMap(List<CANDataField> fields) {
+  public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
-    for(CANDataField field: fields) {
+    for(CANDataField field: message.getData()) {
       if(field instanceof CANNumericField) {
         Map<String, String> fieldMap = new HashMap<>();
         CANNumericField numField = (CANNumericField) field;
         fieldMap.put("pos", Integer.toString(numField.getPosition()));
         fieldMap.put("len", Integer.toString(numField.getLength()));
-        fieldMap.put("comment", numField.getName() + " (" + numField.getUnit() + ")");
+        fieldMap.put("endian", message.getEndianness().toString());
+        fieldMap.put("sgn", numField.isSigned() ? "1": "0");
+        fieldMap.put("scl", Double.toString(numField.getScale()));
+        fieldMap.put("off", Double.toString(numField.getOffset()));
+        String comment = numField.getName();
+        if(numField.getUnit().length() > 0) {
+          comment += " (" + numField.getUnit() + ")";
+        }
+        fieldMap.put("comment", comment);
         fieldList.add(fieldMap);
       }
     }
@@ -54,6 +62,7 @@ public class CANParserGenerator {
     for(CANMessage message: messages) {
       Map<String, String> messageMap = new HashMap<>();
       messageMap.put("id", "0x" + Integer.toHexString(message.getId()));
+      messageMap.put("comment", message.getNode());
       messageMap.put("fields", fillSubtemplate(message));
       parseList.add(messageMap);
     }

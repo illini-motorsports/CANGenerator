@@ -5,6 +5,17 @@ package com.illinimotorsports.model;
  */
 //TODO: add more useful functions
 public enum Endianness {
-  BIG,
-  LITTLE
+  BIG ("BIG"),
+  LITTLE ("LITTLE");
+
+  private String strVal;
+
+  Endianness(String val) {
+    this.strVal = val;
+  }
+
+  @Override
+  public String toString() {
+    return strVal;
+  }
 }
