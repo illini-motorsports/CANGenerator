@@ -56,7 +56,7 @@ public class CANHeaderGenerator {
    * Generates main list of maps for all field definitions
    * @return
    */
-  private List<Map<String, String>> generateFieldDefs() {
+  public List<Map<String, String>> generateFieldDefs() {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     for(CANMessage message: spec.getMessages()) {
       for (CANDataField field : message.getData()) {
@@ -72,7 +72,7 @@ public class CANHeaderGenerator {
    * @param field
    * @return
    */
-  private List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
+  public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     if (field instanceof CANNumericField) {
       CANNumericField numField = (CANNumericField) field;

@@ -2,6 +2,7 @@ package com.illinimotorsports.model.generate;
 
 import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.canspec.CANSpec;
+import com.illinimotorsports.model.parse.CANParseException;
 import com.illinimotorsports.model.parse.CANParser;
 import org.junit.*;
 
@@ -18,7 +19,11 @@ public class CANHeaderGeneratorTest {
 
   @Before
   public void init() {
-    spec = CANParser.parseCanSpec(new File("src/main/resources/can_spec_test.json"));
+    try {
+      spec = CANParser.parseCanSpec(new File("src/main/resources/can_spec_test.json"));
+    } catch (CANParseException e) {
+      fail();
+    }
     generator = new CANHeaderGenerator(spec);
   }
 

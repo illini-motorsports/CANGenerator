@@ -35,13 +35,12 @@ BS_:
 
 BU_:{% loop in $nodes %} {$node}{% onEmpty %}{% endloop %}
 
-{% loop in %messages %}
+{% loop in $messages %}
 BO_: {$id} {$name}: {$dlc} {$origin}
 {$fields}
 
 {% onEmpty %}
 {% endloop %}
-
 
 BA_DEF_  "BusType" STRING ;
 BA_DEF_DEF_  "BusType" "";

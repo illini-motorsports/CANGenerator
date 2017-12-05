@@ -6,10 +6,13 @@ import com.illinimotorsports.model.MessageCheckBoxListModel;
 import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.generate.CANHeaderGenerator;
 import com.illinimotorsports.model.generate.CANParserGenerator;
+import com.illinimotorsports.model.generate.DBCGenerator;
+import com.illinimotorsports.model.parse.CANParseException;
 import com.illinimotorsports.view.GeneratedCodeView;
 import com.illinimotorsports.view.MainView;
 import com.illinimotorsports.view.MessageCheckBoxList;
 import com.illinimotorsports.view.MessageSelect;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.io.File;
@@ -46,20 +49,29 @@ public class GeneratorController {
    * Sets up controller, adds action listeners, etc
    */
   public void initController() {
-    view.getAppPanel().getOpenFileButton().addActionListener(e -> openFileChooser());
+    view.getAppPanel().getOpenFileButton().addActionListener(e -> chooseCanSpec());
     view.getAppPanel().getGenParserButton().addActionListener(e -> openMessageSelector());
     view.getAppPanel().getGenHeaderButton().addActionListener(e -> generateHeaderListener());
+    view.getAppPanel().getGenDBCButton().addActionListener(e -> generateDBCListener());
   }
 
   /**
    * Action listener to handle file choosing
    */
-  public void openFileChooser() {
+  public void chooseCanSpec() {
     JFileChooser fc = view.getAppPanel().getFileChooser();
     int fileRet = fc.showOpenDialog(view.getAppPanel());
     if(fileRet == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
-      model.generateModel(file);
+      try {
+        model.generateModel(file);
+        view.getAppPanel().getCanSpecStatus().setText("Spec Successfully Parsed!");
+        view.getAppPanel().setEnableGenButtons(true);
+      } catch (CANParseException e) {
+        JOptionPane parseError = new JOptionPane();
+        parseError.showMessageDialog(view.getAppPanel(), e.getMessage(), "CAN Parse Error :(", JOptionPane.ERROR_MESSAGE);
+        view.getAppPanel().getCanSpecStatus().setText("CAN Parse Error :(");
+      }
     }
   }
 
@@ -97,6 +109,15 @@ public class GeneratorController {
     GeneratedCodeController genCode = new GeneratedCodeController(
         new GeneratedCodeModel(headerGenerator.fillTemplate()),
         new GeneratedCodeView());
+    genCode.init();
+  }
+
+  public void generateDBCListener() {
+    DBCGenerator gen = new DBCGenerator(model.getCanSpec());
+    GeneratedCodeController genCode = new GeneratedCodeController(
+        new GeneratedCodeModel(gen.fillTemplate()),
+        new GeneratedCodeView()
+    );
     genCode.init();
   }
 

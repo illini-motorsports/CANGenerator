@@ -33,12 +33,9 @@ public class CANParser {
    * @param file
    * @return Full CANSpec if JSON was formatted correctly, null otherwise
    */
-  public static CANSpec parseCanSpec(File file) {
-    // Try to parse the file as JSON
+  public static CANSpec parseCanSpec(File file) throws CANParseException {
+    // parse the file as JSON
     JSONObject canJson = getJSONFromFile(file);
-    if(canJson == null) {
-      return null;
-    }
 
     // Create top level spec object
     String version;
@@ -47,7 +44,7 @@ public class CANParser {
       version = canJson.getString("version");
       messages = canJson.getJSONArray("messages");
     } catch (JSONException e) {
-      return null;
+      throw new CANParseException(e);
     }
 
     CANSpec spec = new CANSpec(version);
@@ -57,9 +54,6 @@ public class CANParser {
     while(messagesIter.hasNext()) {
       JSONObject message = (JSONObject) messagesIter.next();
       CANMessage canMessage = parseCANMessage(message);
-      if(canMessage == null) {
-        return null;
-      }
       spec.addMessage(canMessage);
     }
 
@@ -72,12 +66,12 @@ public class CANParser {
    * @param file
    * @return
    */
-  private static JSONObject getJSONFromFile(File file) {
+  private static JSONObject getJSONFromFile(File file) throws CANParseException {
     BufferedReader reader;
     try {
       reader = new BufferedReader(new FileReader(file.getAbsoluteFile()));
     } catch (FileNotFoundException e) {
-      return null;
+      throw new CANParseException("File Not Found");
     }
     String jsonString = "";
     String line;
@@ -86,13 +80,15 @@ public class CANParser {
         jsonString += line;
       }
     } catch (IOException e) {
-      return null;
+      throw new CANParseException("Error Reading File");
     }
 
-    JSONObject canJson = null;
+    JSONObject canJson;
     try {
       canJson = new JSONObject(jsonString);
-    } catch (JSONException e) {}
+    } catch (JSONException e) {
+      throw new CANParseException(e);
+    }
 
     return canJson;
   }
@@ -104,12 +100,14 @@ public class CANParser {
    * @return
    */
   //TODO: make custom exception with more verbose parse error messages
-  private static CANMessage parseCANMessage(JSONObject message) {
+  private static CANMessage parseCANMessage(JSONObject message) throws CANParseException {
 
     // Initialize primitive canMessage fields
     JSONArray bytes;
     CANMessage canMessage;
+    String strID = "";
     try {
+      strID = message.getString("id");
       int id = Integer.parseInt(message.getString("id").substring(2), 16);
       String node = message.getString("node");
       boolean bigEndian = message.getBoolean("bigEndian");
@@ -118,9 +116,9 @@ public class CANParser {
       bytes = message.getJSONArray("bytes");
       canMessage = new CANMessage(id, node, endianness, dlc);
     } catch (JSONException e) {
-      return null;
+      throw new CANParseException(e);
     } catch (NumberFormatException e) {
-      return null;
+      throw new CANParseException("Could not parse ID: " + strID);
     }
 
     // Add each field to message
@@ -128,9 +126,6 @@ public class CANParser {
     while(bytesIter.hasNext()) {
       JSONObject field = (JSONObject) bytesIter.next();
       CANDataField canField = parseCANDataField(field);
-      if(canField == null) {
-        return null;
-      }
       canMessage.addField(canField);
     }
 
@@ -143,14 +138,14 @@ public class CANParser {
    * @param field
    * @return
    */
-  private static CANDataField parseCANDataField(JSONObject field) {
+  private static CANDataField parseCANDataField(JSONObject field) throws CANParseException {
     String type;
     int position;
     try {
       type = field.getString("type");
       position = field.getInt("byte");
     } catch (JSONException e) {
-      return null;
+      throw new CANParseException(e);
     }
 
 
@@ -208,9 +203,9 @@ public class CANParser {
         }
       }
     } catch (JSONException e) {
-      return null;
+      throw new CANParseException(e);
     } catch (NumberFormatException e) {
-      return null;
+      throw new CANParseException("Error Parsing Constant Value");
     }
     return canField;
   }

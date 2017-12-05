@@ -33,12 +33,14 @@ public class GeneratedCodeController {
   public void saveToFile() {
     JFileChooser fc = view.getFc();
     if(fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+      JOptionPane message = new JOptionPane();
       try {
         FileWriter fw = new FileWriter(fc.getSelectedFile());
         fw.write(model.getCode());
+        message.showMessageDialog(view, "Success", ":)", JOptionPane.INFORMATION_MESSAGE);
+        fw.close();
       } catch (IOException e) {
-        JOptionPane err = new JOptionPane("File Write Error!", JOptionPane.ERROR_MESSAGE);
-        err.createDialog(view, "Error!");
+        message.showMessageDialog(view, "File Write Error!", "Error!", JOptionPane.ERROR_MESSAGE);
       }
     }
   }

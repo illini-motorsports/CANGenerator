@@ -5,6 +5,7 @@ import com.illinimotorsports.model.canspec.*;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 
@@ -69,18 +70,20 @@ public class DBCGenerator {
   private List<Map<String, String>> generateFieldDefs(CANMessage message) {
     List<Map<String, String>> fields = new ArrayList<>();
     String endianness = message.getEndianness() == Endianness.BIG ? "1" : "0";
+    DecimalFormat df = new DecimalFormat("#");
+    df.setMaximumFractionDigits(20);
     for(CANDataField field: message.getData()) {
       if(field instanceof CANNumericField) {
         CANNumericField numericField = (CANNumericField) field;
         Map<String, String> fieldMap = new HashMap<>();
-        String fieldName = message.getNode().toUpperCase() + "_" + numericField.getName();
+        String fieldName = message.getNode().toUpperCase() + "_" + numericField.getName().toUpperCase().replace(' ', '_');
         fieldMap.put("fieldName", fieldName);
-        fieldMap.put("position", Integer.toString(numericField.getPosition()));
-        fieldMap.put("length", Integer.toString(numericField.getLength()));
+        fieldMap.put("position", Integer.toString(numericField.getPosition() * 8));
+        fieldMap.put("length", Integer.toString(numericField.getLength()*8));
         fieldMap.put("endianness", endianness);
         fieldMap.put("signed", numericField.isSigned() ? "-" : "+");
-        fieldMap.put("scl", Double.toString(numericField.getScale()));
-        fieldMap.put("offset", Double.toString(numericField.getOffset()));
+        fieldMap.put("scl", df.format(numericField.getScale()));
+        fieldMap.put("offset", df.format(numericField.getOffset()));
         fieldMap.put("unit", numericField.getUnit());
         fields.add(fieldMap);
       }
@@ -90,9 +93,9 @@ public class DBCGenerator {
         for(int i = 0; i < bits.size(); i++) {
           if(!bits.get(i).equals("reserved")) {
             Map<String, String> fieldMap = new HashMap<>();
-            String fieldName = message.getNode().toUpperCase() + "_" + bits.get(i);
+            String fieldName = message.getNode().toUpperCase() + "_" + bits.get(i).toUpperCase().replace(' ', '_');
             fieldMap.put("fieldName", fieldName);
-            fieldMap.put("position", Integer.toString(bitmapField.getPosition() + i));
+            fieldMap.put("position", Integer.toString((bitmapField.getPosition()*8) + i));
             fieldMap.put("length", "1");
             fieldMap.put("endianness", "1");
             fieldMap.put("signed", "+");
