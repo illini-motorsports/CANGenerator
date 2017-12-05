@@ -1,5 +1,6 @@
 package com.illinimotorsports.controller;
 
+import com.illinimotorsports.model.DocumentationTableModel;
 import com.illinimotorsports.model.GeneratedCodeModel;
 import com.illinimotorsports.model.GeneratorModel;
 import com.illinimotorsports.model.MessageCheckBoxListModel;
@@ -9,10 +10,7 @@ import com.illinimotorsports.model.generate.CANParserGenerator;
 import com.illinimotorsports.model.generate.DBCGenerator;
 import com.illinimotorsports.model.generate.DocumentationGenerator;
 import com.illinimotorsports.model.parse.CANParseException;
-import com.illinimotorsports.view.GeneratedCodeView;
-import com.illinimotorsports.view.MainView;
-import com.illinimotorsports.view.MessageCheckBoxList;
-import com.illinimotorsports.view.MessageSelect;
+import com.illinimotorsports.view.*;
 
 import javax.swing.*;
 import java.io.File;
@@ -124,7 +122,12 @@ public class GeneratorController {
 
   public void generateDocumentationListener() {
     DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
-    generator.generateMessageTable();
+    DocumentationTableModel model = new DocumentationTableModel(
+        DocumentationGenerator.messageTableColumns,
+        generator.generateMessageTable());
+    DocumentationTableView view = new DocumentationTableView();
+    view.getTable().setModel(model);
+    view.init();
   }
 
   /**

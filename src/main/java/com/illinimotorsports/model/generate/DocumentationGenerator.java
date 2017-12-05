@@ -2,12 +2,14 @@ package com.illinimotorsports.model.generate;
 
 import com.illinimotorsports.model.canspec.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 
 public class DocumentationGenerator {
   private CANSpec spec;
-  public final String[] messageTableColumns = {"Name", "ID", "Endianness",
+  public static final String[] messageTableColumns = {"Name", "ID", "Endianness",
       "Byte 0", "Byte 1", "Byte 2", "Byte 3", "Byte 4", "Byte 5", "Byte 6", "Byte 7"};
 
   public DocumentationGenerator(CANSpec canSpec) {

@@ -3,10 +3,7 @@ package com.illinimotorsports.model.generate;
 import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.canspec.CANSpec;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MessageIDUtils {
   /**
@@ -35,7 +32,8 @@ public class MessageIDUtils {
    * @return
    */
   public static Map<CANMessage, String> generateIDNames(Map<String, List<CANMessage>> nodeMap) {
-    Map<CANMessage, String> canIDs = new HashMap<>();
+    Map<CANMessage, String> canIDs = new TreeMap<>(
+        Comparator.comparing((CANMessage message) -> message.getId()));
     for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
       List<CANMessage> messages = entry.getValue();
       for(int i = 0; i < messages.size(); i++) {
