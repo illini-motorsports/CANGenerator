@@ -12,6 +12,7 @@ public class ApplicationPanel extends JPanel {
   JButton genHeaderButton;
   JButton genParserButton;
   JButton genDBCButton;
+  JButton genDocumentationButton;
   JFileChooser fileChooser;
   JLabel canSpecStatus;
 
@@ -28,15 +29,19 @@ public class ApplicationPanel extends JPanel {
     genHeaderButton = new JButton("Generate Header");
     genParserButton = new JButton("Generate Parser");
     genDBCButton = new JButton("Generate DBC");
+    genDocumentationButton = new JButton("Generate Documenation");
     JPanel openButtonPanel = new JPanel();
-    JPanel genButtonPanel = new JPanel();
+    JPanel genButtonPanel1 = new JPanel();
+    JPanel genButtonPanel2 = new JPanel();
     openButtonPanel.add(openFileButton);
     openButtonPanel.add(canSpecStatus);
-    genButtonPanel.add(genHeaderButton);
-    genButtonPanel.add(genParserButton);
-    genButtonPanel.add(genDBCButton);
+    genButtonPanel1.add(genHeaderButton);
+    genButtonPanel1.add(genParserButton);
+    genButtonPanel2.add(genDBCButton);
+    genButtonPanel2.add(genDocumentationButton);
     add(openButtonPanel, BorderLayout.PAGE_START);
-    add(genButtonPanel, BorderLayout.CENTER);
+    add(genButtonPanel1, BorderLayout.CENTER);
+    add(genButtonPanel2, BorderLayout.SOUTH);
     setEnableGenButtons(false);
   }
 
@@ -72,5 +77,10 @@ public class ApplicationPanel extends JPanel {
     genHeaderButton.setEnabled(enable);
     genParserButton.setEnabled(enable);
     genDBCButton.setEnabled(enable);
+    genDocumentationButton.setEnabled(enable);
+  }
+
+  public JButton getGenDocumentationButton() {
+    return genDocumentationButton;
   }
 }

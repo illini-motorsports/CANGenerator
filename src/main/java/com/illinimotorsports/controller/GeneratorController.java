@@ -7,12 +7,12 @@ import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.generate.CANHeaderGenerator;
 import com.illinimotorsports.model.generate.CANParserGenerator;
 import com.illinimotorsports.model.generate.DBCGenerator;
+import com.illinimotorsports.model.generate.DocumentationGenerator;
 import com.illinimotorsports.model.parse.CANParseException;
 import com.illinimotorsports.view.GeneratedCodeView;
 import com.illinimotorsports.view.MainView;
 import com.illinimotorsports.view.MessageCheckBoxList;
 import com.illinimotorsports.view.MessageSelect;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.io.File;
@@ -53,6 +53,7 @@ public class GeneratorController {
     view.getAppPanel().getGenParserButton().addActionListener(e -> openMessageSelector());
     view.getAppPanel().getGenHeaderButton().addActionListener(e -> generateHeaderListener());
     view.getAppPanel().getGenDBCButton().addActionListener(e -> generateDBCListener());
+    view.getAppPanel().getGenDocumentationButton().addActionListener(e -> generateDocumentationListener());
   }
 
   /**
@@ -119,6 +120,11 @@ public class GeneratorController {
         new GeneratedCodeView()
     );
     genCode.init();
+  }
+
+  public void generateDocumentationListener() {
+    DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
+    generator.generateMessageTable();
   }
 
   /**
