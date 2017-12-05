@@ -13,26 +13,11 @@ import java.util.Map;
  * Generator class for header files
  */
 public class CANHeaderGenerator {
-  Map<String, List<CANMessage>> nodeMap;
+
+  CANSpec spec;
 
   public CANHeaderGenerator(CANSpec canSpec) {
-    generateNodeMap(canSpec);
-  }
-
-  /**
-   * Generate map from node to message, for better organization
-   * @param spec
-   * @return
-   */
-  private Map<String, List<CANMessage>> generateNodeMap(CANSpec spec) {
-    nodeMap = new HashMap<>();
-    for(CANMessage message: spec.getMessages()) {
-      String node = message.getNode();
-      List<CANMessage> nodeList = nodeMap.containsKey(node) ? nodeMap.get(node) : new ArrayList<>();
-      nodeList.add(message);
-      nodeMap.put(node, nodeList);
-    }
-    return nodeMap;
+    spec = canSpec;
   }
 
   /**
@@ -51,37 +36,31 @@ public class CANHeaderGenerator {
   }
 
   /**
-   * Uses node map to get ID names
+   *
    * @return
    */
   public List<Map<String, String>> generateIDs() {
-    List<Map<String, String>> canIDs = new ArrayList<>();
-    for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
-      List<CANMessage> messages = entry.getValue();
-      for(int i = 0; i < messages.size(); i++) {
-        String id = messages.get(i).getNode().toUpperCase() + "_" + i + "_ID";
-        String hexID = "0x" + Integer.toHexString(messages.get(i).getId());
-        Map<String, String> idMap = new HashMap<>();
-        idMap.put("def", id);
-        idMap.put("id", hexID);
-        canIDs.add(idMap);
-      }
+    List<Map<String, String>> canIDList = new ArrayList<>();
+    Map<CANMessage, String> canIDs = MessageIDUtils.generateIDNames(spec);
+    for(Map.Entry<CANMessage, String> entry: canIDs.entrySet()) {
+      String hexID = "0x" + Integer.toHexString(entry.getKey().getId());
+      Map<String, String> idMap = new HashMap<>();
+      idMap.put("def", entry.getValue() + "_ID");
+      idMap.put("id", hexID);
+      canIDList.add(idMap);
     }
-    return canIDs;
+    return canIDList;
   }
 
   /**
    * Generates main list of maps for all field definitions
    * @return
    */
-  public List<Map<String, String>> generateFieldDefs() {
+  private List<Map<String, String>> generateFieldDefs() {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
-    for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
-      List<CANMessage> messages = entry.getValue();
-      for (CANMessage message : messages) {
-        for (CANDataField field : message.getData()) {
-          fieldDefs.addAll(generateDefsFromField(message.getNode(), field));
-        }
+    for(CANMessage message: spec.getMessages()) {
+      for (CANDataField field : message.getData()) {
+        fieldDefs.addAll(generateDefsFromField(message.getNode(), field));
       }
     }
     return fieldDefs;
@@ -93,7 +72,7 @@ public class CANHeaderGenerator {
    * @param field
    * @return
    */
-  public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
+  private List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     if (field instanceof CANNumericField) {
       CANNumericField numField = (CANNumericField) field;

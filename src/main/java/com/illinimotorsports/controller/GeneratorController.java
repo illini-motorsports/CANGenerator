@@ -1,5 +1,6 @@
 package com.illinimotorsports.controller;
 
+import com.illinimotorsports.model.GeneratedCodeModel;
 import com.illinimotorsports.model.GeneratorModel;
 import com.illinimotorsports.model.MessageCheckBoxListModel;
 import com.illinimotorsports.model.canspec.CANMessage;
@@ -82,7 +83,9 @@ public class GeneratorController {
     selectView.setVisible(false);
     List<CANMessage> messages = selectModel.getSelectedMessages();
     CANParserGenerator parserGenerator = new CANParserGenerator(messages);
-    GeneratedCodeView genCode = new GeneratedCodeView(parserGenerator.fillTemplate());
+    GeneratedCodeController genCode = new GeneratedCodeController(
+        new GeneratedCodeModel(parserGenerator.fillTemplate()),
+        new GeneratedCodeView());
     genCode.init();
   }
 
@@ -91,7 +94,9 @@ public class GeneratorController {
    */
   public void generateHeaderListener() {
     CANHeaderGenerator headerGenerator = new CANHeaderGenerator(model.getCanSpec());
-    GeneratedCodeView genCode = new GeneratedCodeView(headerGenerator.fillTemplate());
+    GeneratedCodeController genCode = new GeneratedCodeController(
+        new GeneratedCodeModel(headerGenerator.fillTemplate()),
+        new GeneratedCodeView());
     genCode.init();
   }
 

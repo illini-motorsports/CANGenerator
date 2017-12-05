@@ -32,7 +32,7 @@ public class MessageSelect extends JFrame {
     buttonPanel.add(deselectAllButton);
     buttonPanel.add(submitButton);
 
-    this.add(new JScrollPane(list), BorderLayout.NORTH);
+    this.add(new JScrollPane(list));
     this.add(buttonPanel, BorderLayout.SOUTH);
   }
 
