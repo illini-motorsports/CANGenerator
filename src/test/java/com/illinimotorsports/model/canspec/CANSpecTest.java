@@ -23,7 +23,7 @@ public class CANSpecTest {
   @Test
   public void testGetMessages() throws Exception {
     spec.addMessage(new CANMessage(123, "PDM", Endianness.LITTLE, 8));
-    assertEquals(spec.getMessages().get(0), "PDM: 0x7b");
+    assertEquals(spec.getMessages().get(0).getNode(), "PDM");
   }
 
   @Test

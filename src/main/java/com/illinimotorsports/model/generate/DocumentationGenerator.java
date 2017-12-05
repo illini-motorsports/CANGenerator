@@ -39,12 +39,6 @@ public class DocumentationGenerator {
         }
       }
     }
-    for(int i = 0; i < messages.length; i++) {
-      for(int j = 0; j < messages[0].length; j++) {
-        System.out.print(messages[i][j] + ", ");
-      }
-      System.out.println("");
-    }
     return messages;
   }
 }
