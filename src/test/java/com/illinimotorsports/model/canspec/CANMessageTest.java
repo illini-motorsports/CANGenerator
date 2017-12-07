@@ -26,9 +26,9 @@ public class CANMessageTest {
   public void testGetFieldNames() throws Exception {
     assertEquals(message.getFieldNames().size(), 0);
     message.addField(new CANNumericField(0,2,"ayy", "V", true, 1, 0));
-    assertEquals(message.getFieldNames().size(), 0);
-    message.addField(new CANNumericField(2,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getFieldNames().size(), 1);
+    message.addField(new CANNumericField(2,2,"ayy", "V", true, 1, 0));
+    assertEquals(message.getFieldNames().size(), 2);
     assertEquals(message.getFieldNames().get(0), "ayy");
   }
 

@@ -166,9 +166,13 @@ public class CANParser {
           int length = field.getInt("length");
           String name = field.getString("name");
           JSONArray bits = field.getJSONArray("bits");
-          if(bits.length() != length * 8) { break; }
-          List<String> bitList = new ArrayList<>();
-          for(int i = 0; i < bits.length(); i++) { bitList.add(bits.getString(i)); }
+          Iterator bitsIter = bits.iterator();
+          List<CANBitField> bitList = new ArrayList<>();
+          while(bitsIter.hasNext()) {
+            JSONObject bit = (JSONObject) bitsIter.next();
+            bitList.add(new CANBitField(bit.getString("name"),
+                bit.getInt("position")));
+          }
           canField = new CANBitmapField(position, length, name, bitList);
           break;
         }

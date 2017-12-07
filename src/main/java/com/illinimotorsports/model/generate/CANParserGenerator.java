@@ -6,6 +6,7 @@ import com.illinimotorsports.model.canspec.CANNumericField;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +59,8 @@ public class CANParserGenerator {
     List<Map<String, String>> fieldList = new ArrayList<>();
     for(CANDataField field: message.getData()) {
       //TODO: support bitmaps
+      DecimalFormat df = new DecimalFormat("#");
+      df.setMaximumFractionDigits(20);
       if(field instanceof CANNumericField) {
         Map<String, String> fieldMap = new HashMap<>();
         CANNumericField numField = (CANNumericField) field;
@@ -65,7 +68,7 @@ public class CANParserGenerator {
         fieldMap.put("len", Integer.toString(numField.getLength()));
         fieldMap.put("endian", message.getEndianness().toString());
         fieldMap.put("sgn", numField.isSigned() ? "1": "0");
-        fieldMap.put("scl", Double.toString(numField.getScale()));
+        fieldMap.put("scl", df.format(numField.getScale()));
         fieldMap.put("off", "0x" + Integer.toHexString(numField.getOffset()));
         String comment = numField.getName();
         if(numField.getUnit().length() > 0) {

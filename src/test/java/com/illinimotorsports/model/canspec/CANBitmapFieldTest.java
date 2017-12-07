@@ -9,19 +9,23 @@ import java.util.List;
 
 public class CANBitmapFieldTest {
 
-  List<String> strings;
+  List<CANBitField> bits;
   CANBitmapField bmap;
 
   @Before
   public void init() {
-    strings = new ArrayList<>(Arrays.asList("ayo", "yo", "o"));
-    bmap = new CANBitmapField(2, 2, "TestName", strings);
+    bits = new ArrayList<>(Arrays.asList(
+        new CANBitField("ayy", 0),
+        new CANBitField("ososo", 1),
+        new CANBitField("aymo", 4),
+        new CANBitField("kjfdkjf", 5)));
+    bmap = new CANBitmapField(2, 2, "TestName", bits);
   }
 
   @Test
   public void testGetBits() throws Exception {
-    assertEquals(bmap.getBits().size(), 3);
-    assertEquals(bmap.getBits().get(1), "yo");
+    assertEquals(bmap.getBits().size(), 4);
+    assertEquals(bmap.getBits().get(1).getName(), "ososo");
   }
 
   @Test

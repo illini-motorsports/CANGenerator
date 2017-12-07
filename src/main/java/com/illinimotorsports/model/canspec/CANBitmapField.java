@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class CANBitmapField extends CANDataField {
 
-  private List<String> bits;
+  private List<CANBitField> bits;
 
   /**
    * Constructor for class, requires full list of bit names
@@ -17,7 +17,7 @@ public class CANBitmapField extends CANDataField {
    * @param name
    * @param bits
    */
-  public CANBitmapField(int pos, int len, String name, List<String> bits) {
+  public CANBitmapField(int pos, int len, String name, List<CANBitField> bits) {
     super(pos, len, name);
     this.bits = new ArrayList<>(bits);
   }
@@ -26,7 +26,15 @@ public class CANBitmapField extends CANDataField {
    * Returns full list of bit names
    * @return
    */
-  public List<String> getBits() {
+  public List<CANBitField> getBits() {
     return bits;
+  }
+
+  public List<String> getBitNames() {
+    List<String> bitNames = new ArrayList<>();
+    for(CANBitField bit: bits) {
+      bitNames.add(bit.getName());
+    }
+    return bitNames;
   }
 }

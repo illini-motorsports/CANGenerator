@@ -4,6 +4,7 @@ import com.illinimotorsports.model.canspec.*;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,11 +76,13 @@ public class CANHeaderGenerator {
   public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     if (field instanceof CANNumericField) {
+      DecimalFormat df = new DecimalFormat("#");
+      df.setMaximumFractionDigits(20);
       CANNumericField numField = (CANNumericField) field;
       String genericDef = message.toUpperCase() + "_"
           + numField.getName().toUpperCase().replace(' ', '_');
       String byteNum = Integer.toString(numField.getPosition());
-      String scl = Double.toString(numField.getScale());
+      String scl = df.format(numField.getScale());
       String off = "0x" + Integer.toHexString(numField.getOffset());
 
       Map<String, String> byteDef = new HashMap<>();
@@ -107,17 +110,16 @@ public class CANHeaderGenerator {
       byteDef.put("value", byteNum);
       fieldDefs.add(byteDef);
 
-      List<String> bits = bitField.getBits();
-      for(int i = 0; i < bits.size(); i++) {
-        if(!bits.get(i).equals("Reserved")) {
-          String bitDef = genericDef + "_"
-              + bits.get(i).toUpperCase().replace(' ', '_') + "_BIT";
-          String bitPos = Integer.toString(i);
-          Map<String, String> bitMap = new HashMap<>();
-          bitMap.put("def", bitDef);
-          bitMap.put("value", bitPos);
-          fieldDefs.add(bitMap);
-        }
+      List<CANBitField> bits = bitField.getBits();
+      for(CANBitField bit: bits) {
+        String bitDef = genericDef + "_"
+            + bit.getName().toUpperCase().replace(' ', '_')
+            + "_BIT";
+        String bitPos = Integer.toString(bit.getPosition());
+        Map<String, String> bitMap = new HashMap<>();
+        bitMap.put("def", bitDef);
+        bitMap.put("value", bitPos);
+        fieldDefs.add(bitMap);
       }
     }
     return fieldDefs;

@@ -51,10 +51,10 @@ public class CANMessage {
     List<String> names = new ArrayList<>();
     for(CANDataField field: data) {
       if(field instanceof CANNumericField) {
-        names.add(((CANNumericField) field).getName());
+        names.add(field.getName());
       }
       else if(field instanceof CANBitmapField) {
-        names.addAll(((CANBitmapField) field).getBits());
+        names.addAll(((CANBitmapField) field).getBitNames());
       }
     }
     return names;

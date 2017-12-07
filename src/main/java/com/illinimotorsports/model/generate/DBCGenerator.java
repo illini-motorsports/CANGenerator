@@ -89,20 +89,20 @@ public class DBCGenerator {
       }
       else if(field instanceof CANBitmapField) {
         CANBitmapField bitmapField = (CANBitmapField) field;
-        List<String> bits = bitmapField.getBits();
-        for(int i = 0; i < bits.size(); i++) {
-          if(!bits.get(i).equals("reserved")) {
-            Map<String, String> fieldMap = new HashMap<>();
-            String fieldName = message.getNode().toUpperCase() + "_" + bits.get(i).toUpperCase().replace(' ', '_');
-            fieldMap.put("fieldName", fieldName);
-            fieldMap.put("position", Integer.toString((bitmapField.getPosition()*8) + i));
-            fieldMap.put("length", "1");
-            fieldMap.put("endianness", "1");
-            fieldMap.put("signed", "+");
-            fieldMap.put("scl", "1");
-            fieldMap.put("offset", "0");
-            fieldMap.put("unit", "");
-          }
+        List<CANBitField> bits = bitmapField.getBits();
+        for(CANBitField bit: bits) {
+          Map<String, String> fieldMap = new HashMap<>();
+          String fieldName = message.getNode().toUpperCase() +
+              "_" + bit.getName().toUpperCase().replace(' ', '_');
+          fieldMap.put("fieldName", fieldName);
+          int bitPos = (bitmapField.getPosition()*8) + bit.getPosition();
+          fieldMap.put("position", Integer.toString(bitPos));
+          fieldMap.put("length", "1");
+          fieldMap.put("endianness", "1");
+          fieldMap.put("signed", "+");
+          fieldMap.put("scl", "1");
+          fieldMap.put("offset", "0");
+          fieldMap.put("unit", "");
         }
       }
     }
