@@ -83,7 +83,7 @@ public class DBCGenerator {
         fieldMap.put("endianness", endianness);
         fieldMap.put("signed", numericField.isSigned() ? "-" : "+");
         fieldMap.put("scl", df.format(numericField.getScale()));
-        fieldMap.put("offset", df.format(numericField.getOffset()));
+        fieldMap.put("offset", Integer.toString(numericField.getOffset()));
         fieldMap.put("unit", numericField.getUnit());
         fields.add(fieldMap);
       }

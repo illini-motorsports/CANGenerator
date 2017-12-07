@@ -5,11 +5,10 @@ package com.illinimotorsports.model.canspec;
  */
 public class CANNumericField extends CANDataField {
 
-  private String name;
   private String unit;
   private boolean signed;
   private double scale;
-  private double offset;
+  private int offset;
 
   /**
    * Initialize all fields in constructor
@@ -23,9 +22,8 @@ public class CANNumericField extends CANDataField {
    */
   public CANNumericField(int pos, int len, String name,
                          String unit, boolean signed,
-                         double scale, double offset) {
-    super(pos, len);
-    this.name = name;
+                         double scale, int offset) {
+    super(pos, len, name);
     this.unit = unit;
     this.signed = signed;
     this.scale = scale;
@@ -44,11 +42,7 @@ public class CANNumericField extends CANDataField {
     return scale;
   }
 
-  public double getOffset() {
+  public int getOffset() {
     return offset;
-  }
-
-  public String getName() {
-    return name;
   }
 }

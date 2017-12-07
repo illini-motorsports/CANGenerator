@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class CANBitmapField extends CANDataField {
 
-  private String name;
   private List<String> bits;
 
   /**
@@ -19,8 +18,7 @@ public class CANBitmapField extends CANDataField {
    * @param bits
    */
   public CANBitmapField(int pos, int len, String name, List<String> bits) {
-    super(pos, len);
-    this.name = name;
+    super(pos, len, name);
     this.bits = new ArrayList<>(bits);
   }
 
@@ -30,9 +28,5 @@ public class CANBitmapField extends CANDataField {
    */
   public List<String> getBits() {
     return bits;
-  }
-
-  public String getName() {
-    return name;
   }
 }

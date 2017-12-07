@@ -16,7 +16,7 @@ public class CANMessageTest {
   @Test
   public void testAddField() throws Exception {
     assertEquals(message.getData().size(), 0);
-    message.addField(new CANReservedField(2,2));
+    message.addField(new CANNumericField(0,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getData().size(), 1);
     message.addField(new CANNumericField(2,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getData().size(), 2);
@@ -25,7 +25,7 @@ public class CANMessageTest {
   @Test
   public void testGetFieldNames() throws Exception {
     assertEquals(message.getFieldNames().size(), 0);
-    message.addField(new CANReservedField(2,2));
+    message.addField(new CANNumericField(0,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getFieldNames().size(), 0);
     message.addField(new CANNumericField(2,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getFieldNames().size(), 1);
@@ -55,11 +55,11 @@ public class CANMessageTest {
   @Test
   public void testGetData() throws Exception {
     assertEquals(message.getData().size(), 0);
-    message.addField(new CANReservedField(2,2));
+    message.addField(new CANNumericField(0,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getData().size(), 1);
     message.addField(new CANNumericField(2,2,"ayy", "V", true, 1, 0));
     assertEquals(message.getData().size(), 2);
-    assertTrue(message.getData().get(0) instanceof CANReservedField);
+    assertTrue(message.getData().get(0) instanceof CANNumericField);
     assertTrue(message.getData().get(1) instanceof CANNumericField);
   }
 

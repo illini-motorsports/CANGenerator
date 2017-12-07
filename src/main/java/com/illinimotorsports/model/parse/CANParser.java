@@ -99,7 +99,6 @@ public class CANParser {
    * @param message
    * @return
    */
-  //TODO: make custom exception with more verbose parse error messages
   private static CANMessage parseCANMessage(JSONObject message) throws CANParseException {
 
     // Initialize primitive canMessage fields
@@ -159,7 +158,7 @@ public class CANParser {
           String unit = field.getString("unit");
           boolean signed = field.getBoolean("signed");
           double scale = field.getDouble("scale");
-          double offset = field.getDouble("offset");
+          int offset = Integer.parseInt(field.getString("offset").substring(2), 16);
           canField = new CANNumericField(position, length, name, unit, signed, scale, offset);
           break;
         }
@@ -173,39 +172,11 @@ public class CANParser {
           canField = new CANBitmapField(position, length, name, bitList);
           break;
         }
-        case "constant": {
-          int length = field.getInt("length");
-          int value = Integer.parseInt(field.getString("value").substring(2), 16);
-          canField = new CANConstField(position, length, value);
-          break;
-        }
-        case "reserved": {
-          int length = field.getInt("length");
-          canField = new CANReservedField(position, length);
-          break;
-        }
-        case "nibble": {
-          JSONObject msb = field.getJSONObject("msb");
-          String msbName = msb.getString("name");
-          String msbUnit = msb.getString("unit");
-          boolean msbSigned = msb.getBoolean("signed");
-          double msbScale = msb.getDouble("scale");
-          double msbOffset = msb.getDouble("offset");
-          JSONObject lsb = field.getJSONObject("lsb");
-          String lsbName = lsb.getString("name");
-          String lsbUnit = lsb.getString("unit");
-          boolean lsbSigned = lsb.getBoolean("signed");
-          double lsbScale = lsb.getDouble("scale");
-          double lsbOffset = lsb.getDouble("offset");
-          canField = new CANNibbleField(position, msbName, lsbName,
-              msbUnit, lsbUnit, msbSigned, lsbSigned, msbScale, lsbScale, msbOffset, lsbOffset);
-          break;
-        }
       }
     } catch (JSONException e) {
       throw new CANParseException(e);
     } catch (NumberFormatException e) {
-      throw new CANParseException("Error Parsing Constant Value");
+      throw new CANParseException("Error Parsing Offset Value");
     }
     return canField;
   }

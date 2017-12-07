@@ -9,6 +9,7 @@ public abstract class CANDataField {
 
   private int position;
   private int length;
+  private String name;
 
   /**
    * Only contains position and length,
@@ -17,9 +18,10 @@ public abstract class CANDataField {
    * @param pos
    * @param len
    */
-  public CANDataField(int pos, int len) {
+  public CANDataField(int pos, int len, String fieldName) {
     this.position = pos;
     this.length = len;
+    this.name = fieldName;
   }
 
   public int getPosition() {
@@ -28,5 +30,9 @@ public abstract class CANDataField {
 
   public int getLength() {
     return length;
+  }
+
+  public String getName() {
+    return name;
   }
 }

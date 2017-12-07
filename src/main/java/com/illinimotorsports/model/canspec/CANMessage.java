@@ -56,11 +56,6 @@ public class CANMessage {
       else if(field instanceof CANBitmapField) {
         names.addAll(((CANBitmapField) field).getBits());
       }
-      else if(field instanceof CANNibbleField) {
-        CANNibbleField nibble = (CANNibbleField) field;
-        names.add(nibble.getMsbName());
-        names.add(nibble.getLsbName());
-      }
     }
     return names;
   }

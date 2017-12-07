@@ -80,7 +80,7 @@ public class CANHeaderGenerator {
           + numField.getName().toUpperCase().replace(' ', '_');
       String byteNum = Integer.toString(numField.getPosition());
       String scl = Double.toString(numField.getScale());
-      String off = Double.toString(numField.getOffset());
+      String off = "0x" + Integer.toHexString(numField.getOffset());
 
       Map<String, String> byteDef = new HashMap<>();
       byteDef.put("def", genericDef + "_BYTE");
@@ -120,7 +120,6 @@ public class CANHeaderGenerator {
         }
       }
     }
-    //TODO: generate defs for nibbles
     return fieldDefs;
   }
 }

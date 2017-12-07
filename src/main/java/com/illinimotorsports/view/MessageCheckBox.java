@@ -20,7 +20,8 @@ public class MessageCheckBox extends JPanel {
    */
   public MessageCheckBox(CANMessage canMessage) {
     message = canMessage;
-    checkBox = new JCheckBox(message.getNode());
+    checkBox = new JCheckBox(message.getNode() +
+        " 0x" + Integer.toHexString(message.getId()));
 
     String fieldText = "Fields:\n";
     for(String field: message.getFieldNames()) {

@@ -57,6 +57,7 @@ public class CANParserGenerator {
   public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
     for(CANDataField field: message.getData()) {
+      //TODO: support bitmaps
       if(field instanceof CANNumericField) {
         Map<String, String> fieldMap = new HashMap<>();
         CANNumericField numField = (CANNumericField) field;
@@ -65,7 +66,7 @@ public class CANParserGenerator {
         fieldMap.put("endian", message.getEndianness().toString());
         fieldMap.put("sgn", numField.isSigned() ? "1": "0");
         fieldMap.put("scl", Double.toString(numField.getScale()));
-        fieldMap.put("off", Double.toString(numField.getOffset()));
+        fieldMap.put("off", "0x" + Integer.toHexString(numField.getOffset()));
         String comment = numField.getName();
         if(numField.getUnit().length() > 0) {
           comment += " (" + numField.getUnit() + ")";
