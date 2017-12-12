@@ -44,7 +44,6 @@ public class DBCGenerator {
    * Generator for node definitions
    * @return
    */
-  //TODO: see if return type can be simplified
   private List<Map<String, String>> generateNodeDefs() {
     List<Map<String, String>> nodeDefs = new ArrayList<>();
     Set<String> nodes = new HashSet<>();
