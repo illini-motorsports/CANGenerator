@@ -66,6 +66,7 @@ public class GeneratorController {
       try {
         model.generateModel(file);
         view.getAppPanel().getCanSpecStatus().setText("Spec Successfully Parsed!");
+        view.getAppPanel().getOpenFileButton().setText("Open New CAN Spec");
         view.getAppPanel().setEnableGenButtons(true);
       } catch (CANParseException e) {
         JOptionPane parseError = new JOptionPane();

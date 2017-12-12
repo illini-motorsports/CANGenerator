@@ -35,7 +35,6 @@ public class DocumentationController {
     view.getTable().setModel(model);
     if(isColored) {
       for(int i = 0; i < view.getTable().getColumnModel().getColumnCount(); i++) {
-        System.out.println(i);
         view.getTable().getColumnModel().getColumn(i).setCellRenderer(new ColoredCellRenderer());
       }
     }
