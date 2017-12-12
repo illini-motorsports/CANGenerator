@@ -1,5 +1,8 @@
 package com.illinimotorsports.model;
 
+/**
+ * Model for generated code window
+ */
 public class GeneratedCodeModel {
   private String code;
 

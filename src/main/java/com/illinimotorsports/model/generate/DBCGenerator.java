@@ -9,14 +9,26 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 
+/**
+ * Generator Class for DBC files
+ */
 public class DBCGenerator {
 
   CANSpec spec;
 
+  /**
+   * Constructor for DBCGenerator
+   * @param canSpec
+   */
   public DBCGenerator(CANSpec canSpec) {
     spec = canSpec;
   }
 
+  /**
+   * Main fill function.  Will return a fully filled DBC file
+   * generated from the given spec
+   * @return
+   */
   public String fillTemplate() {
     Theme theme = new Theme();
 
@@ -28,6 +40,11 @@ public class DBCGenerator {
     return config.toString();
   }
 
+  /**
+   * Generator for node definitions
+   * @return
+   */
+  //TODO: see if return type can be simplified
   private List<Map<String, String>> generateNodeDefs() {
     List<Map<String, String>> nodeDefs = new ArrayList<>();
     Set<String> nodes = new HashSet<>();
@@ -42,6 +59,11 @@ public class DBCGenerator {
     return nodeDefs;
   }
 
+  /**
+   * Generator for top level message definitions
+   * Will use a subTemplate to get all fields
+   * @return
+   */
   private List<Map<String, String>> generateMessageDefs() {
     List<Map<String, String>> messageDefs = new ArrayList<>();
     Map<CANMessage, String> ids = MessageIDUtils.generateIDNames(spec);
@@ -57,6 +79,12 @@ public class DBCGenerator {
     return messageDefs;
   }
 
+  /**
+   * Fill function for subTemplate.  Returns string with all
+   * field definitions from given CANMessage
+   * @param message
+   * @return
+   */
   private String fillSubTemplate(CANMessage message) {
     Theme theme = new Theme();
 
@@ -67,6 +95,12 @@ public class DBCGenerator {
     return subConfig.toString();
   }
 
+  /**
+   * Generator function for fields.  Returns list of field information to be used
+   * in the fillSubTemplate function
+   * @param message
+   * @return
+   */
   private List<Map<String, String>> generateFieldDefs(CANMessage message) {
     List<Map<String, String>> fields = new ArrayList<>();
     String endianness = message.getEndianness() == Endianness.BIG ? "1" : "0";

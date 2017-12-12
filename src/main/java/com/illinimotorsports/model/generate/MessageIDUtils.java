@@ -27,7 +27,7 @@ public class MessageIDUtils {
   }
 
   /**
-   *
+   * Generate ID names from a map of strings to messages
    * @param nodeMap
    * @return
    */

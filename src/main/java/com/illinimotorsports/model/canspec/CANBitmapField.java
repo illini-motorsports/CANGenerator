@@ -30,6 +30,10 @@ public class CANBitmapField extends CANDataField {
     return bits;
   }
 
+  /**
+   * Getter for all bit names in map
+   * @return
+   */
   public List<String> getBitNames() {
     List<String> bitNames = new ArrayList<>();
     for(CANBitField bit: bits) {

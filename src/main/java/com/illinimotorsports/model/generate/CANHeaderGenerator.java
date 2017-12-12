@@ -37,7 +37,7 @@ public class CANHeaderGenerator {
   }
 
   /**
-   *
+   * Generator function for message ID's
    * @return
    */
   public List<Map<String, String>> generateIDs() {

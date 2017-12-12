@@ -111,6 +111,9 @@ public class GeneratorController {
     genCode.init();
   }
 
+  /**
+   * Listener for DBC generator window
+   */
   public void generateDBCListener() {
     DBCGenerator gen = new DBCGenerator(model.getCanSpec());
     GeneratedCodeController genCode = new GeneratedCodeController(
@@ -120,6 +123,9 @@ public class GeneratorController {
     genCode.init();
   }
 
+  /**
+   * Listener for documentation generator window
+   */
   public void generateDocumentationListener() {
     DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
     DocumentationTableModel model = new DocumentationTableModel(

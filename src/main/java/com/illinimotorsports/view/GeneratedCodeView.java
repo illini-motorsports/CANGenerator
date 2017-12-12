@@ -14,6 +14,9 @@ public class GeneratedCodeView extends JFrame {
   private JButton doneButton;
   private JFileChooser fc;
 
+  /**
+   * Constructor for Generated Code View
+   */
   public GeneratedCodeView() {
     code = new JTextArea();
     saveButton = new JButton("Save to File");
@@ -23,6 +26,9 @@ public class GeneratedCodeView extends JFrame {
     this.setLayout(new BorderLayout());
   }
 
+  /**
+   * Initializes view
+   */
   public void init() {
     this.add(new JScrollPane(code));
     JPanel buttonPanel = new JPanel();

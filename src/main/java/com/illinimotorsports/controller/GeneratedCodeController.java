@@ -9,15 +9,27 @@ import java.awt.datatransfer.StringSelection;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Controller class for generated code windows
+ * Handles saving and copying to clipboard of text
+ */
 public class GeneratedCodeController {
   private GeneratedCodeModel model;
   private GeneratedCodeView view;
 
+  /**
+   * Constructor for GeneratedCodeController
+   * @param theModel
+   * @param theView
+   */
   public GeneratedCodeController(GeneratedCodeModel theModel, GeneratedCodeView theView) {
     model = theModel;
     view = theView;
   }
 
+  /**
+   * Initializes model and view
+   */
   public void init() {
     view.getCode().setText(model.getCode());
     view.getDoneButton().addActionListener(e -> closeWindow());
@@ -26,10 +38,17 @@ public class GeneratedCodeController {
     view.init();
   }
 
+  /**
+   * Close window
+   */
   public void closeWindow() {
     view.setVisible(false);
   }
 
+  /**
+   * Generates file chooser window, writes generated code to selected file,
+   * handles any resulting errors
+   */
   public void saveToFile() {
     JFileChooser fc = view.getFc();
     if(fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -45,6 +64,9 @@ public class GeneratedCodeController {
     }
   }
 
+  /**
+   * Copies generated code to clipboard
+   */
   public void copyToClipboard() {
     Toolkit.getDefaultToolkit()
         .getSystemClipboard()
