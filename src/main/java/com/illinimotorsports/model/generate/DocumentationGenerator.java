@@ -3,7 +3,10 @@ package com.illinimotorsports.model.generate;
 import com.illinimotorsports.model.canspec.*;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Generator class for documentation
@@ -32,19 +35,24 @@ public class DocumentationGenerator {
    * and lengths for each field
    * @return
    */
-  public String[][] generateMessageTable() {
-    String[][] messages = new String[spec.getMessages().size()][12];
+  public List<String[]> generateMessageTable() {
+    List<String[]> messages = new ArrayList<>();
     Map<CANMessage, String> messageMap = MessageIDUtils.generateIDNames(spec);
     Iterator iter = messageMap.entrySet().iterator();
     for(int i = 0; i < messageMap.size(); i++) {
       Map.Entry<CANMessage, String> message = (Map.Entry<CANMessage, String>) iter.next();
-      messages[i][0] = message.getValue();
-      messages[i][1] = "0x" + Integer.toHexString(message.getKey().getId());
-      messages[i][2] = Integer.toString(message.getKey().getDlc());
-      messages[i][3] = message.getKey().getEndianness().toString();
+      String[] row = new String[messageTableColumns.length];
+      row[0] = message.getValue();
+      row[1] = "0x" + Integer.toHexString(message.getKey().getId());
+      row[2] = Integer.toString(message.getKey().getDlc());
+      row[3] = message.getKey().getEndianness().toString();
       for(CANDataField field: message.getKey().getData()) {
-        messages[i][field.getPosition() + 4] = field.getName();
+        row[field.getPosition() + 4] = field.getName();
+        for(int j = field.getPosition() + 5; j < field.getPosition() + 4 + field.getLength(); j++) {
+          row[j] = "%";
+        }
       }
+      messages.add(row);
     }
     return messages;
   }
@@ -54,7 +62,7 @@ public class DocumentationGenerator {
    * showing all relevant information
    * @return
    */
-  public String[][] generateFieldTable() {
+  public List<String[]> generateFieldTable() {
     List<String[]> fields = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
@@ -82,6 +90,6 @@ public class DocumentationGenerator {
         }
       }
     }
-    return (String[][]) fields.toArray();
+    return fields;
   }
 }

@@ -1,8 +1,6 @@
 package com.illinimotorsports.model.generate;
 
-import com.illinimotorsports.model.canspec.CANDataField;
-import com.illinimotorsports.model.canspec.CANMessage;
-import com.illinimotorsports.model.canspec.CANNumericField;
+import com.illinimotorsports.model.canspec.*;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
@@ -58,12 +56,12 @@ public class CANParserGenerator {
   public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
     for(CANDataField field: message.getData()) {
-      //TODO: support bitmaps
       DecimalFormat df = new DecimalFormat("#");
       df.setMaximumFractionDigits(20);
       if(field instanceof CANNumericField) {
         Map<String, String> fieldMap = new HashMap<>();
         CANNumericField numField = (CANNumericField) field;
+        fieldMap.put("type", "numeric");
         fieldMap.put("pos", Integer.toString(numField.getPosition()));
         fieldMap.put("len", Integer.toString(numField.getLength()));
         fieldMap.put("endian", message.getEndianness().toString());
@@ -76,6 +74,19 @@ public class CANParserGenerator {
         }
         fieldMap.put("comment", comment);
         fieldList.add(fieldMap);
+      }
+      else if(field instanceof CANBitmapField) {
+        CANBitmapField bitmapField = (CANBitmapField) field;
+        for(CANBitField bit: bitmapField.getBits()) {
+          Map<String, String> fieldMap = new HashMap<>();
+          fieldMap.put("type", "bit");
+          fieldMap.put("pos", Integer.toString(bitmapField.getPosition()));
+          fieldMap.put("len", Integer.toString(bitmapField.getLength()));
+          fieldMap.put("endian", message.getEndianness().toString());
+          fieldMap.put("bitPos", Integer.toString(bit.getPosition()));
+          fieldMap.put("comment", field.getName() + " " + bit.getName());
+          fieldList.add(fieldMap);
+        }
       }
     }
     return fieldList;

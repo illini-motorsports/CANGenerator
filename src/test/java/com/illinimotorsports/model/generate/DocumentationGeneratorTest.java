@@ -6,6 +6,7 @@ import com.illinimotorsports.model.parse.CANParser;
 import org.junit.*;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +27,14 @@ public class DocumentationGeneratorTest {
 
   @Test
   public void testGenerateMessageTable() {
-    String[][] data = generator.generateMessageTable();
-    assertEquals(data.length, spec.getMessages().size());
-    assertEquals(data[0].length, 11);
+    List<String[]> data = generator.generateMessageTable();
+    assertEquals(data.size(), spec.getMessages().size());
+    assertEquals(data.get(0).length, generator.messageTableColumns.length);
+  }
+
+  @Test
+  public void testGenerateFieldTable() {
+    List<String[]> data = generator.generateFieldTable();
+    assertEquals(data.get(0).length, generator.fieldTableColumns.length);
   }
 }

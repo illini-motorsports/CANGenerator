@@ -4,7 +4,6 @@ import com.illinimotorsports.model.Endianness;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * CAN Message class, contains all descriptive fields for a message,

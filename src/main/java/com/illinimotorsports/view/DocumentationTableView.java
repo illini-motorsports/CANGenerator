@@ -10,12 +10,21 @@ import java.awt.*;
  */
 public class DocumentationTableView extends JFrame {
   private JTable table;
+  private JButton doneButton;
+  private JButton saveButton;
+  private JFileChooser fc;
 
   /**
    * Constructor for documentation view
    * All columns will be proper width
    */
   public DocumentationTableView() {
+    doneButton = new JButton("Done");
+    saveButton = new JButton("Save to CSV");
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.add(saveButton);
+    buttonPanel.add(doneButton);
+
     table = new JTable(){
       @Override
       public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
@@ -27,7 +36,12 @@ public class DocumentationTableView extends JFrame {
       }
     };
     table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    System.out.println(table.getColumnModel().getTotalColumnWidth());
+    System.out.println(table.getColumnModel().getColumnCount());
+    fc = new JFileChooser();
+    setLayout(new BorderLayout());
     add(new JScrollPane(table));
+    add(buttonPanel, BorderLayout.SOUTH);
   }
 
   /**
@@ -40,5 +54,17 @@ public class DocumentationTableView extends JFrame {
 
   public JTable getTable() {
     return table;
+  }
+
+  public JButton getDoneButton() {
+    return doneButton;
+  }
+
+  public JButton getSaveButton() {
+    return saveButton;
+  }
+
+  public JFileChooser getFc() {
+    return fc;
   }
 }

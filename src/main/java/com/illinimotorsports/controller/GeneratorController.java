@@ -51,7 +51,8 @@ public class GeneratorController {
     view.getAppPanel().getGenParserButton().addActionListener(e -> openMessageSelector());
     view.getAppPanel().getGenHeaderButton().addActionListener(e -> generateHeaderListener());
     view.getAppPanel().getGenDBCButton().addActionListener(e -> generateDBCListener());
-    view.getAppPanel().getGenDocumentationButton().addActionListener(e -> generateDocumentationListener());
+    view.getAppPanel().getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
+    view.getAppPanel().getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
   }
 
   /**
@@ -126,14 +127,27 @@ public class GeneratorController {
   /**
    * Listener for documentation generator window
    */
-  public void generateDocumentationListener() {
+  public void generateMessageDocumentationListener() {
     DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
-    DocumentationTableModel model = new DocumentationTableModel(
+    DocumentationController controller = new DocumentationController(new DocumentationTableModel(
         DocumentationGenerator.messageTableColumns,
-        generator.generateMessageTable());
-    DocumentationTableView view = new DocumentationTableView();
-    view.getTable().setModel(model);
-    view.init();
+        generator.generateMessageTable()),
+        new DocumentationTableView()
+    );
+    controller.init(true);
+  }
+
+  /**
+   * Listener for documentation generator window
+   */
+  public void generateFieldDocumentationListener() {
+    DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
+    DocumentationController controller = new DocumentationController(new DocumentationTableModel(
+        DocumentationGenerator.fieldTableColumns,
+        generator.generateFieldTable()),
+        new DocumentationTableView()
+    );
+    controller.init(false);
   }
 
   /**

@@ -8,13 +8,14 @@ import java.awt.*;
  */
 public class ApplicationPanel extends JPanel {
 
-  JButton openFileButton;
-  JButton genHeaderButton;
-  JButton genParserButton;
-  JButton genDBCButton;
-  JButton genDocumentationButton;
-  JFileChooser fileChooser;
-  JLabel canSpecStatus;
+  private JButton openFileButton;
+  private JButton genHeaderButton;
+  private JButton genParserButton;
+  private JButton genDBCButton;
+  private JButton genMessageDocumentationButton;
+  private JButton genFieldDocumentationButton;
+  private JFileChooser fileChooser;
+  private JLabel canSpecStatus;
 
   /**
    * Initializes all components
@@ -29,7 +30,8 @@ public class ApplicationPanel extends JPanel {
     genHeaderButton = new JButton("Generate Header");
     genParserButton = new JButton("Generate Parser");
     genDBCButton = new JButton("Generate DBC");
-    genDocumentationButton = new JButton("Generate Documenation");
+    genMessageDocumentationButton = new JButton("Message Documentation");
+    genFieldDocumentationButton = new JButton("Field Documentation");
     JPanel openButtonPanel = new JPanel();
     JPanel genButtonPanel1 = new JPanel();
     JPanel genButtonPanel2 = new JPanel();
@@ -37,8 +39,9 @@ public class ApplicationPanel extends JPanel {
     openButtonPanel.add(canSpecStatus);
     genButtonPanel1.add(genHeaderButton);
     genButtonPanel1.add(genParserButton);
-    genButtonPanel2.add(genDBCButton);
-    genButtonPanel2.add(genDocumentationButton);
+    genButtonPanel1.add(genDBCButton);
+    genButtonPanel2.add(genMessageDocumentationButton);
+    genButtonPanel2.add(genFieldDocumentationButton);
     add(openButtonPanel, BorderLayout.PAGE_START);
     add(genButtonPanel1, BorderLayout.CENTER);
     add(genButtonPanel2, BorderLayout.SOUTH);
@@ -77,10 +80,15 @@ public class ApplicationPanel extends JPanel {
     genHeaderButton.setEnabled(enable);
     genParserButton.setEnabled(enable);
     genDBCButton.setEnabled(enable);
-    genDocumentationButton.setEnabled(enable);
+    genMessageDocumentationButton.setEnabled(enable);
+    genFieldDocumentationButton.setEnabled(enable);
   }
 
-  public JButton getGenDocumentationButton() {
-    return genDocumentationButton;
+  public JButton getGenMessageDocumentationButton() {
+    return genMessageDocumentationButton;
+  }
+
+  public JButton getGenFieldDocumentationButton() {
+    return genFieldDocumentationButton;
   }
 }
