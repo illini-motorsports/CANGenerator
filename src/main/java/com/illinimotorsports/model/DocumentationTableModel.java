@@ -31,6 +31,11 @@ public class DocumentationTableModel extends DefaultTableModel {
 
   public void addRows() {
     for(String[] row: data) {
+      for(int i = 0; i < row.length; i++) {
+        if(row[i] != null && row[i].equals("%")) {
+          row[i] = "";
+        }
+      }
       addRow(row);
     }
   }
