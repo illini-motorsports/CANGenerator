@@ -36,8 +36,6 @@ public class DocumentationTableView extends JFrame {
       }
     };
     table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-    System.out.println(table.getColumnModel().getTotalColumnWidth());
-    System.out.println(table.getColumnModel().getColumnCount());
     fc = new JFileChooser();
     setLayout(new BorderLayout());
     add(new JScrollPane(table));

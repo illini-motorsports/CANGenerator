@@ -4,6 +4,7 @@ import com.illinimotorsports.model.canspec.CANMessage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * Custom panel for checkbox list
@@ -24,9 +25,14 @@ public class MessageCheckBox extends JPanel {
         " 0x" + Integer.toHexString(message.getId()));
 
     String fieldText = "Fields:\n";
-    for(String field: message.getFieldNames()) {
-      fieldText += "  " + field + "\n";
+    List<String> fieldNames = message.getFieldNames();
+    for(int i = 0; i < fieldNames.size() - 1; i++) {
+      if(i % 4 == 0 && i != 0) {
+        fieldText += "\n";
+      }
+      fieldText += "  " + fieldNames.get(i) + ",";
     }
+    fieldText += "  " + fieldNames.get(fieldNames.size()-1);
 
     text = new JTextArea(fieldText);
 
