@@ -15,6 +15,9 @@ public class DocumentationGeneratorTest {
   CANSpec spec;
   DocumentationGenerator generator;
 
+  /**
+   * Before Tests cases
+   */
   @Before
   public void init() {
     try {
@@ -25,6 +28,9 @@ public class DocumentationGeneratorTest {
     generator = new DocumentationGenerator(spec);
   }
 
+  /**
+   * GenerateMessageTable Test
+   */
   @Test
   public void testGenerateMessageTable() {
     List<String[]> data = generator.generateMessageTable();
@@ -32,6 +38,9 @@ public class DocumentationGeneratorTest {
     assertEquals(data.get(0).length, generator.messageTableColumns.length);
   }
 
+  /**
+   * GenerateFieldTable Test
+   */
   @Test
   public void testGenerateFieldTable() {
     List<String[]> data = generator.generateFieldTable();

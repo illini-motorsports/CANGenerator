@@ -1,0 +1,2480 @@
+{
+	"version": "0.1",
+	"messages": [
+		{
+			"id": "0x050",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x051",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 0",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 1",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 2",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 3",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x052",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 4",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 5",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 6",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 7",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x053",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 8",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 9",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 10",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 11",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x054",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 12",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 13",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 14",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 15",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x055",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 16",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 17",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 18",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 19",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x056",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 20",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 21",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 22",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 23",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x057",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 24",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 25",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 26",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 27",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x058",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 28",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 29",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 30",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 31",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x059",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 32",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 33",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 34",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 35",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05A",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Thermocouple 0",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 1",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 2",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 3",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05B",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Thermocouple 4",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 5",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Avg Junction Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.0625,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple Fault",
+					"type": "bitmap",
+					"byte": 6,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Thermocouple 0",
+							"position": 0
+						},
+						{
+							"name": "Thermocouple 1",
+							"position": 1
+						},
+						{
+							"name": "Thermocouple 2",
+							"position": 2
+						},
+						{
+							"name": "Thermocouple 3",
+							"position": 3
+						},
+						{
+							"name": "Thermocouple 4",
+							"position": 4
+						},
+						{
+							"name": "Thermocouple 5",
+							"position": 5
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "0x05C",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Digital Input",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "Digital Input 0",
+							"position": 0
+						},
+						{
+							"name": "Digital Input 1",
+							"position": 1
+						},
+						{
+							"name": "Digital Input 2",
+							"position": 2
+						},
+						{
+							"name": "Digital Input 3",
+							"position": 3
+						},
+						{
+							"name": "Digital Input 4",
+							"position": 4
+						},
+						{
+							"name": "Digital Input 5",
+							"position": 5
+						},
+						{
+							"name": "Digital Input 6",
+							"position": 6
+						},
+						{
+							"name": "Digital Input 7",
+							"position": 7
+						},
+						{
+							"name": "Digital Input 8",
+							"position": 8
+						},
+						{
+							"name": "Digital Input 9",
+							"position": 9
+						},
+						{
+							"name": "Digital Input 10",
+							"position": 10
+						},
+						{
+							"name": "Digital Input 11",
+							"position": 11
+						},
+						{
+							"name": "Digital Input 12",
+							"position": 12
+						},
+						{
+							"name": "Digital Input 13",
+							"position": 13
+						},
+						{
+							"name": "Digital Input 14",
+							"position": 14
+						},
+						{
+							"name": "Digital Input 15",
+							"position": 15
+						}
+					]
+				},
+				{
+					"name": "Frequency Counter 0",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Frequency Counter 1",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Frequency Counter 2",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05D",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 4,
+			"bytes": [
+				{
+					"name": "PGA Settings",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "PGA 0 Bit 0",
+							"position": 0
+						},
+						{
+							"name": "PGA 0 Bit 1",
+							"position": 1
+						},
+						{
+							"name": "PGA 0 Bit 2",
+							"position": 2
+						},
+						{
+							"name": "PGA 1 Bit 0",
+							"position": 3
+						},
+						{
+							"name": "PGA 1 Bit 1",
+							"position": 4
+						},
+						{
+							"name": "PGA 1 Bit 2",
+							"position": 5
+						},
+						{
+							"name": "PGA 2 Bit 0",
+							"position": 6
+						},
+						{
+							"name": "PGA 2 Bit 1",
+							"position": 7
+						},
+						{
+							"name": "PGA 2 Bit 2",
+							"position": 8
+						},
+						{
+							"name": "PGA 3 Bit 0",
+							"position": 9
+						},
+						{
+							"name": "PGA 3 Bit 1",
+							"position": 10
+						},
+						{
+							"name": "PGA 3 Bit 2",
+							"position": 11
+						}
+					]
+				},
+				{
+					"name": "Frequency Counter Settings",
+					"type": "bitmap",
+					"byte": 2,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "Freq 0 DIVA",
+							"position": 0
+						},
+						{
+							"name": "Freq 0 DIVB",
+							"position": 1
+						},
+						{
+							"name": "Freq 0 DIVC",
+							"position": 2
+						},
+						{
+							"name": "Freq 0 DIVD",
+							"position": 3
+						},
+						{
+							"name": "Freq 0 BYP",
+							"position": 4
+						},
+						{
+							"name": "Freq 1 DIVA",
+							"position": 5
+						},
+						{
+							"name": "Freq 1 DIVB",
+							"position": 6
+						},
+						{
+							"name": "Freq 1 DIVC",
+							"position": 7
+						},
+						{
+							"name": "Freq 1 DIVD",
+							"position": 8
+						},
+						{
+							"name": "Freq 1 BYP",
+							"position": 9
+						},
+						{
+							"name": "Freq 2 DIVA",
+							"position": 10
+						},
+						{
+							"name": "Freq 2 DIVB",
+							"position": 11
+						},
+						{
+							"name": "Freq 2 DIVC",
+							"position": 12
+						},
+						{
+							"name": "Freq 2 DIVD",
+							"position": 13
+						},
+						{
+							"name": "Freq 2 BYP",
+							"position": 14
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "0x070",
+			"node": "IMU",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Yaw Rate",
+					"type": "number",
+					"unit": "deg/s",
+					"signed": false,
+					"scale": 0.005,
+					"offset": "0x8000",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Lateral Acceleration",
+					"type": "number",
+					"unit": "g",
+					"signed": false,
+					"scale": 0.0001274,
+					"offset": "0x8000",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x080",
+			"node": "IMU",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Yaw Angular Acceleration",
+					"type": "number",
+					"unit": "deg/s^2",
+					"signed": false,
+					"scale": 0.125,
+					"offset": "0x8000",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Longitudinal Acceleration",
+					"type": "number",
+					"unit": "g",
+					"signed": false,
+					"scale": 0.0001274,
+					"offset": "0x8000",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x100",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "RPM",
+					"type": "number",
+					"unit": "",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Throttle Position",
+					"type": "number",
+					"unit": "%",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Lambda",
+					"type": "number",
+					"unit": "",
+					"signed": true,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "ECU Battery Voltage",
+					"type": "number",
+					"unit": "V",
+					"signed": true,
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x101",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Engine Coolant Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Oil Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Manifold Air Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Fuel Rail Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x102",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Barometric Air Pressure",
+					"type": "number",
+					"unit": "bar",
+					"signed": true,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Oil Pressure",
+					"type": "number",
+					"unit": "bar",
+					"signed": true,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Manifold Air Pressure",
+					"type": "number",
+					"unit": "bar",
+					"signed": true,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Fuel Rail Pressure",
+					"type": "number",
+					"unit": "bar",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x103",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Wheel Speed FL",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed FR",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed RL",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed RR",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x104",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Drive Speed",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Ground Speed",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "GPS Speed",
+					"type": "number",
+					"unit": "mph",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "GPS Altitude",
+					"type": "number",
+					"unit": "feet",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x105",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "GPS Latitude",
+					"type": "number",
+					"unit": "degrees",
+					"signed": true,
+					"scale": 0.0000001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 4
+				},
+				{
+					"name": "GPS Longitude",
+					"type": "number",
+					"unit": "degrees",
+					"signed": true,
+					"scale": 0.0000001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 4
+				}
+			]
+		},
+		{
+			"id": "0x106",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "GPS Time",
+					"type": "number",
+					"unit": "millis",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 4
+				},
+				{
+					"name": "Run Time",
+					"type": "number",
+					"unit": "degrees",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Fuel Used",
+					"type": "number",
+					"unit": "gal",
+					"signed": true,
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x107",
+			"node": "Motec",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Fuel Inj Duty Cycle",
+					"type": "number",
+					"unit": "%",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Fuel Overall Trim",
+					"type": "number",
+					"unit": "%",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Gear Shift Force",
+					"type": "number",
+					"unit": "kN",
+					"signed": true,
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				},
+				{
+					"name": "Atmospheric Air Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x200",
+			"node": "GCM",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x201",
+			"node": "GCM",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Gear",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 1
+				},
+				{
+					"name": "Gear Sensor Voltage",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.0001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Shift Force",
+					"type": "number",
+					"unit": "N",
+					"signed": true,
+					"scale": 0.05,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x202",
+			"node": "GCM",
+			"bigEndian": true,
+			"dlc": 4,
+			"bytes": [
+				{
+					"name": "Switch",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Paddle Up",
+							"position": 0
+						},
+						{
+							"name": "Paddle Down",
+							"position": 1
+						},
+						{
+							"name": "Neutral",
+							"position": 2
+						}
+					]
+				},
+				{
+					"name": "Upshift Queue",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 1,
+					"length": 1
+				},
+				{
+					"name": "Downshift Queue",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 1
+				},
+				{
+					"name": "Neutral Queue",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 3,
+					"length": 1
+				}
+			]
+		},
+		{
+			"id": "0x24A",
+			"node": "ABS",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Wheel Speed FL",
+					"type": "number",
+					"unit": "m/s",
+					"signed": false,
+					"scale": 0.015625,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed FR",
+					"type": "number",
+					"unit": "m/s",
+					"signed": false,
+					"scale": 0.015625,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed RL",
+					"type": "number",
+					"unit": "m/s",
+					"signed": false,
+					"scale": 0.015625,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Wheel Speed RR",
+					"type": "number",
+					"unit": "m/s",
+					"signed": false,
+					"scale": 0.015625,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x300",
+			"node": "Logger",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x301",
+			"node": "Logger",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "VBAT Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "VBAK Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "VSUP Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "5V Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x302",
+			"node": "Logger",
+			"bigEndian": true,
+			"dlc": 2,
+			"bytes": [
+				{
+					"name": "3V3 Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x400",
+			"node": "Wheel",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true, 
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x401",
+			"node": "Wheel",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "I/O",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Fan Override SW",
+							"position": 0
+						},
+						{
+							"name": "Water Override SW",
+							"position": 1
+						},
+						{
+							"name": "Fuel Override SW",
+							"position": 2
+						},
+						{
+							"name": "Night/Day SW",
+							"position": 3
+						},
+						{
+							"name": "Radio BUT",
+							"position": 4
+						},
+						{
+							"name": "Acknowledge BUT",
+							"position": 5
+						},
+						{
+							"name": "Auxillary BUT",
+							"position": 6
+						},
+						{
+							"name": "Neutral BUT",
+							"position": 7
+						}
+					]
+				},
+				{
+					"name": "Rotary 1",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 1,
+					"length": 1
+				},
+				{
+					"name": "Rotary 2",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 1
+				},
+				{
+					"name": "Rotary 3",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 3,
+					"length": 1
+				},
+				{
+					"name": "Thumb Rotary 1",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 1
+				},
+				{
+					"name": "Thumb Rotary 2",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 5,
+					"length": 1
+				}
+			]
+		},
+		{
+			"id": "0x5C0",
+			"node": "ABS",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Switch State",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 1
+				},
+				{
+					"name": "Front Brake Pressure",
+					"type": "number",
+					"unit": "bar",
+					"signed": true, 
+					"scale": 0.0153,
+					"offset": "0x0",
+					"byte": 1,
+					"length": 2
+				},
+				{
+					"name": "State Bitmap",
+					"type": "bitmap",
+					"byte": 3,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Brake Light Switch",
+							"position": 0
+						},
+						{
+							"name": "ABS Active",
+							"position": 5
+						},
+						{
+							"name": "EBD Lamp",
+							"position": 6
+						},
+						{
+							"name": "ABS Lamp",
+							"position": 7
+						}
+					]
+				},
+				{
+					"name": "Longitudinal Acceleration",
+					"type": "number",
+					"unit": "g",
+					"signed": false, 
+					"scale": 0.0001274,
+					"offset": "0x8000",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Lateral Acceleration",
+					"type": "number",
+					"unit": "g",
+					"signed": false, 
+					"scale": 0.0001274,
+					"offset": "0x8000",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x600",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true, "scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x601",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Load Enablity State",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 2,
+					"bits": [
+						{
+							"name": "STR",
+							"position": 4
+						},
+						{
+							"name": "BVBAT",
+							"position": 5
+						},
+						{
+							"name": "AUX",
+							"position": 6
+						},
+						{
+							"name": "ECU",
+							"position": 7
+						},
+						{
+							"name": "WTR",
+							"position": 8
+						},
+						{
+							"name": "FAN",
+							"position": 9
+						},
+						{
+							"name": "PDLD",
+							"position": 10
+						},
+						{
+							"name": "PDLU",
+							"position": 11
+						},
+						{
+							"name": "ABS",
+							"position": 12
+						},
+						{
+							"name": "INJ",
+							"position": 13
+						},
+						{
+							"name": "IGN",
+							"position": 14
+						},
+						{
+							"name": "FUEL",
+							"position": 15
+						}
+					]
+				},
+				{
+					"name": "Load Peak Mode",
+					"type": "bitmap",
+					"byte": 2,
+					"length": 2,
+					"bits": [
+						{
+							"name": "STR",
+							"position": 4
+						},
+						{
+							"name": "BVBAT",
+							"position": 5
+						},
+						{
+							"name": "AUX",
+							"position": 6
+						},
+						{
+							"name": "ECU",
+							"position": 7
+						},
+						{
+							"name": "WTR",
+							"position": 8
+						},
+						{
+							"name": "FAN",
+							"position": 9
+						},
+						{
+							"name": "PDLD",
+							"position": 10
+						},
+						{
+							"name": "PDLU",
+							"position": 11
+						},
+						{
+							"name": "ABS",
+							"position": 12
+						},
+						{
+							"name": "INJ",
+							"position": 13
+						},
+						{
+							"name": "IGN",
+							"position": 14
+						},
+						{
+							"name": "FUEL",
+							"position": 15
+						}
+					]
+				},
+				{
+					"name": "Total Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false, 
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Switch",
+					"type": "bitmap",
+					"byte": 6,
+					"length": 1,
+					"bits": [
+						{
+							"name": "AUX2",
+							"position": 0
+						},
+						{
+							"name": "AUX1",
+							"position": 1
+						},
+						{
+							"name": "ABS",
+							"position": 2
+						},
+						{
+							"name": "KILL",
+							"position": 3
+						},
+						{
+							"name": "ACT_DN",
+							"position": 4
+						},
+						{
+							"name": "ACT_UP",
+							"position": 5
+						},
+						{
+							"name": "ON",
+							"position": 6
+						},
+						{
+							"name": "STR",
+							"position": 7
+						}
+					]
+				},
+				{
+					"name": "Flag",
+					"type": "bitmap",
+					"byte": 7,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Kill Engine",
+							"position": 4
+						},
+						{
+							"name": "Kill Car",
+							"position": 5
+						},
+						{
+							"name": "Over Temp",
+							"position": 6
+						},
+						{
+							"name": "Fuel Prime",
+							"position": 7
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "0x602",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "VBAT Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "12V Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "5V Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "3V3 Rail",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x603",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "FUEL Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "IGN Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "INJ Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "ABS Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x604",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "PDLU Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PDLD Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "FAN Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "WTR Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x605",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "ECU Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "AUX Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "BVBAT Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "STR Current Draw",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x606",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "FUEL Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "IGN Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "INJ Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "ABS Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x607",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "PDLU Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PDLD Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "FAN Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "WTR Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x608",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "ECU Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "AUX Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "BVBAT Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x609",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "FUEL Peak Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "FAN Peak Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "WTR Peak Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "ECU Peak Current Cutoff",
+					"type": "number",
+					"unit": "A",
+					"signed": false,
+					"scale": 0.0025,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x60A",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "FUEL Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 1
+				},
+				{
+					"name": "IGN Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 1,
+					"length": 1
+				},
+				{
+					"name": "INJ Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 1
+				},
+				{
+					"name": "ABS Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 3,
+					"length": 1
+				},
+				{
+					"name": "PDLU Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 1
+				},
+				{
+					"name": "PDLD Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 5,
+					"length": 1
+				},
+				{
+					"name": "FAN Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 1
+				},
+				{
+					"name": "WTR Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 7,
+					"length": 1
+				}
+			]
+		},
+		{
+			"id": "0x60B",
+			"node": "PDM",
+			"bigEndian": true,
+			"dlc": 4,
+			"bytes": [
+				{
+					"name": "ECU Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 1
+				},
+				{
+					"name": "AUX Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 1,
+					"length": 1
+				},
+				{
+					"name": "BVBAT Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 1
+				},
+				{
+					"name": "STR Overcurrent Count",
+					"type": "number",
+					"unit": "",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 3,
+					"length": 1
+				}
+			]
+		}
+	]
+}
