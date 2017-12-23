@@ -40,38 +40,38 @@ public class GeneratorController {
    * Initializes view to main application panel
    */
   public void initView() {
-    view.addAppPanel();
+    view.init();
   }
 
   /**
    * Sets up controller, adds action listeners, etc
    */
   public void initController() {
-    view.getAppPanel().getOpenFileButton().addActionListener(e -> chooseCanSpec());
-    view.getAppPanel().getGenParserButton().addActionListener(e -> openMessageSelector());
-    view.getAppPanel().getGenHeaderButton().addActionListener(e -> generateHeaderListener());
-    view.getAppPanel().getGenDBCButton().addActionListener(e -> generateDBCListener());
-    view.getAppPanel().getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
-    view.getAppPanel().getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
+    view.getOpenFileButton().addActionListener(e -> chooseCanSpec());
+    view.getGenParserButton().addActionListener(e -> openMessageSelector());
+    view.getGenHeaderButton().addActionListener(e -> generateHeaderListener());
+    view.getGenDBCButton().addActionListener(e -> generateDBCListener());
+    view.getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
+    view.getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
   }
 
   /**
    * Action listener to handle file choosing
    */
   public void chooseCanSpec() {
-    JFileChooser fc = view.getAppPanel().getFileChooser();
-    int fileRet = fc.showOpenDialog(view.getAppPanel());
+    JFileChooser fc = view.getFileChooser();
+    int fileRet = fc.showOpenDialog(null); // Might need topLevelPanel as parent
     if(fileRet == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
       try {
         model.generateModel(file);
-        view.getAppPanel().getCanSpecStatus().setText("Spec Successfully Parsed!");
-        view.getAppPanel().getOpenFileButton().setText("Open New CAN Spec");
-        view.getAppPanel().setEnableGenButtons(true);
+        view.getCanSpecStatus().setText("Spec Successfully Parsed!");
+        view.getOpenFileButton().setText("Open New CAN Spec");
+        view.setEnableGenButtons(true);
       } catch (CANParseException e) {
         JOptionPane parseError = new JOptionPane();
-        parseError.showMessageDialog(view.getAppPanel(), e.getMessage(), "CAN Parse Error :(", JOptionPane.ERROR_MESSAGE);
-        view.getAppPanel().getCanSpecStatus().setText("CAN Parse Error :(");
+        parseError.showMessageDialog(null, e.getMessage(), "CAN Parse Error :(", JOptionPane.ERROR_MESSAGE);
+        view.getCanSpecStatus().setText("CAN Parse Error :(");
       }
     }
   }
