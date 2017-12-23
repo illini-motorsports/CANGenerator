@@ -2,9 +2,8 @@ package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.DocumentationTableModel;
 import com.illinimotorsports.model.GeneratedCodeModel;
-import com.illinimotorsports.model.GeneratorModel;
-import com.illinimotorsports.model.MessageCheckBoxListModel;
-import com.illinimotorsports.model.canspec.CANMessage;
+import com.illinimotorsports.model.MainModel;
+import com.illinimotorsports.model.MessageSelectModel;
 import com.illinimotorsports.model.generate.CANHeaderGenerator;
 import com.illinimotorsports.model.generate.CANParserGenerator;
 import com.illinimotorsports.model.generate.DBCGenerator;
@@ -14,24 +13,21 @@ import com.illinimotorsports.view.*;
 
 import javax.swing.*;
 import java.io.File;
-import java.util.List;
 
 /**
  * Main controller for the application
  */
-public class GeneratorController {
+public class MainController {
 
   private MainView view;
-  private GeneratorModel model;
-  private MessageSelectView selectView;
-  private MessageCheckBoxListModel selectModel;
+  private MainModel model;
 
   /**
    * Constructor for controller, takes in model and view
    * @param v
    * @param m
    */
-  public GeneratorController(MainView v, GeneratorModel m) {
+  public MainController(MainView v, MainModel m) {
     this.view = v;
     this.model = m;
   }
@@ -72,6 +68,7 @@ public class GeneratorController {
         JOptionPane parseError = new JOptionPane();
         parseError.showMessageDialog(null, e.getMessage(), "CAN Parse Error :(", JOptionPane.ERROR_MESSAGE);
         view.getCanSpecStatus().setText("CAN Parse Error :(");
+        view.setEnableGenButtons(false);
       }
     }
   }
@@ -80,26 +77,8 @@ public class GeneratorController {
    * Action listener for selecting messages for the parse function
    */
   public void openMessageSelector() {
-    selectModel = new MessageCheckBoxListModel(model.getCanSpec());
-    MessageCheckBoxListView listView = new MessageCheckBoxListView(selectModel);
-    selectView = new MessageSelectView(listView);
-    selectView.getSelectAllButton().addActionListener(e -> selectView.getList().setAll(true));
-    selectView.getDeselectAllButton().addActionListener(e -> selectView.getList().setAll(false));
-    selectView.getSubmitButton().addActionListener(e -> selectorDoneListener());
-    selectView.init();
-  }
-
-  /**
-   * Action Listener for generating parse function
-   */
-  public void selectorDoneListener() {
-    selectView.setVisible(false);
-    List<CANMessage> messages = selectModel.getSelectedMessages();
-    CANParserGenerator parserGenerator = new CANParserGenerator(messages);
-    GeneratedCodeController genCode = new GeneratedCodeController(
-        new GeneratedCodeModel(parserGenerator.fillTemplate()),
-        new GeneratedCodeView());
-    genCode.init();
+    MessageSelectController messageSelectController = new MessageSelectController(model.getCanSpec());
+    messageSelectController.init(new CANParserGenerator());
   }
 
   /**
@@ -157,8 +136,8 @@ public class GeneratorController {
    */
   public static void main(String[] args) {
     MainView v = new MainView();
-    GeneratorModel m = new GeneratorModel();
-    GeneratorController controller = new GeneratorController(v, m);
+    MainModel m = new MainModel();
+    MainController controller = new MainController(v, m);
     controller.initController();
     javax.swing.SwingUtilities.invokeLater(() -> controller.initView());
   }

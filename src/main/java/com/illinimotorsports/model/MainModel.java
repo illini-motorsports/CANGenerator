@@ -9,10 +9,10 @@ import java.io.File;
 /**
  * Top level model class to hold can spec
  */
-public class GeneratorModel {
+public class MainModel {
   private CANSpec spec;
 
-  public GeneratorModel() {
+  public MainModel() {
     spec = null;
   }
 

@@ -12,7 +12,7 @@ import java.util.List;
  * Model for checkbox list
  * Has special functions for getting selected messages and setting all boxes
  */
-public class MessageCheckBoxListModel extends AbstractListModel<MessageCheckBoxView> {
+public class MessageSelectModel extends AbstractListModel<MessageCheckBoxView> {
 
   private List<MessageCheckBoxView> data;
 
@@ -20,7 +20,7 @@ public class MessageCheckBoxListModel extends AbstractListModel<MessageCheckBoxV
    * Sets up internal data structure
    * @param spec
    */
-  public MessageCheckBoxListModel(CANSpec spec) {
+  public MessageSelectModel(CANSpec spec) {
     super();
     data = new ArrayList<>();
     for(CANMessage message: spec.getMessages()) {

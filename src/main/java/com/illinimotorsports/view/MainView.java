@@ -33,6 +33,7 @@ public class MainView extends JFrame {
     genDBCButton = new JButton("Generate DBC");
     genMessageDocumentationButton = new JButton("Message Documentation");
     genFieldDocumentationButton = new JButton("Field Documentation");
+    setEnableGenButtons(false);
   }
 
   /**

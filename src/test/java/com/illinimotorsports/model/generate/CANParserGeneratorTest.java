@@ -23,7 +23,8 @@ public class CANParserGeneratorTest {
     } catch (CANParseException e) {
       fail();
     }
-    generator = new CANParserGenerator(spec.getMessages());
+    generator = new CANParserGenerator();
+    generator.setMessages(spec.getMessages());
   }
 
   @Test

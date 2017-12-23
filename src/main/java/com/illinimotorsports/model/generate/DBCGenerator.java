@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Generator Class for DBC files
  */
-public class DBCGenerator {
+public class DBCGenerator implements TemplatedGenerator {
 
   CANSpec spec;
 

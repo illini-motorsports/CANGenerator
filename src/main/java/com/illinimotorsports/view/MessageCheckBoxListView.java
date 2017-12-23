@@ -1,6 +1,6 @@
 package com.illinimotorsports.view;
 
-import com.illinimotorsports.model.MessageCheckBoxListModel;
+import com.illinimotorsports.model.MessageSelectModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
  */
 public class MessageCheckBoxListView extends JList<MessageCheckBoxView> {
 
-  public MessageCheckBoxListView(MessageCheckBoxListModel model) {
+  public MessageCheckBoxListView(MessageSelectModel model) {
     setModel(model);
     setCellRenderer(new CheckBoxCellRenderer());
     addMouseListener(new MouseAdapter() {
@@ -32,7 +32,7 @@ public class MessageCheckBoxListView extends JList<MessageCheckBoxView> {
    * @param selected
    */
   public void setAll(boolean selected) {
-    ((MessageCheckBoxListModel) getModel()).setAll(selected);
+    ((MessageSelectModel) getModel()).setAll(selected);
     repaint();
   }
 

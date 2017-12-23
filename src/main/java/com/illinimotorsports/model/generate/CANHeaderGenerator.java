@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Generator class for header files
  */
-public class CANHeaderGenerator {
+public class CANHeaderGenerator implements TemplatedGenerator {
 
   CANSpec spec;
 
