@@ -23,7 +23,7 @@ public class GeneratorController {
 
   private MainView view;
   private GeneratorModel model;
-  private MessageSelect selectView;
+  private MessageSelectView selectView;
   private MessageCheckBoxListModel selectModel;
 
   /**
@@ -81,8 +81,8 @@ public class GeneratorController {
    */
   public void openMessageSelector() {
     selectModel = new MessageCheckBoxListModel(model.getCanSpec());
-    MessageCheckBoxList listView = new MessageCheckBoxList(selectModel);
-    selectView = new MessageSelect(listView);
+    MessageCheckBoxListView listView = new MessageCheckBoxListView(selectModel);
+    selectView = new MessageSelectView(listView);
     selectView.getSelectAllButton().addActionListener(e -> selectView.getList().setAll(true));
     selectView.getDeselectAllButton().addActionListener(e -> selectView.getList().setAll(false));
     selectView.getSubmitButton().addActionListener(e -> selectorDoneListener());

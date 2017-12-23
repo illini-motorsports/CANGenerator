@@ -11,9 +11,9 @@ import java.awt.event.MouseEvent;
  * Custom checkbox list to allow setting and unsetting all of the checkboxes
  * templated with custom messagecheckbox panel
  */
-public class MessageCheckBoxList extends JList<MessageCheckBox> {
+public class MessageCheckBoxListView extends JList<MessageCheckBoxView> {
 
-  public MessageCheckBoxList(MessageCheckBoxListModel model) {
+  public MessageCheckBoxListView(MessageCheckBoxListModel model) {
     setModel(model);
     setCellRenderer(new CheckBoxCellRenderer());
     addMouseListener(new MouseAdapter() {
@@ -39,9 +39,9 @@ public class MessageCheckBoxList extends JList<MessageCheckBox> {
   /**
    * protected inner class to render cells
    */
-  protected class CheckBoxCellRenderer implements ListCellRenderer<MessageCheckBox> {
+  protected class CheckBoxCellRenderer implements ListCellRenderer<MessageCheckBoxView> {
     @Override
-    public Component getListCellRendererComponent(JList<? extends MessageCheckBox> list, MessageCheckBox value,
+    public Component getListCellRendererComponent(JList<? extends MessageCheckBoxView> list, MessageCheckBoxView value,
                                                   int index, boolean isSelected, boolean cellHasFocus) {
       Color background = isSelected ? Color.GRAY : Color.WHITE;
       value.setBackground(background);

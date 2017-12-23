@@ -6,9 +6,9 @@ import java.awt.*;
 /**
  * View to be used to select messages from CAN Spec
  */
-public class MessageSelect extends JFrame {
+public class MessageSelectView extends JFrame {
 
-  private MessageCheckBoxList list;
+  private MessageCheckBoxListView list;
   private JButton selectAllButton;
   private JButton deselectAllButton;
   private JButton submitButton;
@@ -17,7 +17,7 @@ public class MessageSelect extends JFrame {
    * Contains list area, and three buttons
    * @param checkBoxList
    */
-  public MessageSelect(MessageCheckBoxList checkBoxList) {
+  public MessageSelectView(MessageCheckBoxListView checkBoxList) {
     super();
 
     setLayout(new BorderLayout());
@@ -41,7 +41,7 @@ public class MessageSelect extends JFrame {
     this.setVisible(true);
   }
 
-  public MessageCheckBoxList getList() {
+  public MessageCheckBoxListView getList() {
     return list;
   }
 

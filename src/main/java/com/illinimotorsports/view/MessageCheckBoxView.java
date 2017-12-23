@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Custom panel for checkbox list
  */
-public class MessageCheckBox extends JPanel {
+public class MessageCheckBoxView extends JPanel {
 
   private JCheckBox checkBox;
   private JTextArea text;
@@ -19,7 +19,7 @@ public class MessageCheckBox extends JPanel {
    * show all the fields underneath the box
    * @param canMessage
    */
-  public MessageCheckBox(CANMessage canMessage) {
+  public MessageCheckBoxView(CANMessage canMessage) {
     message = canMessage;
     checkBox = new JCheckBox(message.getNode() +
         " 0x" + Integer.toHexString(message.getId()));
