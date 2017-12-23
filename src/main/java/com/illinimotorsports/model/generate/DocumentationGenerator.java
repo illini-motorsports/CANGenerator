@@ -67,27 +67,8 @@ public class DocumentationGenerator {
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
     for(CANMessage message: spec.getMessages()) {
-      for(CANDataField field: message.getData()) {
-        if(field instanceof CANNumericField) {
-          CANNumericField numericField = (CANNumericField) field;
-          String[] row = new String[5];
-          row[0] = field.getName();
-          row[1] = numericField.getUnit();
-          row[2] = df.format(numericField.getScale());
-          row[3] = "0x" + Integer.toHexString(numericField.getOffset());
-          row[4] = numericField.isSigned() ? "Signed" : "Unsigned";
-          fields.add(row);
-        } else if(field instanceof CANBitmapField) {
-          CANBitmapField bitmapField = (CANBitmapField) field;
-          for(CANBitField bit: bitmapField.getBits()) {
-            String[] row = new String[5];
-            row[0] = bit.getName();
-            row[1] = "bit";
-            row[2] = "";
-            row[3] = "";
-            row[4] = "";
-          }
-        }
+      for (CANDataField field : message.getData()) {
+        fields.addAll(field.generateFieldTableRow());
       }
     }
     return fields;

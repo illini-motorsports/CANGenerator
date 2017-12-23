@@ -44,15 +44,4 @@ public class CHeaderGeneratorTest {
     assertEquals(fields.get(0).get("def"), "PDM_UPTIME_BYTE");
     assertEquals(fields.get(0).get("value"), "0");
   }
-
-  @Test
-  public void testGenerateDefsFromField() throws Exception {
-    CANMessage message = spec.getMessages().get(0);
-    List<Map<String, String>> field = generator.generateDefsFromField(message.getNode(), message.getData().get(1));
-    assertNotNull(field);
-    assertEquals(field.size(), 3);
-    assertEquals(field.get(0).get("def"), "PDM_PCB_TEMPERATURE_BYTE");
-    assertEquals(field.get(0).get("value"), "2");
-  }
-
 }

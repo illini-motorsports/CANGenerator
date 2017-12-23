@@ -71,66 +71,7 @@ public class CHeaderGenerator implements TemplatedGenerator {
     // Iterate through every field from each message, call helper function
     for(CANMessage message: spec.getMessages()) {
       for (CANDataField field : message.getData()) {
-        fieldDefs.addAll(generateDefsFromField(message.getNode(), field));
-      }
-    }
-    return fieldDefs;
-  }
-
-  /**
-   * Generates a list for individual fields
-   * @param message
-   * @param field
-   * @return
-   */
-  //TODO: move the meat of this function to CANDataField
-  public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
-    List<Map<String, String>> fieldDefs = new ArrayList<>();
-    if (field instanceof CANNumericField) {
-      DecimalFormat df = new DecimalFormat("#");
-      df.setMaximumFractionDigits(20);
-      CANNumericField numField = (CANNumericField) field;
-      String genericDef = message.toUpperCase() + "_"
-          + numField.getName().toUpperCase().replace(' ', '_');
-      String byteNum = Integer.toString(numField.getPosition());
-      String scl = df.format(numField.getScale());
-      String off = "0x" + Integer.toHexString(numField.getOffset());
-
-      Map<String, String> byteDef = new HashMap<>();
-      byteDef.put("def", genericDef + "_BYTE");
-      byteDef.put("value", byteNum);
-      Map<String, String> sclDef = new HashMap<>();
-      sclDef.put("def", genericDef + "_SCL");
-      sclDef.put("value", scl);
-      Map<String, String> offDef = new HashMap<>();
-      offDef.put("def", genericDef + "_OFF");
-      offDef.put("value", off);
-
-      fieldDefs.add(byteDef);
-      fieldDefs.add(sclDef);
-      fieldDefs.add(offDef);
-    }
-    else if(field instanceof CANBitmapField) {
-      CANBitmapField bitField = (CANBitmapField) field;
-      String genericDef = message.toUpperCase() + "_"
-          + bitField.getName().toUpperCase().replace(' ', '_');
-      String byteNum = Integer.toString(bitField.getPosition());
-
-      Map<String, String> byteDef = new HashMap<>();
-      byteDef.put("def", genericDef + "_BYTE");
-      byteDef.put("value", byteNum);
-      fieldDefs.add(byteDef);
-
-      List<CANBitField> bits = bitField.getBits();
-      for(CANBitField bit: bits) {
-        String bitDef = genericDef + "_"
-            + bit.getName().toUpperCase().replace(' ', '_')
-            + "_BIT";
-        String bitPos = Integer.toString(bit.getPosition());
-        Map<String, String> bitMap = new HashMap<>();
-        bitMap.put("def", bitDef);
-        bitMap.put("value", bitPos);
-        fieldDefs.add(bitMap);
+        fieldDefs.addAll(field.generateCHeaderDefs(message.getNode()));
       }
     }
     return fieldDefs;

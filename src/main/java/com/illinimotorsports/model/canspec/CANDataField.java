@@ -1,5 +1,10 @@
 package com.illinimotorsports.model.canspec;
 
+import com.illinimotorsports.model.Endianness;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * Main abstract class for CAN Data
  * Many possible field types, such as numeric, bitmap, const, etc
@@ -23,6 +28,14 @@ public abstract class CANDataField {
     this.length = len;
     this.name = fieldName;
   }
+
+  public abstract List<Map<String, String>> generateCHeaderDefs(String node);
+
+  public abstract List<Map<String, String>> generateCParseMap(Endianness endianness);
+
+  public abstract List<Map<String, String>> generateDBCFieldDefs(String node, String endianness);
+
+  public abstract List<String[]> generateFieldTableRow();
 
   public int getPosition() {
     return position;

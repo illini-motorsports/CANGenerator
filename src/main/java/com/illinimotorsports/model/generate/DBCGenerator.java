@@ -106,38 +106,7 @@ public class DBCGenerator implements TemplatedGenerator {
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
     for(CANDataField field: message.getData()) {
-      if(field instanceof CANNumericField) {
-        CANNumericField numericField = (CANNumericField) field;
-        Map<String, String> fieldMap = new HashMap<>();
-        String fieldName = message.getNode().toUpperCase() + "_" + numericField.getName().toUpperCase().replace(' ', '_');
-        fieldMap.put("fieldName", fieldName);
-        fieldMap.put("position", Integer.toString(numericField.getPosition() * 8));
-        fieldMap.put("length", Integer.toString(numericField.getLength()*8));
-        fieldMap.put("endianness", endianness);
-        fieldMap.put("signed", numericField.isSigned() ? "-" : "+");
-        fieldMap.put("scl", df.format(numericField.getScale()));
-        fieldMap.put("offset", Integer.toString(numericField.getOffset()));
-        fieldMap.put("unit", numericField.getUnit());
-        fields.add(fieldMap);
-      }
-      else if(field instanceof CANBitmapField) {
-        CANBitmapField bitmapField = (CANBitmapField) field;
-        List<CANBitField> bits = bitmapField.getBits();
-        for(CANBitField bit: bits) {
-          Map<String, String> fieldMap = new HashMap<>();
-          String fieldName = message.getNode().toUpperCase() +
-              "_" + bit.getName().toUpperCase().replace(' ', '_');
-          fieldMap.put("fieldName", fieldName);
-          int bitPos = (bitmapField.getPosition()*8) + bit.getPosition();
-          fieldMap.put("position", Integer.toString(bitPos));
-          fieldMap.put("length", "1");
-          fieldMap.put("endianness", "1");
-          fieldMap.put("signed", "+");
-          fieldMap.put("scl", "1");
-          fieldMap.put("offset", "0");
-          fieldMap.put("unit", "");
-        }
-      }
+      fields.addAll(field.generateDBCFieldDefs(message.getNode(), endianness));
     }
     return fields;
   }

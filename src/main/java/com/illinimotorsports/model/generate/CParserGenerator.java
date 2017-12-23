@@ -51,38 +51,7 @@ public class CParserGenerator extends SelectedMessagesGenerator {
   public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
     for(CANDataField field: message.getData()) {
-      DecimalFormat df = new DecimalFormat("#");
-      df.setMaximumFractionDigits(20);
-      if(field instanceof CANNumericField) {
-        Map<String, String> fieldMap = new HashMap<>();
-        CANNumericField numField = (CANNumericField) field;
-        fieldMap.put("type", "numeric");
-        fieldMap.put("pos", Integer.toString(numField.getPosition()));
-        fieldMap.put("len", Integer.toString(numField.getLength()));
-        fieldMap.put("endian", message.getEndianness().toString());
-        fieldMap.put("sgn", numField.isSigned() ? "1": "0");
-        fieldMap.put("scl", df.format(numField.getScale()));
-        fieldMap.put("off", "0x" + Integer.toHexString(numField.getOffset()));
-        String comment = numField.getName();
-        if(numField.getUnit().length() > 0) {
-          comment += " (" + numField.getUnit() + ")";
-        }
-        fieldMap.put("comment", comment);
-        fieldList.add(fieldMap);
-      }
-      else if(field instanceof CANBitmapField) {
-        CANBitmapField bitmapField = (CANBitmapField) field;
-        for(CANBitField bit: bitmapField.getBits()) {
-          Map<String, String> fieldMap = new HashMap<>();
-          fieldMap.put("type", "bit");
-          fieldMap.put("pos", Integer.toString(bitmapField.getPosition()));
-          fieldMap.put("len", Integer.toString(bitmapField.getLength()));
-          fieldMap.put("endian", message.getEndianness().toString());
-          fieldMap.put("bitPos", Integer.toString(bit.getPosition()));
-          fieldMap.put("comment", field.getName() + " " + bit.getName());
-          fieldList.add(fieldMap);
-        }
-      }
+      fieldList.addAll(field.generateCParseMap(message.getEndianness()));
     }
     return fieldList;
   }
