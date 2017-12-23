@@ -11,10 +11,10 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class CANParserGeneratorTest {
+public class CParserGeneratorTest {
 
   CANSpec spec;
-  CANParserGenerator generator;
+  CParserGenerator generator;
 
   @Before
   public void init() {
@@ -23,7 +23,7 @@ public class CANParserGeneratorTest {
     } catch (CANParseException e) {
       fail();
     }
-    generator = new CANParserGenerator();
+    generator = new CParserGenerator();
     generator.setMessages(spec.getMessages());
   }
 

@@ -20,11 +20,10 @@ public class DocumentationController {
   /**
    * Constructor for GeneratedCodeController
    * @param theModel
-   * @param theView
    */
-  public DocumentationController(DocumentationTableModel theModel, DocumentationTableView theView) {
+  public DocumentationController(DocumentationTableModel theModel) {
     model = theModel;
-    view = theView;
+    view = new DocumentationTableView();
   }
 
   /**

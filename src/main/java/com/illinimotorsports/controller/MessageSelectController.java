@@ -1,16 +1,10 @@
 package com.illinimotorsports.controller;
 
-import com.illinimotorsports.model.GeneratedCodeModel;
 import com.illinimotorsports.model.MessageSelectModel;
-import com.illinimotorsports.model.canspec.CANMessage;
 import com.illinimotorsports.model.canspec.CANSpec;
 import com.illinimotorsports.model.generate.SelectedMessagesGenerator;
-
-import com.illinimotorsports.view.GeneratedCodeView;
 import com.illinimotorsports.view.MessageCheckBoxListView;
 import com.illinimotorsports.view.MessageSelectView;
-
-import java.util.List;
 
 public class MessageSelectController {
 
@@ -31,12 +25,8 @@ public class MessageSelectController {
 
   public void doneListener(SelectedMessagesGenerator generator) {
     view.setVisible(false);
-    List<CANMessage> messages = model.getSelectedMessages();
-    generator.setMessages(messages);
-    GeneratedCodeController genCode = new GeneratedCodeController(
-        new GeneratedCodeModel(generator),
-        new GeneratedCodeView()
-    );
+    generator.setMessages(model.getSelectedMessages());
+    GeneratedCodeController genCode = new GeneratedCodeController(generator);
     genCode.init();
   }
 }

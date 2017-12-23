@@ -1,6 +1,7 @@
 package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.GeneratedCodeModel;
+import com.illinimotorsports.model.generate.TemplatedGenerator;
 import com.illinimotorsports.view.GeneratedCodeView;
 
 import javax.swing.*;
@@ -19,12 +20,10 @@ public class GeneratedCodeController {
 
   /**
    * Constructor for GeneratedCodeController
-   * @param theModel
-   * @param theView
    */
-  public GeneratedCodeController(GeneratedCodeModel theModel, GeneratedCodeView theView) {
-    model = theModel;
-    view = theView;
+  public GeneratedCodeController(TemplatedGenerator generator) {
+    model = new GeneratedCodeModel(generator);
+    view = new GeneratedCodeView();
   }
 
   /**

@@ -12,10 +12,10 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class CANHeaderGeneratorTest {
+public class CHeaderGeneratorTest {
 
   CANSpec spec;
-  CANHeaderGenerator generator;
+  CHeaderGenerator generator;
 
   @Before
   public void init() {
@@ -24,7 +24,7 @@ public class CANHeaderGeneratorTest {
     } catch (CANParseException e) {
       fail();
     }
-    generator = new CANHeaderGenerator(spec);
+    generator = new CHeaderGenerator(spec);
   }
 
   @Test

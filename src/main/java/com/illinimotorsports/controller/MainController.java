@@ -1,15 +1,10 @@
 package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.DocumentationTableModel;
-import com.illinimotorsports.model.GeneratedCodeModel;
 import com.illinimotorsports.model.MainModel;
-import com.illinimotorsports.model.MessageSelectModel;
-import com.illinimotorsports.model.generate.CANHeaderGenerator;
-import com.illinimotorsports.model.generate.CANParserGenerator;
-import com.illinimotorsports.model.generate.DBCGenerator;
-import com.illinimotorsports.model.generate.DocumentationGenerator;
+import com.illinimotorsports.model.generate.*;
 import com.illinimotorsports.model.parse.CANParseException;
-import com.illinimotorsports.view.*;
+import com.illinimotorsports.view.MainView;
 
 import javax.swing.*;
 import java.io.File;
@@ -24,37 +19,29 @@ public class MainController {
 
   /**
    * Constructor for controller, takes in model and view
-   * @param v
-   * @param m
    */
-  public MainController(MainView v, MainModel m) {
-    this.view = v;
-    this.model = m;
-  }
-
-  /**
-   * Initializes view to main application panel
-   */
-  public void initView() {
-    view.init();
+  public MainController() {
+    this.view = new MainView();
+    this.model = new MainModel();
   }
 
   /**
    * Sets up controller, adds action listeners, etc
    */
-  public void initController() {
-    view.getOpenFileButton().addActionListener(e -> chooseCanSpec());
-    view.getGenParserButton().addActionListener(e -> openMessageSelector());
+  public void init() {
+    view.getOpenFileButton().addActionListener(e -> openFileListener());
+    view.getGenParserButton().addActionListener(e -> openMessageSelectorListener(new CParserGenerator()));
     view.getGenHeaderButton().addActionListener(e -> generateHeaderListener());
     view.getGenDBCButton().addActionListener(e -> generateDBCListener());
     view.getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
     view.getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
+    view.init();
   }
 
   /**
    * Action listener to handle file choosing
    */
-  public void chooseCanSpec() {
+  public void openFileListener() {
     JFileChooser fc = view.getFileChooser();
     int fileRet = fc.showOpenDialog(null); // Might need topLevelPanel as parent
     if(fileRet == JFileChooser.APPROVE_OPTION) {
@@ -76,19 +63,17 @@ public class MainController {
   /**
    * Action listener for selecting messages for the parse function
    */
-  public void openMessageSelector() {
+  public void openMessageSelectorListener(SelectedMessagesGenerator generator) {
     MessageSelectController messageSelectController = new MessageSelectController(model.getCanSpec());
-    messageSelectController.init(new CANParserGenerator());
+    messageSelectController.init(generator);
   }
 
   /**
    * Action Listener for header generator
    */
   public void generateHeaderListener() {
-    CANHeaderGenerator headerGenerator = new CANHeaderGenerator(model.getCanSpec());
-    GeneratedCodeController genCode = new GeneratedCodeController(
-        new GeneratedCodeModel(headerGenerator.fillTemplate()),
-        new GeneratedCodeView());
+    TemplatedGenerator gen = new CHeaderGenerator(model.getCanSpec());
+    GeneratedCodeController genCode = new GeneratedCodeController(gen);
     genCode.init();
   }
 
@@ -96,11 +81,8 @@ public class MainController {
    * Listener for DBC generator window
    */
   public void generateDBCListener() {
-    DBCGenerator gen = new DBCGenerator(model.getCanSpec());
-    GeneratedCodeController genCode = new GeneratedCodeController(
-        new GeneratedCodeModel(gen.fillTemplate()),
-        new GeneratedCodeView()
-    );
+    TemplatedGenerator gen = new DBCGenerator(model.getCanSpec());
+    GeneratedCodeController genCode = new GeneratedCodeController(gen);
     genCode.init();
   }
 
@@ -109,11 +91,8 @@ public class MainController {
    */
   public void generateMessageDocumentationListener() {
     DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
-    DocumentationController controller = new DocumentationController(new DocumentationTableModel(
-        DocumentationGenerator.messageTableColumns,
-        generator.generateMessageTable()),
-        new DocumentationTableView()
-    );
+    DocumentationTableModel model = new DocumentationTableModel(DocumentationGenerator.messageTableColumns, generator.generateMessageTable());
+    DocumentationController controller = new DocumentationController(model);
     controller.init(true);
   }
 
@@ -122,11 +101,8 @@ public class MainController {
    */
   public void generateFieldDocumentationListener() {
     DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
-    DocumentationController controller = new DocumentationController(new DocumentationTableModel(
-        DocumentationGenerator.fieldTableColumns,
-        generator.generateFieldTable()),
-        new DocumentationTableView()
-    );
+    DocumentationTableModel model = new DocumentationTableModel(DocumentationGenerator.fieldTableColumns, generator.generateFieldTable());
+    DocumentationController controller = new DocumentationController(model);
     controller.init(false);
   }
 
@@ -135,10 +111,7 @@ public class MainController {
    * @param args
    */
   public static void main(String[] args) {
-    MainView v = new MainView();
-    MainModel m = new MainModel();
-    MainController controller = new MainController(v, m);
-    controller.initController();
-    javax.swing.SwingUtilities.invokeLater(() -> controller.initView());
+    MainController controller = new MainController();
+    javax.swing.SwingUtilities.invokeLater(() -> controller.init());
   }
 }

@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Main generator for parser function
  */
-public class CANParserGenerator extends SelectedMessagesGenerator {
+public class CParserGenerator extends SelectedMessagesGenerator {
 
   /**
    * Top Level function which fills the main template
