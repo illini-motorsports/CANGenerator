@@ -29,20 +29,6 @@ public class CANSpec {
     messages.add(message);
   }
 
-  /**
-   * Simple getter for all message names
-   * @return
-   */
-  public List<String> getMessagesString() {
-    List<String> messagesList = new ArrayList<>();
-    Iterator messagesIter = messages.iterator();
-    while(messagesIter.hasNext()) {
-      CANMessage message = (CANMessage) messagesIter.next();
-      messagesList.add(message.getNode() + ": 0x" + Integer.toHexString(message.getId()));
-    }
-    return messagesList;
-  }
-
   public List<CANMessage> getMessages() {
     return messages;
   }
@@ -55,12 +41,13 @@ public class CANSpec {
    */
   public List<List<String>> getMessagesWithFields() {
     List<List<String>> messagesList = new ArrayList<>();
-    Iterator messagesIter = messages.iterator();
-    while(messagesIter.hasNext()) {
-      CANMessage message = (CANMessage) messagesIter.next();
+    for(CANMessage message: messages){
       List<String> fields = new ArrayList<>();
+      // Add message name to inner list
       fields.add(message.getNode() + ": 0x" + Integer.toHexString(message.getId()));
+      // Add all field names to inner list
       fields.addAll(message.getFieldNames());
+      // Add to main list
       messagesList.add(fields);
     }
     return messagesList;

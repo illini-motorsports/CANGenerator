@@ -15,6 +15,7 @@ import java.io.IOException;
  * Handles saving and copying to clipboard of text
  */
 public class GeneratedCodeController {
+
   private GeneratedCodeModel model;
   private GeneratedCodeView view;
 
@@ -30,10 +31,14 @@ public class GeneratedCodeController {
    * Initializes model and view
    */
   public void init() {
+    // populate text area with code
     view.getCode().setText(model.getCode());
+
+    // Add action listeners for buttons
     view.getDoneButton().addActionListener(e -> closeWindow());
     view.getSaveButton().addActionListener(e -> saveToFile());
     view.getCopyButton().addActionListener(e -> copyToClipboard());
+
     view.init();
   }
 
@@ -50,14 +55,18 @@ public class GeneratedCodeController {
    */
   public void saveToFile() {
     JFileChooser fc = view.getFc();
+
+    // Show file chooser and continue if user selects a file
     if(fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
       JOptionPane message = new JOptionPane();
       try {
+        // Attempt to write the code to the specified file
         FileWriter fw = new FileWriter(fc.getSelectedFile());
         fw.write(model.getCode());
         message.showMessageDialog(view, "Success", ":)", JOptionPane.INFORMATION_MESSAGE);
         fw.close();
       } catch (IOException e) {
+        // Catch exception and show error message upon failure
         message.showMessageDialog(view, "File Write Error!", "Error!", JOptionPane.ERROR_MESSAGE);
       }
     }
@@ -67,9 +76,9 @@ public class GeneratedCodeController {
    * Copies generated code to clipboard
    */
   public void copyToClipboard() {
+    // Insert code into clipboard using toolkit library
     Toolkit.getDefaultToolkit()
         .getSystemClipboard()
-        .setContents(
-            new StringSelection(model.getCode()),null);
+        .setContents(new StringSelection(model.getCode()),null);
   }
 }

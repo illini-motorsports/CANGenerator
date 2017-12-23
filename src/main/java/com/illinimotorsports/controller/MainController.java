@@ -29,12 +29,14 @@ public class MainController {
    * Sets up controller, adds action listeners, etc
    */
   public void init() {
+    // Add action listeners for all the buttons
     view.getOpenFileButton().addActionListener(e -> openFileListener());
     view.getGenParserButton().addActionListener(e -> openMessageSelectorListener(new CParserGenerator()));
     view.getGenHeaderButton().addActionListener(e -> generateHeaderListener());
     view.getGenDBCButton().addActionListener(e -> generateDBCListener());
     view.getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
     view.getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
+
     view.init();
   }
 
@@ -43,15 +45,24 @@ public class MainController {
    */
   public void openFileListener() {
     JFileChooser fc = view.getFileChooser();
-    int fileRet = fc.showOpenDialog(null); // Might need topLevelPanel as parent
-    if(fileRet == JFileChooser.APPROVE_OPTION) {
+
+    // Show file chooser and continue if user selects a file
+    if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
       File file = fc.getSelectedFile();
       try {
+        // Attempt to parse spec
         model.generateModel(file);
+
+        // Any issues with parsing will throw an exception,
+        // so if this code is executed, the spec was parsed successfully
         view.getCanSpecStatus().setText("Spec Successfully Parsed!");
         view.getOpenFileButton().setText("Open New CAN Spec");
+
+        // Allow users to press other buttons
         view.setEnableGenButtons(true);
       } catch (CANParseException e) {
+        // There was a parse error,
+        // so display an error message and disable buttons
         JOptionPane parseError = new JOptionPane();
         parseError.showMessageDialog(null, e.getMessage(), "CAN Parse Error :(", JOptionPane.ERROR_MESSAGE);
         view.getCanSpecStatus().setText("CAN Parse Error :(");
@@ -62,6 +73,7 @@ public class MainController {
 
   /**
    * Action listener for selecting messages for the parse function
+   * @param generator The code generator that should be associated with the selector
    */
   public void openMessageSelectorListener(SelectedMessagesGenerator generator) {
     MessageSelectController messageSelectController = new MessageSelectController(model.getCanSpec());

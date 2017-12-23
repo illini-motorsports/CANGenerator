@@ -30,6 +30,8 @@ public class CHeaderGenerator implements TemplatedGenerator {
 
     Chunk header = theme.makeChunk("header", "h");
 
+    // Populate template with the lists of maps
+    // The template library will automatically iterate through this datatype
     header.set("ids", generateIDs());
     header.set("fieldDefs", generateFieldDefs());
 
@@ -41,13 +43,19 @@ public class CHeaderGenerator implements TemplatedGenerator {
    * @return
    */
   public List<Map<String, String>> generateIDs() {
+    // Return datatype is a list of maps
     List<Map<String, String>> canIDList = new ArrayList<>();
+
+    // Compute message ID names
     Map<CANMessage, String> canIDs = MessageIDUtils.generateIDNames(spec);
     for(Map.Entry<CANMessage, String> entry: canIDs.entrySet()) {
-      String hexID = "0x" + Integer.toHexString(entry.getKey().getId());
       Map<String, String> idMap = new HashMap<>();
+      // Add define name and hex ID to inner map
+      String hexID = "0x" + Integer.toHexString(entry.getKey().getId());
       idMap.put("def", entry.getValue() + "_ID");
       idMap.put("id", hexID);
+
+      // Add to outer list
       canIDList.add(idMap);
     }
     return canIDList;
@@ -59,6 +67,8 @@ public class CHeaderGenerator implements TemplatedGenerator {
    */
   public List<Map<String, String>> generateFieldDefs() {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
+
+    // Iterate through every field from each message, call helper function
     for(CANMessage message: spec.getMessages()) {
       for (CANDataField field : message.getData()) {
         fieldDefs.addAll(generateDefsFromField(message.getNode(), field));
@@ -73,6 +83,7 @@ public class CHeaderGenerator implements TemplatedGenerator {
    * @param field
    * @return
    */
+  //TODO: move the meat of this function to CANDataField
   public List<Map<String, String>> generateDefsFromField(String message, CANDataField field) {
     List<Map<String, String>> fieldDefs = new ArrayList<>();
     if (field instanceof CANNumericField) {

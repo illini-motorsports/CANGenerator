@@ -17,15 +17,19 @@ public class MessageSelectController {
   }
 
   public void init(SelectedMessagesGenerator generator) {
+    // Add action listeners
     view.getSelectAllButton().addActionListener(e -> view.getList().setAll(true));
     view.getDeselectAllButton().addActionListener(e -> view.getList().setAll(false));
     view.getSubmitButton().addActionListener(e -> doneListener(generator));
+
     view.init();
   }
 
   public void doneListener(SelectedMessagesGenerator generator) {
     view.setVisible(false);
+    // Figure out what checkboxes were selected, and pass that to the generator
     generator.setMessages(model.getSelectedMessages());
+
     GeneratedCodeController genCode = new GeneratedCodeController(generator);
     genCode.init();
   }
