@@ -4,6 +4,7 @@ import com.illinimotorsports.model.DocumentationTableModel;
 import com.illinimotorsports.model.MainModel;
 import com.illinimotorsports.model.generate.*;
 import com.illinimotorsports.model.parse.CANParseException;
+import com.illinimotorsports.model.parse.LoggedMessages;
 import com.illinimotorsports.view.MainView;
 
 import javax.swing.*;
@@ -36,6 +37,7 @@ public class MainController {
     view.getGenDBCButton().addActionListener(e -> generateDBCListener());
     view.getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
     view.getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
+    view.getParseLogFilesButton().addActionListener(e -> parseLogFilesListener());
 
     view.init();
   }
@@ -45,6 +47,7 @@ public class MainController {
    */
   public void openFileListener() {
     JFileChooser fc = view.getFileChooser();
+    fc.setMultiSelectionEnabled(false);
 
     // Show file chooser and continue if user selects a file
     if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -116,6 +119,17 @@ public class MainController {
     DocumentationTableModel model = new DocumentationTableModel(DocumentationGenerator.fieldTableColumns, generator.generateFieldTable());
     DocumentationController controller = new DocumentationController(model);
     controller.init(false);
+  }
+
+  public void parseLogFilesListener() {
+    JFileChooser fc = view.getFileChooser();
+    fc.setMultiSelectionEnabled(true);
+
+    // Show file chooser and continue if user selects a file
+    if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+      File[] files = fc.getSelectedFiles();
+      System.out.println(LoggedMessages.parseFileList(files));
+    }
   }
 
   /**

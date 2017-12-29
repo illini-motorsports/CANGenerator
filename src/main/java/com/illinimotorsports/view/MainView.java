@@ -1,7 +1,6 @@
 package com.illinimotorsports.view;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Top level view class
@@ -14,6 +13,7 @@ public class MainView extends JFrame {
   private JButton genDBCButton;
   private JButton genMessageDocumentationButton;
   private JButton genFieldDocumentationButton;
+  private JButton parseLogFilesButton;
   private JFileChooser fileChooser;
   private JLabel canSpecStatus;
 
@@ -31,6 +31,7 @@ public class MainView extends JFrame {
     genHeaderButton = new JButton("Generate Header");
     genParserButton = new JButton("Generate Parser");
     genDBCButton = new JButton("Generate DBC");
+    parseLogFilesButton = new JButton("Parse Log Files");
     genMessageDocumentationButton = new JButton("Message Documentation");
     genFieldDocumentationButton = new JButton("Field Documentation");
     setEnableGenButtons(false);
@@ -43,7 +44,9 @@ public class MainView extends JFrame {
     JPanel openButtonPanel = new JPanel();
     JPanel genButtonPanel1 = new JPanel();
     JPanel genButtonPanel2 = new JPanel();
-    JPanel topLevelPanel = new JPanel(new BorderLayout());
+    JPanel genButtonPanel3 = new JPanel();
+    JPanel topLevelPanel = new JPanel();
+    topLevelPanel.setLayout(new BoxLayout(topLevelPanel, BoxLayout.PAGE_AXIS));
     openButtonPanel.add(openFileButton);
     openButtonPanel.add(canSpecStatus);
     genButtonPanel1.add(genHeaderButton);
@@ -51,9 +54,11 @@ public class MainView extends JFrame {
     genButtonPanel1.add(genDBCButton);
     genButtonPanel2.add(genMessageDocumentationButton);
     genButtonPanel2.add(genFieldDocumentationButton);
-    topLevelPanel.add(openButtonPanel, BorderLayout.PAGE_START);
-    topLevelPanel.add(genButtonPanel1, BorderLayout.CENTER);
-    topLevelPanel.add(genButtonPanel2, BorderLayout.SOUTH);
+    genButtonPanel3.add(parseLogFilesButton);
+    topLevelPanel.add(openButtonPanel);
+    topLevelPanel.add(genButtonPanel1);
+    topLevelPanel.add(genButtonPanel2);
+    topLevelPanel.add(genButtonPanel3);
 
     add(topLevelPanel);
     pack();
@@ -66,6 +71,7 @@ public class MainView extends JFrame {
     genDBCButton.setEnabled(enable);
     genMessageDocumentationButton.setEnabled(enable);
     genFieldDocumentationButton.setEnabled(enable);
+    parseLogFilesButton.setEnabled(enable);
   }
 
   public JButton getOpenFileButton() {
@@ -98,5 +104,9 @@ public class MainView extends JFrame {
 
   public JLabel getCanSpecStatus() {
     return canSpecStatus;
+  }
+
+  public JButton getParseLogFilesButton() {
+    return parseLogFilesButton;
   }
 }
