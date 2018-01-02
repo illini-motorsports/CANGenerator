@@ -79,8 +79,8 @@ public class MainController {
    * @param generator The code generator that should be associated with the selector
    */
   public void openMessageSelectorListener(SelectedMessagesGenerator generator) {
-    MessageSelectController messageSelectController = new MessageSelectController(model.getCanSpec());
-    messageSelectController.init(generator);
+    SelectController selectController = new SelectController(model.getCanSpec());
+    selectController.init(generator);
   }
 
   /**
@@ -128,8 +128,13 @@ public class MainController {
     // Show file chooser and continue if user selects a file
     if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
       File[] files = fc.getSelectedFiles();
-      System.out.println(LoggedMessages.parseFileList(files));
+      openFieldSelector(new LoggedMessages(files));
     }
+  }
+
+  public void openFieldSelector(LoggedMessages messages) {
+    SelectController selectController = new SelectController(model.getCanSpec(), messages.getMessageIDs());
+    selectController.init(null);
   }
 
   /**

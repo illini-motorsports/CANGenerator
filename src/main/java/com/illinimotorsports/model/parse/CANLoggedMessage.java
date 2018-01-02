@@ -9,7 +9,7 @@ public class CANLoggedMessage implements Comparable {
 
   public CANLoggedMessage(String[] csvRow) {
     timestamp = Double.parseDouble(csvRow[0]);
-    id = Integer.parseInt(csvRow[2].substring(2), 16);
+    id = Integer.parseInt(csvRow[2], 16);
     int dlc = Integer.parseInt(csvRow[4]);
     bytes = new int[dlc];
     for(int i = 5; i < dlc + 5; i++) {
@@ -25,7 +25,19 @@ public class CANLoggedMessage implements Comparable {
     return id;
   }
 
-  public double getField(int pos, int len, double scl, int offset, boolean signed, Endianness endianness) {
+  // false for 0, true for 1
+  public boolean getBit(int pos) {
+    if(pos >= bytes.length*8) {
+      // TODO: Make custom exception for this error
+      return false;
+    }
+    int bytePos = pos/8;
+    int bitPos = pos%8;
+
+    return ((bytes[bytePos] >> bitPos) & 0x01) == 1;
+  }
+
+  public double getNumericField(int pos, int len, double scl, int offset, boolean signed, Endianness endianness) {
     if(pos + len >= bytes.length) {
       // TODO: Make custom exception for this error
       return 0;

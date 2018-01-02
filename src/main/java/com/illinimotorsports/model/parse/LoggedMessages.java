@@ -22,12 +22,14 @@ public class LoggedMessages {
 
   public Set<Integer> getMessageIDs() {
     Set<Integer> ids = new HashSet<>();
-    messages.stream().map(e -> ids.add(e.getId()));
+    for(CANLoggedMessage message: messages) {
+      ids.add(message.getId());
+    }
     return ids;
   }
 
   // TODO: Generalize to bitmaps
-  public List<double[]> getNumericField(CANMessage specMessage, CANNumericField specField) {
+  public List<double[]> getNumericFieldList(CANMessage specMessage, CANNumericField specField) {
     List<double[]> fieldLst = new ArrayList<>();
     int id = specMessage.getId();
     int pos = specField.getPosition();
@@ -39,7 +41,7 @@ public class LoggedMessages {
 
     for(CANLoggedMessage message: messages) {
       if(message.getId() == id) {
-        double[] row = {message.getTimestamp(), message.getField(pos, len, scl, offset, isSigned, endianness)};
+        double[] row = {message.getTimestamp(), message.getNumericField(pos, len, scl, offset, isSigned, endianness)};
         fieldLst.add(row);
       }
     }
