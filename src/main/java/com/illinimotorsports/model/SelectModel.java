@@ -45,7 +45,7 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
    * Returns a list of CANMessages that were selected
    * @return
    */
-  public List<> getSelectedMessages() {
+  public List<CANMessage> getSelectedMessages() {
     List<CANMessage> messages = new ArrayList<>();
     for(T box: data) {
       if(box.getCheckBox().isSelected()) {
@@ -61,7 +61,7 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
   }
 
   @Override
-  public CheckBoxView getElementAt(int index) {
+  public T getElementAt(int index) {
     return data.get(index);
   }
 
@@ -77,9 +77,10 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
     List<CheckBoxView> data = new ArrayList<>();
     for(CANMessage message: spec.getMessages()) {
       if(ids.contains(message.getId())) {
-        for(CANDataField field: message.getData()) {
+        for (CANDataField field : message.getData()) {
           data.add(new CheckBoxView(message, field));
         }
+      }
     }
     return data;
   }

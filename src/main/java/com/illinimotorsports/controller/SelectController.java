@@ -6,6 +6,7 @@ import com.illinimotorsports.model.generate.SelectedMessagesGenerator;
 import com.illinimotorsports.view.CheckBoxListView;
 import com.illinimotorsports.view.SelectView;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class SelectController {
@@ -14,12 +15,13 @@ public class SelectController {
   private SelectModel model;
 
   public SelectController(CANSpec spec) {
-    model = new SelectModel(spec);
+    model = new SelectModel();
     view = new SelectView(new CheckBoxListView(model));
   }
 
   public SelectController(CANSpec spec, Set<Integer> ids) {
-    model = new SelectModel(spec, ids);
+    model = new SelectModel();
+    model.setData(new ArrayList<>(ids));
     view = new SelectView(new CheckBoxListView(model));
   }
 
