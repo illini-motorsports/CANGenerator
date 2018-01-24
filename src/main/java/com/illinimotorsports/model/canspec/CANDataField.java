@@ -15,6 +15,7 @@ public abstract class CANDataField {
   private int position;
   private int length;
   private String name;
+  private String node;
 
   /**
    * Only contains position and length,
@@ -23,17 +24,18 @@ public abstract class CANDataField {
    * @param pos
    * @param len
    */
-  public CANDataField(int pos, int len, String fieldName) {
+  public CANDataField(int pos, int len, String fieldName, String parentNode) {
     this.position = pos;
     this.length = len;
     this.name = fieldName;
+    this.node = parentNode;
   }
 
-  public abstract List<Map<String, String>> generateCHeaderDefs(String node);
+  public abstract List<Map<String, String>> generateCHeaderDefs();
 
   public abstract List<Map<String, String>> generateCParseMap(Endianness endianness);
 
-  public abstract List<Map<String, String>> generateDBCFieldDefs(String node, String endianness);
+  public abstract List<Map<String, String>> generateDBCFieldDefs(String endianness);
 
   public abstract List<String[]> generateFieldTableRow();
 
@@ -47,5 +49,9 @@ public abstract class CANDataField {
 
   public String getName() {
     return name;
+  }
+
+  public String getNode() {
+    return node;
   }
 }

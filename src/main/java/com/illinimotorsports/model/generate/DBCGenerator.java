@@ -106,7 +106,7 @@ public class DBCGenerator implements TemplatedGenerator {
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
     for(CANDataField field: message.getData()) {
-      fields.addAll(field.generateDBCFieldDefs(message.getNode(), endianness));
+      fields.addAll(field.generateDBCFieldDefs(endianness));
     }
     return fields;
   }

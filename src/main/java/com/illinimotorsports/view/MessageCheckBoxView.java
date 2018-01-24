@@ -8,8 +8,27 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MessageCheckBoxView extends CheckBoxView {
+
+    private CANMessage message;
+
     public MessageCheckBoxView(CANMessage message) {
-        super(message);
+        super();
+        this.message = message;
+        setCheckBoxText(message.getNode() + " 0x" + Integer.toHexString(message.getId()));
+        String fieldText = "Fields:\n";
+        List<String> fieldNames = message.getFieldNames();
+        for(int i = 0; i < fieldNames.size() - 1; i++) {
+            if(i % 4 == 0 && i != 0) {
+                fieldText += "\n";
+            }
+            fieldText += "  " + fieldNames.get(i) + ",";
+        }
+        fieldText += "  " + fieldNames.get(fieldNames.size()-1);
+        setTextArea(fieldText);
+    }
+
+    public Object getData() {
+        return message;
     }
 
     public static List<MessageCheckBoxView> generateCheckBoxViews(CANSpec spec) {

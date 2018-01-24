@@ -22,8 +22,8 @@ public class CANBitmapField extends CANDataField {
    * @param name
    * @param bits
    */
-  public CANBitmapField(int pos, int len, String name, List<CANBitField> bits) {
-    super(pos, len, name);
+  public CANBitmapField(int pos, int len, String name, String node, List<CANBitField> bits) {
+    super(pos, len, name, node);
     this.bits = new ArrayList<>(bits);
   }
 
@@ -48,9 +48,9 @@ public class CANBitmapField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateCHeaderDefs(String node) {
+  public List<Map<String, String>> generateCHeaderDefs() {
     List<Map<String, String>> defs = new ArrayList<>();
-    String genericDef = node.toUpperCase() + "_"
+    String genericDef = getNode().toUpperCase() + "_"
         + getName().toUpperCase().replace(' ', '_');
     String byteNum = Integer.toString(getPosition());
 
@@ -90,14 +90,14 @@ public class CANBitmapField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateDBCFieldDefs(String node, String endianness) {
+  public List<Map<String, String>> generateDBCFieldDefs(String endianness) {
     List<Map<String, String>> fields = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
     List<CANBitField> bits = getBits();
     for(CANBitField bit: bits) {
       Map<String, String> fieldMap = new HashMap<>();
-      String fieldName = node.toUpperCase() +
+      String fieldName = getNode().toUpperCase() +
           "_" + bit.getName().toUpperCase().replace(' ', '_');
       fieldMap.put("fieldName", fieldName);
       int bitPos = (getPosition()*8) + bit.getPosition();

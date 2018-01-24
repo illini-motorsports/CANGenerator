@@ -1,14 +1,10 @@
 package com.illinimotorsports.model;
 
-import com.illinimotorsports.model.canspec.CANDataField;
-import com.illinimotorsports.model.canspec.CANMessage;
-import com.illinimotorsports.model.canspec.CANSpec;
 import com.illinimotorsports.view.CheckBoxView;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Model for checkbox list
@@ -20,7 +16,6 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
 
   /**
    * Sets up internal data structure
-   * @param spec
    */
   public SelectModel() {
     super();
@@ -45,11 +40,11 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
    * Returns a list of CANMessages that were selected
    * @return
    */
-  public List<CANMessage> getSelectedMessages() {
-    List<CANMessage> messages = new ArrayList<>();
+  public List getSelectedMessages() {
+    List messages = new ArrayList();
     for(T box: data) {
       if(box.getCheckBox().isSelected()) {
-        messages.add(box.getMessage());
+        messages.add(box.getData());
       }
     }
     return messages;
@@ -65,23 +60,4 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
     return data.get(index);
   }
 
-  public static List<CheckBoxView> getMessageList(CANSpec spec) {
-    List<CheckBoxView> data = new ArrayList<>();
-    for(CANMessage message: spec.getMessages()) {
-      data.add(new CheckBoxView(message));
-    }
-    return data;
-  }
-
-  public static List<CheckBoxView> getFieldList(CANSpec spec, Set<Integer> ids) {
-    List<CheckBoxView> data = new ArrayList<>();
-    for(CANMessage message: spec.getMessages()) {
-      if(ids.contains(message.getId())) {
-        for (CANDataField field : message.getData()) {
-          data.add(new CheckBoxView(message, field));
-        }
-      }
-    }
-    return data;
-  }
 }

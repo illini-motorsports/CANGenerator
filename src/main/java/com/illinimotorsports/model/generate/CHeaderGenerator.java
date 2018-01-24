@@ -71,7 +71,7 @@ public class CHeaderGenerator implements TemplatedGenerator {
     // Iterate through every field from each message, call helper function
     for(CANMessage message: spec.getMessages()) {
       for (CANDataField field : message.getData()) {
-        fieldDefs.addAll(field.generateCHeaderDefs(message.getNode()));
+        fieldDefs.addAll(field.generateCHeaderDefs());
       }
     }
     return fieldDefs;

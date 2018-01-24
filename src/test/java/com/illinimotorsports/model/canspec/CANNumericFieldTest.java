@@ -10,7 +10,7 @@ public class CANNumericFieldTest {
   @Before
   public void init() {
     numeral = new CANNumericField(2, 2,
-        "coolNumber", "C", true, 1, 0);
+        "coolNumber", "PDM", "C", true, 1, 0);
   }
 
   @Test

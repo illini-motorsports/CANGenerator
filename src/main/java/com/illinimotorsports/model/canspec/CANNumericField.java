@@ -25,10 +25,9 @@ public class CANNumericField extends CANDataField {
    * @param scale
    * @param offset
    */
-  public CANNumericField(int pos, int len, String name,
-                         String unit, boolean signed,
-                         double scale, int offset) {
-    super(pos, len, name);
+  public CANNumericField(int pos, int len, String name, String node,
+                         String unit, boolean signed, double scale, int offset) {
+    super(pos, len, name, node);
     this.unit = unit;
     this.signed = signed;
     this.scale = scale;
@@ -52,10 +51,10 @@ public class CANNumericField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateCHeaderDefs(String node) {
+  public List<Map<String, String>> generateCHeaderDefs() {
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    String genericDef = node.toUpperCase() + "_"
+    String genericDef = getNode().toUpperCase() + "_"
         + getName().toUpperCase().replace(' ', '_');
     String byteNum = Integer.toString(getPosition());
     String scl = df.format(getScale());
@@ -95,11 +94,11 @@ public class CANNumericField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateDBCFieldDefs(String node, String endianness) {
+  public List<Map<String, String>> generateDBCFieldDefs(String endianness) {
     Map<String, String> fieldMap = new HashMap<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    String fieldName = node.toUpperCase() + "_" + getName().toUpperCase().replace(' ', '_');
+    String fieldName = getNode().toUpperCase() + "_" + getName().toUpperCase().replace(' ', '_');
     fieldMap.put("fieldName", fieldName);
     fieldMap.put("position", Integer.toString(getPosition() * 8));
     fieldMap.put("length", Integer.toString(getLength()*8));
