@@ -5,7 +5,9 @@ import com.illinimotorsports.model.MainModel;
 import com.illinimotorsports.model.generate.*;
 import com.illinimotorsports.model.parse.CANParseException;
 import com.illinimotorsports.model.parse.LoggedMessages;
+import com.illinimotorsports.view.FieldCheckBoxView;
 import com.illinimotorsports.view.MainView;
+import com.illinimotorsports.view.MessageCheckBoxView;
 
 import javax.swing.*;
 import java.io.File;
@@ -79,7 +81,8 @@ public class MainController {
    * @param generator The code generator that should be associated with the selector
    */
   public void openMessageSelectorListener(SelectedMessagesGenerator generator) {
-    SelectController selectController = new SelectController(model.getCanSpec());
+    SelectController selectController = new SelectController(
+            MessageCheckBoxView.generateCheckBoxViews(model.getCanSpec()));
     selectController.init(generator);
   }
 
@@ -133,7 +136,9 @@ public class MainController {
   }
 
   public void openFieldSelector(LoggedMessages messages) {
-    SelectController selectController = new SelectController(model.getCanSpec(), messages.getMessageIDs());
+    //TODO: produce proper data for model
+    SelectController selectController = new SelectController(
+            FieldCheckBoxView.generateCheckBoxViews(model.getCanSpec(), messages.getMessageIDs()));
     selectController.init(null);
   }
 

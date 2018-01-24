@@ -7,6 +7,7 @@ import com.illinimotorsports.view.CheckBoxListView;
 import com.illinimotorsports.view.SelectView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 public class SelectController {
@@ -14,14 +15,14 @@ public class SelectController {
   private SelectView view;
   private SelectModel model;
 
-  public SelectController(CANSpec spec) {
+  public SelectController() {
     model = new SelectModel();
     view = new SelectView(new CheckBoxListView(model));
   }
 
-  public SelectController(CANSpec spec, Set<Integer> ids) {
+  public SelectController(Collection data) {
     model = new SelectModel();
-    model.setData(new ArrayList<>(ids));
+    model.setData(new ArrayList<>(data));
     view = new SelectView(new CheckBoxListView(model));
   }
 
