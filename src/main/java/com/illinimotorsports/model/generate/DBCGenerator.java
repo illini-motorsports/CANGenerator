@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Generator Class for DBC files
  */
-public class DBCGenerator implements TemplatedGenerator {
+public class DBCGenerator implements CodeGenerator {
 
   CANSpec spec;
 
@@ -29,7 +29,7 @@ public class DBCGenerator implements TemplatedGenerator {
    * generated from the given spec
    * @return
    */
-  public String fillTemplate() {
+  public String generate() {
     Theme theme = new Theme();
 
     Chunk config = theme.makeChunk("config", "dbc");

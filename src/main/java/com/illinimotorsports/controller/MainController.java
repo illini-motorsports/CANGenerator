@@ -39,6 +39,7 @@ public class MainController {
     view.getGenDBCButton().addActionListener(e -> generateDBCListener());
     view.getGenMessageDocumentationButton().addActionListener(e -> generateMessageDocumentationListener());
     view.getGenFieldDocumentationButton().addActionListener(e -> generateFieldDocumentationListener());
+    view.getGenTelemetryJson().addActionListener(e -> generateTelemetryJsonListener());
     view.getParseLogFilesButton().addActionListener(e -> parseLogFilesListener());
 
     view.init();
@@ -90,7 +91,7 @@ public class MainController {
    * Action Listener for header generator
    */
   public void generateHeaderListener() {
-    TemplatedGenerator gen = new CHeaderGenerator(model.getCanSpec());
+    CodeGenerator gen = new CHeaderGenerator(model.getCanSpec());
     GeneratedCodeController genCode = new GeneratedCodeController(gen);
     genCode.init();
   }
@@ -99,7 +100,7 @@ public class MainController {
    * Listener for DBC generator window
    */
   public void generateDBCListener() {
-    TemplatedGenerator gen = new DBCGenerator(model.getCanSpec());
+    CodeGenerator gen = new DBCGenerator(model.getCanSpec());
     GeneratedCodeController genCode = new GeneratedCodeController(gen);
     genCode.init();
   }
@@ -122,6 +123,9 @@ public class MainController {
     DocumentationTableModel model = new DocumentationTableModel(DocumentationGenerator.fieldTableColumns, generator.generateFieldTable());
     DocumentationController controller = new DocumentationController(model);
     controller.init(false);
+  }
+
+  public void generateTelemetryJsonListener() {
   }
 
   public void parseLogFilesListener() {

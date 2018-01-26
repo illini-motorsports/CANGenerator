@@ -1,18 +1,18 @@
 package com.illinimotorsports.model;
 
-import com.illinimotorsports.model.generate.TemplatedGenerator;
+import com.illinimotorsports.model.generate.CodeGenerator;
 
 /**
  * Model for generated code window
  */
 public class GeneratedCodeModel {
-  private TemplatedGenerator generator;
+  private CodeGenerator generator;
 
-  public GeneratedCodeModel(TemplatedGenerator templatedGenerator) {
-    generator = templatedGenerator;
+  public GeneratedCodeModel(CodeGenerator codeGenerator) {
+    generator = codeGenerator;
   }
 
   public String getCode() {
-    return generator.fillTemplate();
+    return generator.generate();
   }
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//TODO: Move more functionality into this class
 public class FieldCheckBoxView extends CheckBoxView {
 
     private CANDataField field;
@@ -40,6 +39,11 @@ public class FieldCheckBoxView extends CheckBoxView {
     public static List<FieldCheckBoxView> generateCheckBoxViews(CANSpec spec, Set<Integer> ids) {
         return spec.getMessages().stream().filter(x -> ids.contains(x.getId()))
                 .flatMap(x -> x.getData().stream()).map(x -> new FieldCheckBoxView(x))
+                .collect(Collectors.toList());
+    }
+
+    public static List<FieldCheckBoxView> generateCheckBoxViews(CANSpec spec) {
+        return spec.getMessages().stream().flatMap(x -> x.getData().stream()).map(x -> new FieldCheckBoxView(x))
                 .collect(Collectors.toList());
     }
 }

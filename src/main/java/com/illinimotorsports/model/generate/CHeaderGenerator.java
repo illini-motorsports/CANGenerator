@@ -4,7 +4,6 @@ import com.illinimotorsports.model.canspec.*;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Map;
 /**
  * Generator class for header files
  */
-public class CHeaderGenerator implements TemplatedGenerator {
+public class CHeaderGenerator implements CodeGenerator {
 
   CANSpec spec;
 
@@ -25,7 +24,7 @@ public class CHeaderGenerator implements TemplatedGenerator {
    * Main template fill function
    * @return
    */
-  public String fillTemplate() {
+  public String generate() {
     Theme theme = new Theme();
 
     Chunk header = theme.makeChunk("header", "h");

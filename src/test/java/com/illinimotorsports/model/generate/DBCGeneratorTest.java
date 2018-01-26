@@ -26,7 +26,7 @@ public class DBCGeneratorTest {
 
   @Test
   public void testFillTemplate() {
-    String dbc = generator.fillTemplate();
+    String dbc = generator.generate();
     assertEquals(dbc.length(), 1171);
   }
 }

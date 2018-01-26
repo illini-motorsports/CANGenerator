@@ -13,6 +13,7 @@ public class MainView extends JFrame {
   private JButton genDBCButton;
   private JButton genMessageDocumentationButton;
   private JButton genFieldDocumentationButton;
+  private JButton genTelemetryJson;
   private JButton parseLogFilesButton;
   private JFileChooser fileChooser;
   private JLabel canSpecStatus;
@@ -31,6 +32,7 @@ public class MainView extends JFrame {
     genHeaderButton = new JButton("Generate Header");
     genParserButton = new JButton("Generate Parser");
     genDBCButton = new JButton("Generate DBC");
+    genTelemetryJson = new JButton("Generate Telemetry JSON");
     parseLogFilesButton = new JButton("Parse Log Files");
     genMessageDocumentationButton = new JButton("Message Documentation");
     genFieldDocumentationButton = new JButton("Field Documentation");
@@ -54,6 +56,7 @@ public class MainView extends JFrame {
     genButtonPanel1.add(genDBCButton);
     genButtonPanel2.add(genMessageDocumentationButton);
     genButtonPanel2.add(genFieldDocumentationButton);
+    genButtonPanel3.add(genTelemetryJson);
     genButtonPanel3.add(parseLogFilesButton);
     topLevelPanel.add(openButtonPanel);
     topLevelPanel.add(genButtonPanel1);
@@ -71,6 +74,7 @@ public class MainView extends JFrame {
     genDBCButton.setEnabled(enable);
     genMessageDocumentationButton.setEnabled(enable);
     genFieldDocumentationButton.setEnabled(enable);
+    genTelemetryJson.setEnabled(enable);
     parseLogFilesButton.setEnabled(enable);
   }
 
@@ -108,5 +112,9 @@ public class MainView extends JFrame {
 
   public JButton getParseLogFilesButton() {
     return parseLogFilesButton;
+  }
+
+  public JButton getGenTelemetryJson() {
+    return genTelemetryJson;
   }
 }
