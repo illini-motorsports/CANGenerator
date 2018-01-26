@@ -81,7 +81,7 @@ public class MainController {
    * Action listener for selecting messages for the parse function
    * @param generator The code generator that should be associated with the selector
    */
-  public void openMessageSelectorListener(SelectedMessagesGenerator generator) {
+  public void openMessageSelectorListener(SelectedDataGenerator generator) {
     SelectController selectController = new SelectController(
             MessageCheckBoxView.generateCheckBoxViews(model.getCanSpec()));
     selectController.init(generator);

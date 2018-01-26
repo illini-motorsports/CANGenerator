@@ -13,13 +13,13 @@ import java.util.Map;
 /**
  * Main generator for parser function
  */
-public class CParserGenerator extends SelectedMessagesGenerator {
+public class CParserGenerator extends SelectedDataGenerator {
 
   /**
    * Top Level function which fills the main template
    * @return
    */
-  public String fillTemplate() {
+  public String generate() {
     Theme theme = new Theme();
     Chunk parse = theme.makeChunk("parse", "c");
     parse.set("messages", generateMessageParseMap());
@@ -63,7 +63,7 @@ public class CParserGenerator extends SelectedMessagesGenerator {
    */
   public List<Map<String, String>> generateMessageParseMap() {
     List<Map<String, String>> parseList = new ArrayList<>();
-    for(CANMessage message: messages) {
+    for(CANMessage message: data) {
       Map<String, String> messageMap = new HashMap<>();
       messageMap.put("id", "0x" + Integer.toHexString(message.getId()));
       messageMap.put("comment", message.getNode());

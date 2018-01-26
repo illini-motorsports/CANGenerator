@@ -24,7 +24,7 @@ public class CParserGeneratorTest {
       fail();
     }
     generator = new CParserGenerator();
-    generator.setMessages(spec.getMessages());
+    generator.setData(spec.getMessages());
   }
 
   @Test

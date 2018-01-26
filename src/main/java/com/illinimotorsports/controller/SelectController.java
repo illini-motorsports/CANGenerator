@@ -1,24 +1,18 @@
 package com.illinimotorsports.controller;
 
 import com.illinimotorsports.model.SelectModel;
-import com.illinimotorsports.model.canspec.CANSpec;
-import com.illinimotorsports.model.generate.SelectedMessagesGenerator;
+import com.illinimotorsports.model.generate.CodeGenerator;
+import com.illinimotorsports.model.generate.SelectedDataGenerator;
 import com.illinimotorsports.view.CheckBoxListView;
 import com.illinimotorsports.view.SelectView;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 public class SelectController {
 
   private SelectView view;
   private SelectModel model;
-
-  public SelectController() {
-    model = new SelectModel();
-    view = new SelectView(new CheckBoxListView(model));
-  }
 
   public SelectController(Collection data) {
     model = new SelectModel();
@@ -26,13 +20,9 @@ public class SelectController {
     view = new SelectView(new CheckBoxListView(model));
   }
 
-  public void init(SelectedMessagesGenerator generator) {
-    // Add action listeners
-    view.getSelectAllButton().addActionListener(e -> view.getList().setAll(true));
-    view.getDeselectAllButton().addActionListener(e -> view.getList().setAll(false));
+  public void init(SelectedDataGenerator generator) {
     view.getSubmitButton().addActionListener(e -> doneListener(generator));
-
-    view.init();
+    init();
   }
 
   public void init() {
@@ -43,10 +33,10 @@ public class SelectController {
     view.init();
   }
 
-  public void doneListener(SelectedMessagesGenerator generator) {
+  public void doneListener(SelectedDataGenerator generator) {
     view.setVisible(false);
     // Figure out what checkboxes were selected, and pass that to the generator
-    generator.setMessages(model.getSelectedMessages());
+    generator.setData(model.getSelectedMessages());
 
     GeneratedCodeController genCode = new GeneratedCodeController(generator);
     genCode.init();
