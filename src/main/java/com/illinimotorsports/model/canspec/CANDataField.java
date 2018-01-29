@@ -1,6 +1,7 @@
 package com.illinimotorsports.model.canspec;
 
 import com.illinimotorsports.model.Endianness;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,8 @@ public abstract class CANDataField {
   public abstract List<Map<String, String>> generateDBCFieldDefs(String endianness);
 
   public abstract List<String[]> generateFieldTableRow();
+
+  public abstract JSONObject generateTelemetryJson();
 
   public int getPosition() {
     return position;

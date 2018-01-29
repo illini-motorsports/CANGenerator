@@ -105,9 +105,7 @@ public class DBCGenerator implements CodeGenerator {
     String endianness = message.getEndianness() == Endianness.BIG ? "1" : "0";
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    for(CANDataField field: message.getData()) {
-      fields.addAll(field.generateDBCFieldDefs(endianness));
-    }
+    message.getData().forEach(x -> fields.addAll(x.generateDBCFieldDefs(endianness)));
     return fields;
   }
 }

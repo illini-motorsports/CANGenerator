@@ -1,6 +1,8 @@
 package com.illinimotorsports.model.canspec;
 
 import com.illinimotorsports.model.Endianness;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -41,9 +43,7 @@ public class CANBitmapField extends CANDataField {
    */
   public List<String> getBitNames() {
     List<String> bitNames = new ArrayList<>();
-    for(CANBitField bit: bits) {
-      bitNames.add(bit.getName());
-    }
+    bits.forEach(x -> bitNames.add(x.getName()));
     return bitNames;
   }
 
@@ -126,5 +126,51 @@ public class CANBitmapField extends CANDataField {
       rows.add(row);
     }
     return rows;
+  }
+
+  @Override
+  public JSONObject generateTelemetryJson() {
+    // TODO: Generate individual bitmap entries in array
+    JSONObject fieldObj = new JSONObject();
+    fieldObj.put("name", getName());
+
+    String key = getNode() + "." + getName();
+    fieldObj.put("key", key);
+
+    JSONArray values = new JSONArray();
+
+    JSONObject valueObj = new JSONObject();
+
+    valueObj.put("key", "value");
+    valueObj.put("key", "Value");
+    // Better unit?
+    valueObj.put("units", "");
+    valueObj.put("format", "float");
+
+    //TODO: add more sensible values
+    valueObj.put("min", -1000);
+    valueObj.put("max", 1000);
+
+    JSONObject hints = new JSONObject();
+    hints.put("range", 1);
+    valueObj.put("hints", hints);
+
+    values.put(valueObj);
+
+    JSONObject utcObj = new JSONObject();
+
+    utcObj.put("key", "utc");
+    utcObj.put("source", "timestamp");
+    utcObj.put("name", "Timestamp");
+    utcObj.put("format", "utc");
+
+    hints = new JSONObject();
+    hints.put("domain", 1);
+    utcObj.put("hints", hints);
+
+    values.put(utcObj);
+
+    fieldObj.put("values", values);
+    return fieldObj;
   }
 }

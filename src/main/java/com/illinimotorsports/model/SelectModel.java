@@ -32,9 +32,7 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
    * @param selected
    */
   public void setAll(boolean selected) {
-    for(T box: data) {
-      box.getCheckBox().setSelected(selected);
-    }
+    data.forEach(x -> x.getCheckBox().setSelected(selected));
   }
 
   /**

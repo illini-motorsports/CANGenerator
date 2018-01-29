@@ -19,12 +19,12 @@ import java.util.List;
  * This is a utility class, and cannot be instantiated.
  * All methods are static
  */
-public class CANParser {
+public class CANSpecParser {
 
   /**
    * Private constructor, not allowing instantiation
    */
-  private CANParser() {}
+  private CANSpecParser() {}
 
   /**
    * Only public method in class, will call

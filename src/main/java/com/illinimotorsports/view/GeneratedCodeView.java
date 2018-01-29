@@ -18,6 +18,7 @@ public class GeneratedCodeView extends JFrame {
    */
   public GeneratedCodeView() {
     code = new JTextArea();
+    code.setEditable(false);
     saveButton = new JButton("Save to File");
     copyButton = new JButton("Copy to Clipboard");
     doneButton = new JButton("Done");

@@ -65,14 +65,10 @@ public class CHeaderGenerator implements CodeGenerator {
    * @return
    */
   public List<Map<String, String>> generateFieldDefs() {
-    List<Map<String, String>> fieldDefs = new ArrayList<>();
-
     // Iterate through every field from each message, call helper function
-    for(CANMessage message: spec.getMessages()) {
-      for (CANDataField field : message.getData()) {
-        fieldDefs.addAll(field.generateCHeaderDefs());
-      }
-    }
+    List<Map<String, String>> fieldDefs = new ArrayList<>();
+    spec.getMessages().stream().flatMap(x -> x.getData().stream()).forEach(x -> fieldDefs.addAll(x.generateCHeaderDefs()));
+
     return fieldDefs;
   }
 }

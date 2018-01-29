@@ -34,8 +34,7 @@ public class MessageIDUtils {
   public static Map<CANMessage, String> generateIDNames(Map<String, List<CANMessage>> nodeMap) {
     Map<CANMessage, String> canIDs = new TreeMap<>(
         Comparator.comparing((CANMessage message) -> message.getId()));
-    for(Map.Entry<String, List<CANMessage>> entry: nodeMap.entrySet()) {
-      List<CANMessage> messages = entry.getValue();
+    for(List<CANMessage> messages: nodeMap.values()) {
       for(int i = 0; i < messages.size(); i++) {
         String id = messages.get(i).getNode().toUpperCase() + "_" + i;
         canIDs.put(messages.get(i), id);

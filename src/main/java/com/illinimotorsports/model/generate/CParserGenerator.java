@@ -52,9 +52,7 @@ public class CParserGenerator extends SelectedDataGenerator {
    */
   public List<Map<String, String>> generateFieldParseMap(CANMessage message) {
     List<Map<String, String>> fieldList = new ArrayList<>();
-    for(CANDataField field: message.getData()) {
-      fieldList.addAll(field.generateCParseMap(message.getEndianness()));
-    }
+    message.getData().forEach(x -> fieldList.addAll(x.generateCParseMap(message.getEndianness())));
     return fieldList;
   }
 
@@ -65,8 +63,7 @@ public class CParserGenerator extends SelectedDataGenerator {
    */
   public List<Map<String, String>> generateMessageParseMap() {
     List<Map<String, String>> parseList = new ArrayList<>();
-    List<CANMessage> messageData = getData().stream().map(x -> (CANMessage) x.getData()).collect(Collectors.toList());
-    for(CANMessage message: messageData) {
+    for(CANMessage message: getData().stream().map(x -> (CANMessage) x.getData()).collect(Collectors.toList())) {
       Map<String, String> messageMap = new HashMap<>();
       messageMap.put("id", "0x" + Integer.toHexString(message.getId()));
       messageMap.put("comment", message.getNode());

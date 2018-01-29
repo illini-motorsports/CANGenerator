@@ -2,7 +2,7 @@ package com.illinimotorsports.model;
 
 import com.illinimotorsports.model.canspec.CANSpec;
 import com.illinimotorsports.model.parse.CANParseException;
-import com.illinimotorsports.model.parse.CANParser;
+import com.illinimotorsports.model.parse.CANSpecParser;
 
 import java.io.File;
 
@@ -22,7 +22,7 @@ public class MainModel {
    * @return
    */
   public void generateModel(File file) throws CANParseException {
-    spec = CANParser.parseCanSpec(file);
+    spec = CANSpecParser.parseCanSpec(file);
   }
 
   public CANSpec getCanSpec() {

@@ -66,11 +66,7 @@ public class DocumentationGenerator {
     List<String[]> fields = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    for(CANMessage message: spec.getMessages()) {
-      for (CANDataField field : message.getData()) {
-        fields.addAll(field.generateFieldTableRow());
-      }
-    }
+    spec.getMessages().stream().flatMap(x -> x.getData().stream()).forEach(x -> fields.addAll(x.generateFieldTableRow()));
     return fields;
   }
 }

@@ -125,6 +125,8 @@ public class MainController {
   }
 
   public void generateTelemetryJsonListener() {
+      SelectController selectController = new SelectController(FieldCheckBoxView.generateCheckBoxViews(model.getCanSpec()));
+      selectController.init(new TelemetryJsonGenerator());
   }
 
   public void parseLogFilesListener() {
@@ -139,7 +141,6 @@ public class MainController {
   }
 
   public void openFieldSelector(LoggedMessages messages) {
-    //TODO: produce proper data for model
     SelectController selectController = new SelectController(
             FieldCheckBoxView.generateCheckBoxViews(model.getCanSpec(), messages.getMessageIDs()));
     selectController.init(new ParsedDataGenerator());
