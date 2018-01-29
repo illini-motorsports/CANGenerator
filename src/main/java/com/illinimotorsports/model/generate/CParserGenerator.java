@@ -1,6 +1,7 @@
 package com.illinimotorsports.model.generate;
 
 import com.illinimotorsports.model.canspec.*;
+import com.illinimotorsports.view.CheckBoxView;
 import com.x5.template.Chunk;
 import com.x5.template.Theme;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Main generator for parser function
@@ -63,7 +65,8 @@ public class CParserGenerator extends SelectedDataGenerator {
    */
   public List<Map<String, String>> generateMessageParseMap() {
     List<Map<String, String>> parseList = new ArrayList<>();
-    for(CANMessage message: data) {
+    List<CANMessage> messageData = getData().stream().map(x -> (CANMessage) x.getData()).collect(Collectors.toList());
+    for(CANMessage message: messageData) {
       Map<String, String> messageMap = new HashMap<>();
       messageMap.put("id", "0x" + Integer.toHexString(message.getId()));
       messageMap.put("comment", message.getNode());

@@ -3,6 +3,7 @@ package com.illinimotorsports.model.generate;
 import com.illinimotorsports.model.canspec.CANSpec;
 import com.illinimotorsports.model.parse.CANParseException;
 import com.illinimotorsports.model.parse.CANParser;
+import com.illinimotorsports.view.MessageCheckBoxView;
 import org.junit.*;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class CParserGeneratorTest {
       fail();
     }
     generator = new CParserGenerator();
-    generator.setData(spec.getMessages());
+    generator.setData(MessageCheckBoxView.generateCheckBoxViews(spec));
   }
 
   @Test

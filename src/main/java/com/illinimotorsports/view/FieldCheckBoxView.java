@@ -36,13 +36,13 @@ public class FieldCheckBoxView extends CheckBoxView {
         return field;
     }
 
-    public static List<FieldCheckBoxView> generateCheckBoxViews(CANSpec spec, Set<Integer> ids) {
+    public static List<CheckBoxView> generateCheckBoxViews(CANSpec spec, Set<Integer> ids) {
         return spec.getMessages().stream().filter(x -> ids.contains(x.getId()))
                 .flatMap(x -> x.getData().stream()).map(x -> new FieldCheckBoxView(x))
                 .collect(Collectors.toList());
     }
 
-    public static List<FieldCheckBoxView> generateCheckBoxViews(CANSpec spec) {
+    public static List<CheckBoxView> generateCheckBoxViews(CANSpec spec) {
         return spec.getMessages().stream().flatMap(x -> x.getData().stream()).map(x -> new FieldCheckBoxView(x))
                 .collect(Collectors.toList());
     }

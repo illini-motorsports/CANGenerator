@@ -82,8 +82,7 @@ public class MainController {
    * @param generator The code generator that should be associated with the selector
    */
   public void openMessageSelectorListener(SelectedDataGenerator generator) {
-    SelectController selectController = new SelectController(
-            MessageCheckBoxView.generateCheckBoxViews(model.getCanSpec()));
+    SelectController selectController = new SelectController(MessageCheckBoxView.generateCheckBoxViews(model.getCanSpec()));
     selectController.init(generator);
   }
 
@@ -143,7 +142,7 @@ public class MainController {
     //TODO: produce proper data for model
     SelectController selectController = new SelectController(
             FieldCheckBoxView.generateCheckBoxViews(model.getCanSpec(), messages.getMessageIDs()));
-    selectController.init(null);
+    selectController.init(new ParsedDataGenerator());
   }
 
   /**

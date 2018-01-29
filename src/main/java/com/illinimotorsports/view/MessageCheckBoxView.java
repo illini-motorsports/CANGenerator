@@ -31,7 +31,7 @@ public class MessageCheckBoxView extends CheckBoxView {
         return message;
     }
 
-    public static List<MessageCheckBoxView> generateCheckBoxViews(CANSpec spec) {
+    public static List<CheckBoxView> generateCheckBoxViews(CANSpec spec) {
         return spec.getMessages().stream().map(x -> new MessageCheckBoxView(x))
                 .collect(Collectors.toList());
     }

@@ -5,6 +5,7 @@ import com.illinimotorsports.view.CheckBoxView;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Model for checkbox list
@@ -40,14 +41,8 @@ public class SelectModel<T extends CheckBoxView> extends AbstractListModel<T> {
    * Returns a list of CANMessages that were selected
    * @return
    */
-  public List getSelectedMessages() {
-    List messages = new ArrayList();
-    for(T box: data) {
-      if(box.getCheckBox().isSelected()) {
-        messages.add(box.getData());
-      }
-    }
-    return messages;
+  public List<CheckBoxView> getSelectedMessages() {
+    return data.stream().filter(x -> x.getCheckBox().isSelected()).collect(Collectors.toList());
   }
 
   @Override
