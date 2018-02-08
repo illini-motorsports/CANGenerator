@@ -13,6 +13,6 @@ public class GeneratedCodeModel {
   }
 
   public String getCode() {
-    return generator.generate();
+    return generator.generate(); // where tho
   }
 }

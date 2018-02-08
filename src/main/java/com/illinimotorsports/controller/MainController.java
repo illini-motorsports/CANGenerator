@@ -143,7 +143,9 @@ public class MainController {
   public void openFieldSelector(LoggedMessages messages) {
     SelectController selectController = new SelectController(
             FieldCheckBoxView.generateCheckBoxViews(model.getCanSpec(), messages.getMessageIDs()));
-    selectController.init(new ParsedDataGenerator());
+    DocumentationGenerator generator = new DocumentationGenerator(model.getCanSpec());
+    selectController.init(new ParsedDataGenerator(model.getCanSpec(), messages.getFilesToParse(),
+            DocumentationGenerator.fieldTableColumns, generator.generateFieldTable()));
   }
 
   /**

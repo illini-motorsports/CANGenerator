@@ -15,9 +15,15 @@ import java.util.stream.Collectors;
 
 public class LoggedMessages {
   private List<CANLoggedMessage> messages;
+  private File[] filesToParse;
 
   public LoggedMessages(File[] fileList) {
     messages = parseFileList(fileList);
+    filesToParse = fileList;
+  }
+
+  public File[] getFilesToParse() {
+    return filesToParse;
   }
 
   public Set<Integer> getMessageIDs() {

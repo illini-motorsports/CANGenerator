@@ -32,7 +32,6 @@ public class SelectController {
     view.setVisible(false);
     // Figure out what checkboxes were selected, and pass that to the generator
     generator.setData(model.getSelectedMessages());
-
     GeneratedCodeController genCode = new GeneratedCodeController(generator);
     genCode.init();
   }
