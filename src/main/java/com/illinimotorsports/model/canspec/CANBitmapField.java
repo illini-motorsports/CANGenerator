@@ -24,8 +24,8 @@ public class CANBitmapField extends CANDataField {
    * @param name
    * @param bits
    */
-  public CANBitmapField(int pos, int len, String name, String node, List<CANBitField> bits) {
-    super(pos, len, name, node);
+  public CANBitmapField(int pos, int len, String name, String node, int nodeId, List<CANBitField> bits) {
+    super(pos, len, name, node, nodeId);
     this.bits = new ArrayList<>(bits);
   }
 

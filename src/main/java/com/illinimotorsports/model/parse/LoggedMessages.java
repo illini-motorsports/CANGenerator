@@ -72,4 +72,9 @@ public class LoggedMessages {
     String[] p = line.split("\t");
     return new CANLoggedMessage(p);
   };
+
+  public List<CANLoggedMessage> getMessages() {
+    return messages;
+  }
+
 }

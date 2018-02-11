@@ -1,6 +1,8 @@
 package com.illinimotorsports.model.parse;
 
 import com.illinimotorsports.model.Endianness;
+import com.illinimotorsports.model.canspec.CANDataField;
+import com.illinimotorsports.model.canspec.CANNumericField;
 
 public class CANLoggedMessage implements Comparable {
   private double timestamp;
@@ -8,12 +10,16 @@ public class CANLoggedMessage implements Comparable {
   private int[] bytes;
 
   public CANLoggedMessage(String[] csvRow) {
-    timestamp = Double.parseDouble(csvRow[0]);
-    id = Integer.parseInt(csvRow[2], 16);
-    int dlc = Integer.parseInt(csvRow[4]);
-    bytes = new int[dlc];
-    for(int i = 5; i < dlc + 5; i++) {
-      bytes[i-5] = Integer.parseInt(csvRow[i], 16);
+    try {
+      timestamp = Double.parseDouble(csvRow[0]);
+      id = Integer.parseInt(csvRow[2], 16);
+      int dlc = Integer.parseInt(csvRow[4]);
+      bytes = new int[dlc];
+      for (int i = 5; i < dlc + 5; i++) {
+        bytes[i - 5] = Integer.parseInt(csvRow[i], 16);
+      }
+    } catch (NumberFormatException e) {
+      //TODO: do something here
     }
   }
 
@@ -35,6 +41,16 @@ public class CANLoggedMessage implements Comparable {
     int bitPos = pos%8;
 
     return ((bytes[bytePos] >> bitPos) & 0x01) == 1;
+  }
+
+  public double getField(CANDataField field) {
+    if(field instanceof CANNumericField) {
+      CANNumericField numericField = (CANNumericField) field;
+      return getNumericField(numericField.getPosition(), numericField.getLength(),
+              numericField.getScale(), numericField.getOffset(), numericField.isSigned(), Endianness.BIG);
+      //TODO: fix endianness
+    }
+    return 0;
   }
 
   public double getNumericField(int pos, int len, double scl, int offset, boolean signed, Endianness endianness) {

@@ -27,9 +27,9 @@ public class CANNumericField extends CANDataField {
    * @param scale
    * @param offset
    */
-  public CANNumericField(int pos, int len, String name, String node,
+  public CANNumericField(int pos, int len, String name, String node, int nodeId,
                          String unit, boolean signed, double scale, int offset) {
-    super(pos, len, name, node);
+    super(pos, len, name, node, nodeId);
     this.unit = unit;
     this.signed = signed;
     this.scale = scale;

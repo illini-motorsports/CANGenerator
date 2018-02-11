@@ -32,6 +32,10 @@ public class GeneratedCodeController {
    */
   public void init() {
     // populate text area with code
+    String code = model.getCode();
+    if(code.length() > 5000) {
+      code = code.substring(0, 5000) + " . . . ";
+    }
     view.getCode().setText(model.getCode());
 
     // Add action listeners for buttons

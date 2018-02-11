@@ -29,7 +29,7 @@ public class CANSpecTest {
   @Test
   public void testGetMessagesWithFields() throws Exception {
     CANMessage message = new CANMessage(123, "PDM", Endianness.LITTLE, 8);
-    message.addField(new CANNumericField(0, 2, "Current","PDM", "A", true, 1, 0));
+    message.addField(new CANNumericField(0, 2, "Current","PDM", 0x7b, "A", true, 1, 0));
     spec.addMessage(message);
     assertEquals(spec.getMessagesWithFields().get(0).size(), 2);
     assertEquals(spec.getMessagesWithFields().get(0).get(0), "PDM: 0x7b");

@@ -106,9 +106,10 @@ public class CANSpecParser {
     CANMessage canMessage;
     String strID = "";
     String node = "";
+    int id = 0;
     try {
       strID = message.getString("id");
-      int id = Integer.parseInt(message.getString("id").substring(2), 16);
+      id = Integer.parseInt(message.getString("id").substring(2), 16);
       node = message.getString("node");
       boolean bigEndian = message.getBoolean("bigEndian");
       Endianness endianness = bigEndian ? Endianness.BIG : Endianness.LITTLE;
@@ -125,7 +126,7 @@ public class CANSpecParser {
     Iterator bytesIter = bytes.iterator();
     while(bytesIter.hasNext()) {
       JSONObject field = (JSONObject) bytesIter.next();
-      CANDataField canField = parseCANDataField(field, node);
+      CANDataField canField = parseCANDataField(field, node, id);
       canMessage.addField(canField);
     }
 
@@ -138,7 +139,7 @@ public class CANSpecParser {
    * @param field
    * @return
    */
-  private static CANDataField parseCANDataField(JSONObject field, String node) throws CANParseException {
+  private static CANDataField parseCANDataField(JSONObject field, String node, int nodeId) throws CANParseException {
     String type;
     int position;
     try {
@@ -160,7 +161,7 @@ public class CANSpecParser {
           boolean signed = field.getBoolean("signed");
           double scale = field.getDouble("scale");
           int offset = Integer.parseInt(field.getString("offset").substring(2), 16);
-          canField = new CANNumericField(position, length, name, node, unit, signed, scale, offset);
+          canField = new CANNumericField(position, length, name, node, nodeId, unit, signed, scale, offset);
           break;
         }
         case "bitmap": {
@@ -174,7 +175,7 @@ public class CANSpecParser {
             bitList.add(new CANBitField(bit.getString("name"),
                 bit.getInt("position")));
           }
-          canField = new CANBitmapField(position, length, name, node, bitList);
+          canField = new CANBitmapField(position, length, name, node, nodeId, bitList);
           break;
         }
       }

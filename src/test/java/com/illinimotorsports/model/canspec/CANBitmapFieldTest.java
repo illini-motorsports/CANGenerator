@@ -19,7 +19,7 @@ public class CANBitmapFieldTest {
         new CANBitField("ososo", 1),
         new CANBitField("aymo", 4),
         new CANBitField("kjfdkjf", 5)));
-    bmap = new CANBitmapField(2, 2, "TestName", "PDM", bits);
+    bmap = new CANBitmapField(2, 2, "TestName", "PDM", 0x7c, bits);
   }
 
   @Test
