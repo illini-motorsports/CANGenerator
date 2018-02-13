@@ -33,10 +33,10 @@ public class GeneratedCodeController {
   public void init() {
     // populate text area with code
     String code = model.getCode();
-    if(code.length() > 5000) {
-      code = code.substring(0, 5000) + " . . . ";
+    if(code.length() > 100000) {
+      code = code.substring(0, 100000) + " . . . ";
     }
-    view.getCode().setText(model.getCode());
+    view.getCode().setText(code);
 
     // Add action listeners for buttons
     view.getDoneButton().addActionListener(e -> closeWindow());

@@ -23,47 +23,48 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         this.messages = messages;
     }
 
+    /*
+        This function is responsible for generating a CSV from CANDataFields and CANLoggedMessages
+        It makes heavy use of streams, which allows for more parallelization in the CSV generation,
+        as the amount of data that must be parsed can be very large
+     */
     @Override
     public String generate() {
+        // Create list of selected fields
         List<CANDataField> selectedFields = getData().stream().map(x -> (CANDataField) x.getData()).collect(Collectors.toList());
 
+        // Create sets and lists of relevant fields from the selected fields
         Set<Integer> selectedIDs = selectedFields.stream().map(x -> x.getNodeId()).collect(Collectors.toSet());
-
         List<String> columnNames = selectedFields.stream().map(x -> x.getName()).collect(Collectors.toList());
 
+        // Gather all fields from each message
         ImmutableMultimap.Builder<Integer, CANDataField> builder = new ImmutableSetMultimap.Builder<>();
         selectedFields.stream().forEach(x -> builder.put(x.getNodeId(), x));
         Multimap<Integer, CANDataField> fieldMultimap = builder.build();
 
-        List<CANLoggedMessage> filteredMessages = messages.getMessages().stream()
-                .filter(x -> selectedIDs.contains(x.getId())).collect(Collectors.toList());
-
-        SortedMap<Double, Map<String, Double>> table = new TreeMap<>();
-        for(CANLoggedMessage message: filteredMessages) {
-            for(CANDataField field: fieldMultimap.get(message.getId())) {
-                double fieldValue = message.getField(field);
-                double timestamp = message.getTimestamp();
-                if(!table.containsKey(timestamp)) {
-                    table.put(timestamp, new HashMap<>());
-                }
-                table.get(timestamp).put(field.getName(), fieldValue);
-            }
-        }
+        Table<Double, String, Double> table = TreeBasedTable.create();
+        messages.getMessages().stream().filter(x -> selectedIDs.contains(x.getId())).forEach(message -> {
+                fieldMultimap.get(message.getId()).stream().forEach(field -> {
+                    table.put(message.getTimestamp(), field.getName(), message.getField(field));
+                });
+            });
 
         StringBuilder outputBuilder = new StringBuilder();
         outputBuilder.append("Timestamp,");
         outputBuilder.append(String.join(",", columnNames) + '\n');
         DecimalFormat df = new DecimalFormat("#.0000");
         int numFields = columnNames.size();
-        for(SortedMap.Entry<Double, Map<String, Double>> entry: table.entrySet()) {
+        table.rowKeySet().stream().forEach(timestamp ->  {
             String[] row = new String[numFields + 1];
-            row[0] = df.format(entry.getKey());
+            row[0] = df.format(timestamp);
+            Map<String, Double> tableRow = table.row(timestamp);
             for(int i = 0; i < numFields; i++) {
                 String name = columnNames.get(i);
-                row[i+1] = entry.getValue().containsKey(name) ? df.format(entry.getValue().get(name)) : "";
+
+                row[i+1] = tableRow.containsKey(name) ? df.format(tableRow.get(name)) : "";
             }
             outputBuilder.append(String.join(",", row) + '\n');
-        }
+        });
 
         return outputBuilder.toString();
     }

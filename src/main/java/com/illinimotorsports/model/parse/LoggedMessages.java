@@ -27,11 +27,7 @@ public class LoggedMessages {
   }
 
   public Set<Integer> getMessageIDs() {
-    Set<Integer> ids = new HashSet<>();
-    for(CANLoggedMessage message: messages) {
-      ids.add(message.getId());
-    }
-    return ids;
+    return messages.stream().map(x -> x.getId()).collect(Collectors.toSet());
   }
 
   // TODO: Generalize to bitmaps
