@@ -67,7 +67,7 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         ArrayList<Double> rowKeyList = new ArrayList<>(table.rowKeySet());
         ArrayList<ArrayList<Double>> rowKeyChunked = new ArrayList<>();
         // split data (rows) into chunks
-        final int NUM_CHUNKS = 4;
+        final int NUM_CHUNKS = 10000;
         for (int i = 0; i < NUM_CHUNKS; i++) {
             rowKeyChunked.add(sublist(rowKeyList, i * (rowKeyList.size() / NUM_CHUNKS), (i + 1) *
                     (rowKeyList.size() / NUM_CHUNKS) - 1));
@@ -93,22 +93,21 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         System.out.println(System.nanoTime() - start);
 
         // putting back together needs work
-
+        start = System.nanoTime();
         ArrayList<StringBuilder> chunkStringList = new ArrayList<>(chunkStringBuilders);
+
+        // sort based in order of first timestamp, earliest to latest timestamp
 
         chunkStringList.sort((a, b) -> {
             return Double.compare(Double.parseDouble(a.toString().split(",")[0]), Double
                     .parseDouble(b.toString().split(",")[0]));
         });
 
-        System.out.println(chunkStringList.stream().reduce(new StringBuilder(), (a, b) -> a
-                .append(b)));
-
         outputBuilder.append(chunkStringList.stream().reduce(new StringBuilder(), (a, b) -> a
                 .append(b)));
 
         /*                  */
-
+        System.out.println(System.nanoTime() - start);
         return outputBuilder.toString();
 
         // ORIGINAL
