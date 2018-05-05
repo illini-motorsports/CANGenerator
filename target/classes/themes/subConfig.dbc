@@ -1,0 +1,4 @@
+{% loop in $fields %}
+ SG_ {$fieldName} : {$position}|{$length}@{$endianness}{$signed} ({$scl},{$offset}) [0|0] "{$unit}" Vector_XXX
+{% onEmpty %}
+{% endloop %}

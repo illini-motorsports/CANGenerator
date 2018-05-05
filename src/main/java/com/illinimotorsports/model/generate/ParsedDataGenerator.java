@@ -17,8 +17,9 @@ import java.util.stream.Collectors;
 public class ParsedDataGenerator extends SelectedDataGenerator {
 
     private LoggedMessages messages;
-    private final int MAX_LINE_LENGTH = 1826;
-    private final int NUM_CHUNKS = 10000;
+    private final int COLUMN_OFFSET = 1896;
+    private final int MAX_LINE_LENGTH = 400;
+    private final int NUM_CHUNKS = 2;
 
     public ParsedDataGenerator(LoggedMessages messages) {
         this.messages = messages;
@@ -40,6 +41,8 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
     @Override
     public String generate() {
 
+        long start = System.nanoTime();
+
         List<CANDataField> selectedFields = getData().stream().map(x -> (CANDataField) x.getData()).collect(Collectors.toList());
 
         // Create sets and lists of relevant fields from the selected fields
@@ -54,6 +57,7 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         Table<Double, String, Double> table = TreeBasedTable.create();
         messages.getMessages().stream().filter(x -> selectedIDs.contains(x.getId())).forEach(message -> {
             fieldMultimap.get(message.getId()).stream().forEach(field -> {
+                System.out.println("Message Timestamp: " + message.getTimestamp());
                 table.put(message.getTimestamp(), field.getName(), message.getField(field));
             });
         });
@@ -61,59 +65,83 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         DecimalFormat df = new DecimalFormat("#.0000");
         int numFields = columnNames.size();
 
+        System.out.println("Setup Time: " + ((System.nanoTime() - start) / 1000 / 1000 / 1000) +
+                " seconds");
+
         /*   CHUNKED IMPLEMENTATION    */
+        // put all keys (timestamps) in list
+        System.out.println(table.rowKeySet());
         ArrayList<Double> rowKeyList = new ArrayList<>(table.rowKeySet());
+        // list of key (timestamp) lists
         ArrayList<ArrayList<Double>> rowKeyChunked = new ArrayList<>();
         int CHUNK_SIZE = rowKeyList.size() / NUM_CHUNKS;
+        System.out.println("Chunk Size: " + CHUNK_SIZE);
         // split data (rows) into chunks
         Map<Double, Integer> timestampToIndexMap = new HashMap<>();
         for (int i = 0; i < NUM_CHUNKS; i++) {
-            rowKeyChunked.add(sublist(rowKeyList, i * (rowKeyList.size() / NUM_CHUNKS), (i + 1) *
-                    (rowKeyList.size() / NUM_CHUNKS) - 1));
-            timestampToIndexMap.put(Double.parseDouble(df.format(rowKeyList.get(i * (rowKeyList.size() /
-                    NUM_CHUNKS)
-            ))), i);
-//            System.out.println("putting: " + Double.parseDouble(df.format(rowKeyList.get(i * (rowKeyList.size() / NUM_CHUNKS)))) + " for chunk: " + i);
+            // store chunks in rowKeyChunked
+            System.out.println("Lower Bound: " + CHUNK_SIZE * i);
+            System.out.println("Upper Bound: " + (CHUNK_SIZE * (i + 1) - 1));
+            rowKeyChunked.add(sublist(rowKeyList, CHUNK_SIZE * i,
+                    (CHUNK_SIZE * (i + 1) - 1)));
+            // associate first timestamp of chunk with chunk index
+            timestampToIndexMap.put(rowKeyList.get(CHUNK_SIZE * i), i);
         }
-
+        for (int i = 0; i < NUM_CHUNKS; i++) {
+            for (int j = 0; j < rowKeyChunked.get(i).size(); j++) {
+                if (timestampToIndexMap.get(rowKeyChunked.get(i).get(j)) != null) {
+                    System.out.println("Index: " + timestampToIndexMap.get(rowKeyChunked.get(i).get(j)));
+                }
+                System.out.println( "Timestamp: "  + rowKeyChunked.get(i).get(j));
+            }
+        }
         // build chunk stringbuilders in parallel
+        // this stringbuilder gets way too big
         StringBuilder outputBuilder = new StringBuilder();
         outputBuilder.append("Timestamp,");
         outputBuilder.append(String.join(",", columnNames) + '\n');
-        for (int i = 0; i < MAX_LINE_LENGTH * table.rowKeySet().size(); i++) {
-            outputBuilder.append("*");
+        for (int i = 0; i < table.rowKeySet().size(); i++) {
+            for (int j = 0; j < MAX_LINE_LENGTH; j++) {
+                outputBuilder.append("*");
+            }
+            outputBuilder.append("\n");
         }
-        System.out.println("size of output: " + outputBuilder.length());
+        System.out.println("Size of Output: " + outputBuilder.length() + " bytes");
+//
+//        start = System.nanoTime();
+//        rowKeyChunked.parallelStream().forEach(x -> {
+//            StringBuilder chunkStringBuilder = new StringBuilder();
+//            x.stream().forEach(timestamp -> {
+//                String[] row = new String[numFields + 1];
+//                row[0] = df.format(timestamp);
+//                Map<String, Double> tableRow = table.row(timestamp);
+//                for(int i = 0; i < numFields; i++) {
+//                    String name = columnNames.get(i);
+//
+//                    row[i+1] = tableRow.containsKey(name) ? df.format(tableRow.get(name)) : "";
+//                }
+//                chunkStringBuilder.append(String.join(",", row) + '\n');
+//            });
+//            Double chunkFirstTimestamp = Double.parseDouble(chunkStringBuilder
+//                    .toString().split(",")[0]);
+////            System.out.println("chunk first timestamp: " + chunkFirstTimestamp);
+////            System.out.println("chunk number: " + timestampToIndexMap.get(chunkFirstTimestamp));
+//            int chunkNumber = timestampToIndexMap.get(chunkFirstTimestamp);
+//
+//            int startIdx = COLUMN_OFFSET + (chunkNumber * CHUNK_SIZE * MAX_LINE_LENGTH);
+//            int endIdx  = COLUMN_OFFSET + ((chunkNumber + 1) * CHUNK_SIZE * MAX_LINE_LENGTH);
+////            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " SI: " + startIdx);
+////            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " EI: " + endIdx);
+////            System.out.println("start of chunk: " + chunkStringBuilder.toString().substring(0, 4));
+//            if (endIdx >= outputBuilder.length()) {
+//                endIdx = outputBuilder.length() - 1;
+//            }
+//            if (startIdx < outputBuilder.length()) {
+//                outputBuilder.replace(startIdx, endIdx, chunkStringBuilder.toString());
+//            }
+//        });
+//        System.out.println("parse time: " + (System.nanoTime() - start));
 
-        long start = System.nanoTime();
-        rowKeyChunked.parallelStream().forEach(x -> {
-            StringBuilder chunkStringBuilder = new StringBuilder();
-            x.stream().forEach(timestamp -> {
-                String[] row = new String[numFields + 1];
-                row[0] = df.format(timestamp);
-                Map<String, Double> tableRow = table.row(timestamp);
-                for(int i = 0; i < numFields; i++) {
-                    String name = columnNames.get(i);
-
-                    row[i+1] = tableRow.containsKey(name) ? df.format(tableRow.get(name)) : "";
-                }
-                chunkStringBuilder.append(String.join(",", row) + '\n');
-            });
-            Double chunkFirstTimestamp = Double.parseDouble(chunkStringBuilder
-                    .toString().split(",")[0]);
-//            System.out.println("chunk first timestamp: " + chunkFirstTimestamp);
-//            System.out.println("chunk number: " + timestampToIndexMap.get(chunkFirstTimestamp));
-            int chunkNumber = timestampToIndexMap.get(chunkFirstTimestamp);
-
-            int startIdx = MAX_LINE_LENGTH + (chunkNumber * CHUNK_SIZE * MAX_LINE_LENGTH);
-            int endIdx  = MAX_LINE_LENGTH + ((chunkNumber + 1) * CHUNK_SIZE * MAX_LINE_LENGTH);
-//            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " SI: " + startIdx);
-//            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " EI: " + endIdx);
-//            System.out.println("start of chunk: " + chunkStringBuilder.toString().substring(0, 4));
-            outputBuilder.replace(startIdx, endIdx, chunkStringBuilder.toString());
-        });
-        System.out.println("parse time: " + (System.nanoTime() - start));
-
-        return outputBuilder.toString().replace("*", "");
+        return outputBuilder.toString();
     }
 }
