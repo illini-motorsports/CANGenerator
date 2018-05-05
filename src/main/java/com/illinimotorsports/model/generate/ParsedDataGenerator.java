@@ -83,14 +83,16 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
             System.out.println("Lower Bound: " + CHUNK_SIZE * i);
             System.out.println("Upper Bound: " + (CHUNK_SIZE * (i + 1) - 1));
             rowKeyChunked.add(sublist(rowKeyList, CHUNK_SIZE * i,
-                    (CHUNK_SIZE * (i + 1) - 1)));
+                    (CHUNK_SIZE * (i + 1) - 1) + 1));
             // associate first timestamp of chunk with chunk index
-            timestampToIndexMap.put(rowKeyList.get(CHUNK_SIZE * i), i);
+            timestampToIndexMap.put(Double.parseDouble(df.format(rowKeyList.get(CHUNK_SIZE * i)))
+                    , i);
         }
         for (int i = 0; i < NUM_CHUNKS; i++) {
             for (int j = 0; j < rowKeyChunked.get(i).size(); j++) {
                 if (timestampToIndexMap.get(rowKeyChunked.get(i).get(j)) != null) {
-                    System.out.println("Index: " + timestampToIndexMap.get(rowKeyChunked.get(i).get(j)));
+                    System.out.println("Index: " + timestampToIndexMap.get(Double.parseDouble(df.format
+                            (rowKeyChunked.get(i).get(j)))));
                 }
                 System.out.println( "Timestamp: "  + rowKeyChunked.get(i).get(j));
             }
@@ -100,47 +102,37 @@ public class ParsedDataGenerator extends SelectedDataGenerator {
         StringBuilder outputBuilder = new StringBuilder();
         outputBuilder.append("Timestamp,");
         outputBuilder.append(String.join(",", columnNames) + '\n');
+        int COLUMN_TITLE_LENGTH = outputBuilder.length();
         for (int i = 0; i < table.rowKeySet().size(); i++) {
             for (int j = 0; j < MAX_LINE_LENGTH; j++) {
                 outputBuilder.append("*");
             }
-            outputBuilder.append("\n");
         }
         System.out.println("Size of Output: " + outputBuilder.length() + " bytes");
-//
-//        start = System.nanoTime();
-//        rowKeyChunked.parallelStream().forEach(x -> {
-//            StringBuilder chunkStringBuilder = new StringBuilder();
-//            x.stream().forEach(timestamp -> {
-//                String[] row = new String[numFields + 1];
-//                row[0] = df.format(timestamp);
-//                Map<String, Double> tableRow = table.row(timestamp);
-//                for(int i = 0; i < numFields; i++) {
-//                    String name = columnNames.get(i);
-//
-//                    row[i+1] = tableRow.containsKey(name) ? df.format(tableRow.get(name)) : "";
-//                }
-//                chunkStringBuilder.append(String.join(",", row) + '\n');
-//            });
-//            Double chunkFirstTimestamp = Double.parseDouble(chunkStringBuilder
-//                    .toString().split(",")[0]);
-////            System.out.println("chunk first timestamp: " + chunkFirstTimestamp);
-////            System.out.println("chunk number: " + timestampToIndexMap.get(chunkFirstTimestamp));
-//            int chunkNumber = timestampToIndexMap.get(chunkFirstTimestamp);
-//
-//            int startIdx = COLUMN_OFFSET + (chunkNumber * CHUNK_SIZE * MAX_LINE_LENGTH);
-//            int endIdx  = COLUMN_OFFSET + ((chunkNumber + 1) * CHUNK_SIZE * MAX_LINE_LENGTH);
-////            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " SI: " + startIdx);
-////            System.out.println(timestampToIndexMap.get(chunkFirstTimestamp) + " EI: " + endIdx);
-////            System.out.println("start of chunk: " + chunkStringBuilder.toString().substring(0, 4));
-//            if (endIdx >= outputBuilder.length()) {
-//                endIdx = outputBuilder.length() - 1;
-//            }
-//            if (startIdx < outputBuilder.length()) {
-//                outputBuilder.replace(startIdx, endIdx, chunkStringBuilder.toString());
-//            }
-//        });
-//        System.out.println("parse time: " + (System.nanoTime() - start));
+        rowKeyChunked.parallelStream().forEach(x -> {
+            System.out.println("Parallel Stream Chunk Size: " + x.size());
+            StringBuilder chunkStringBuilder = new StringBuilder();
+            x.stream().forEach(timestamp -> {
+                String[] row = new String[numFields + 1];
+                row[0] = df.format(timestamp);
+                Map<String, Double> tableRow = table.row(timestamp);
+                for(int i = 0; i < numFields; i++) {
+                    String name = columnNames.get(i);
+
+                    row[i+1] = tableRow.containsKey(name) ? df.format(tableRow.get(name)) : "";
+                }
+                chunkStringBuilder.append(String.join(",", row) + '\n');
+            });
+            System.out.println("Chunk String Builder");
+            System.out.println(chunkStringBuilder.toString());
+            Double chunkFirstTimestamp = Double.parseDouble(chunkStringBuilder.toString().split(",")[0]);
+            System.out.println("Chunk First Timestamp: " + chunkFirstTimestamp);
+            int chunkIndex = timestampToIndexMap.get(chunkFirstTimestamp);
+            System.out.println("Chunk Index: " + chunkIndex);
+            outputBuilder.replace(COLUMN_TITLE_LENGTH + chunkIndex * CHUNK_SIZE * MAX_LINE_LENGTH,
+                    COLUMN_TITLE_LENGTH + (chunkIndex + 1) *
+                    CHUNK_SIZE * MAX_LINE_LENGTH, chunkStringBuilder.toString());
+        });
 
         return outputBuilder.toString();
     }
