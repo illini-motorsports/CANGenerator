@@ -102,10 +102,9 @@ public class DBCGenerator implements CodeGenerator {
    */
   private List<Map<String, String>> generateFieldDefs(CANMessage message) {
     List<Map<String, String>> fields = new ArrayList<>();
-    String endianness = message.getEndianness() == Endianness.BIG ? "1" : "0";
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    message.getData().forEach(x -> fields.addAll(x.generateDBCFieldDefs(endianness)));
+    message.getData().forEach(x -> fields.addAll(x.generateDBCFieldDefs()));
     return fields;
   }
 }

@@ -45,21 +45,19 @@ public class CANLoggedMessage implements Comparable {
 
   public double getField(CANDataField field) {
     if(field instanceof CANNumericField) {
-      CANNumericField numericField = (CANNumericField) field;
-      return getNumericField(numericField.getPosition(), numericField.getLength(),
-              numericField.getScale(), numericField.getOffset(), numericField.isSigned(), Endianness.BIG);
-      //TODO: fix endianness
+      return getNumericField((CANNumericField) field);
     }
+    //TODO: handle bitmaps
     return 0;
   }
 
-  public double getNumericField(int pos, int len, double scl, int offset, boolean signed, Endianness endianness) {
-    if(pos + len >= bytes.length) {
+  public double getNumericField(CANNumericField field) {
+    if(field.getPosition() + field.getLength() >= bytes.length) {
       // TODO: Make custom exception for this error
       return 0;
     }
     // TODO: figure out how to deal with unsigned numbers
-    return (getHexField(pos, len, endianness) - offset) * scl;
+    return (getHexField(field.getPosition(), field.getPosition(), field.getEndianness()) - field.getOffset()) * field.getScale();
   }
 
   private long getHexField(int pos, int len, Endianness endianness) {

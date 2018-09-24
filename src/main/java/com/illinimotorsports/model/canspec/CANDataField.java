@@ -36,9 +36,9 @@ public abstract class CANDataField {
 
   public abstract List<Map<String, String>> generateCHeaderDefs();
 
-  public abstract List<Map<String, String>> generateCParseMap(Endianness endianness);
+  public abstract List<Map<String, String>> generateCParseMap();
 
-  public abstract List<Map<String, String>> generateDBCFieldDefs(String endianness);
+  public abstract List<Map<String, String>> generateDBCFieldDefs();
 
   public abstract List<String[]> generateFieldTableRow();
 

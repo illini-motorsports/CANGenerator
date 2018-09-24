@@ -1,5 +1,6 @@
 package com.illinimotorsports.model.canspec;
 
+import com.illinimotorsports.model.Endianness;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -10,7 +11,7 @@ public class CANNumericFieldTest {
   @Before
   public void init() {
     numeral = new CANNumericField(2, 2,
-        "coolNumber", "PDM", 0x7c, "C", true, 1, 0);
+        "coolNumber", "PDM", 0x7c, "C", true, 1, 0, Endianness.BIG);
   }
 
   @Test

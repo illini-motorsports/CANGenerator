@@ -17,9 +17,9 @@ public class DocumentationGenerator {
   /**
    * Column names for each table
    */
-  public static final String[] messageTableColumns = {"Name", "ID", "DLC", "Endianness",
+  public static final String[] messageTableColumns = {"Name", "ID", "DLC",
       "Byte 0", "Byte 1", "Byte 2", "Byte 3", "Byte 4", "Byte 5", "Byte 6", "Byte 7"};
-  public static final String[] fieldTableColumns = {"Name", "Unit", "Scalar", "Offset", "Signed"};
+  public static final String[] fieldTableColumns = {"Name", "Unit", "Scalar", "Offset", "Signed", "Endianness"};
 
   /**
    * Constructor for generator class, requires spec
@@ -45,10 +45,9 @@ public class DocumentationGenerator {
       row[0] = message.getValue();
       row[1] = "0x" + Integer.toHexString(message.getKey().getId());
       row[2] = Integer.toString(message.getKey().getDlc());
-      row[3] = message.getKey().getEndianness().toString();
       for(CANDataField field: message.getKey().getData()) {
-        row[field.getPosition() + 4] = field.getName();
-        for(int j = field.getPosition() + 5; j < field.getPosition() + 4 + field.getLength(); j++) {
+        row[field.getPosition() + 3] = field.getName();
+        for(int j = field.getPosition() + 4; j < field.getPosition() + 3 + field.getLength(); j++) {
           row[j] = "%";
         }
       }

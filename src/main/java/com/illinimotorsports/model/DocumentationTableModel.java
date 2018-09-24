@@ -44,11 +44,11 @@ public class DocumentationTableModel extends DefaultTableModel {
     List<Color[]> colors = new ArrayList<>();
     for(String[] row: data) {
       Color[] colorRow = new Color[columns.length];
-      for(int i = 0; i < 4; i++) {
+      for(int i = 0; i < 3; i++) {
         colorRow[i] = Color.WHITE;
       }
       int colorPickeridx = 0;
-      for(int i = 4; i < columns.length; i++) {
+      for(int i = 3; i < columns.length; i++) {
         if(row[i] == null) {
           colorRow[i] = Color.WHITE;
         } else if(row[i].equals("%")) {

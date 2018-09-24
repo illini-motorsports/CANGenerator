@@ -17,4 +17,9 @@ public enum Endianness {
   public String toString() {
     return strVal;
   }
+
+  //TODO: Check if this is right
+  public String toDBCString() {
+    return this == BIG ? "1" : "0";
+  }
 }

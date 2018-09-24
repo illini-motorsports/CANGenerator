@@ -13,7 +13,6 @@ public class CANMessage {
 
   private int id;
   private String node;
-  private Endianness endianness;
   private int dlc;
   private List<CANDataField> data;
 
@@ -21,13 +20,11 @@ public class CANMessage {
    * Constructor for all primitive fields
    * @param id
    * @param node
-   * @param endianness
    * @param dlc
    */
-  public CANMessage(int id, String node, Endianness endianness, int dlc) {
+  public CANMessage(int id, String node, int dlc) {
     this.id = id;
     this.node = node;
-    this.endianness = endianness;
     this.dlc = dlc;
     this.data = new ArrayList<>();
   }
@@ -65,10 +62,6 @@ public class CANMessage {
 
   public String getNode() {
     return node;
-  }
-
-  public Endianness getEndianness() {
-    return endianness;
   }
 
   public int getDlc() {

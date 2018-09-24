@@ -16,6 +16,7 @@ public class CANNumericField extends CANDataField {
   private boolean signed;
   private double scale;
   private int offset;
+  private Endianness endianness;
 
   /**
    * Initialize all fields in constructor
@@ -28,12 +29,13 @@ public class CANNumericField extends CANDataField {
    * @param offset
    */
   public CANNumericField(int pos, int len, String name, String node, int nodeId,
-                         String unit, boolean signed, double scale, int offset) {
+                         String unit, boolean signed, double scale, int offset, Endianness endianness) {
     super(pos, len, name, node, nodeId);
     this.unit = unit;
     this.signed = signed;
     this.scale = scale;
     this.offset = offset;
+    this.endianness = endianness;
   }
 
   public String getUnit() {
@@ -50,6 +52,10 @@ public class CANNumericField extends CANDataField {
 
   public int getOffset() {
     return offset;
+  }
+
+  public Endianness getEndianness() {
+    return endianness;
   }
 
   @Override
@@ -76,7 +82,7 @@ public class CANNumericField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateCParseMap(Endianness endianness) {
+  public List<Map<String, String>> generateCParseMap() {
     Map<String, String> fieldMap = new HashMap<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
@@ -96,7 +102,7 @@ public class CANNumericField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateDBCFieldDefs(String endianness) {
+  public List<Map<String, String>> generateDBCFieldDefs() {
     Map<String, String> fieldMap = new HashMap<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
@@ -104,7 +110,7 @@ public class CANNumericField extends CANDataField {
     fieldMap.put("fieldName", fieldName);
     fieldMap.put("position", Integer.toString(getPosition() * 8));
     fieldMap.put("length", Integer.toString(getLength()*8));
-    fieldMap.put("endianness", endianness);
+    fieldMap.put("endianness", endianness.toDBCString());
     fieldMap.put("signed", isSigned() ? "-" : "+");
     fieldMap.put("scl", df.format(getScale()));
     fieldMap.put("offset", Integer.toString(getOffset()));
@@ -117,12 +123,13 @@ public class CANNumericField extends CANDataField {
     List<String[]> rows = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
-    String[] row = new String[5];
+    String[] row = new String[6];
     row[0] = getName();
     row[1] = getUnit();
     row[2] = df.format(getScale());
     row[3] = "0x" + Integer.toHexString(getOffset());
     row[4] = isSigned() ? "Signed" : "Unsigned";
+    row[5] = endianness.toString();
     rows.add(row);
     return rows;
   }

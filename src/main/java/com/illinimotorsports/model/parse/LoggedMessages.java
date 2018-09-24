@@ -31,24 +31,23 @@ public class LoggedMessages {
   }
 
   // TODO: Generalize to bitmaps
-  public List<double[]> getNumericFieldList(CANMessage specMessage, CANNumericField specField) {
-    List<double[]> fieldLst = new ArrayList<>();
-    int id = specMessage.getId();
-    int pos = specField.getPosition();
-    int len = specField.getLength();
-    int offset = specField.getOffset();
-    double scl = specField.getScale();
-    boolean isSigned = specField.isSigned();
-    Endianness endianness = specMessage.getEndianness();
+  //public List<double[]> getNumericFieldList(CANMessage specMessage, CANNumericField specField) {
+  //  List<double[]> fieldLst = new ArrayList<>();
+  //  int id = specMessage.getId();
+  //  int pos = specField.getPosition();
+  //  int len = specField.getLength();
+  //  int offset = specField.getOffset();
+  //  double scl = specField.getScale();
+  //  boolean isSigned = specField.isSigned();
 
-    for(CANLoggedMessage message: messages) {
-      if(message.getId() == id) {
-        double[] row = {message.getTimestamp(), message.getNumericField(pos, len, scl, offset, isSigned, endianness)};
-        fieldLst.add(row);
-      }
-    }
-    return fieldLst;
-  }
+  //  for(CANLoggedMessage message: messages) {
+  //    if(message.getId() == id) {
+  //      double[] row = {message.getTimestamp(), message.getNumericField(pos, len, scl, offset, isSigned)};
+  //      fieldLst.add(row);
+  //    }
+  //  }
+  //  return fieldLst;
+  //}
 
   public static List<CANLoggedMessage> parseFileList(File[] fileList) {
     List<CANLoggedMessage> messageList = new ArrayList<>();

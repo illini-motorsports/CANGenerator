@@ -106,16 +106,17 @@ public class CANSpecParser {
     CANMessage canMessage;
     String strID = "";
     String node = "";
+    Endianness endianness = Endianness.BIG;
     int id = 0;
     try {
       strID = message.getString("id");
       id = Integer.parseInt(message.getString("id").substring(2), 16);
       node = message.getString("node");
       boolean bigEndian = message.getBoolean("bigEndian");
-      Endianness endianness = bigEndian ? Endianness.BIG : Endianness.LITTLE;
+      endianness = bigEndian ? Endianness.BIG : Endianness.LITTLE;
       int dlc = message.getInt("dlc");
       bytes = message.getJSONArray("bytes");
-      canMessage = new CANMessage(id, node, endianness, dlc);
+      canMessage = new CANMessage(id, node, dlc);
     } catch (JSONException e) {
       throw new CANParseException(e);
     } catch (NumberFormatException e) {
@@ -126,7 +127,7 @@ public class CANSpecParser {
     Iterator bytesIter = bytes.iterator();
     while(bytesIter.hasNext()) {
       JSONObject field = (JSONObject) bytesIter.next();
-      CANDataField canField = parseCANDataField(field, node, id);
+      CANDataField canField = parseCANDataField(field, canMessage, endianness);
       canMessage.addField(canField);
     }
 
@@ -139,7 +140,7 @@ public class CANSpecParser {
    * @param field
    * @return
    */
-  private static CANDataField parseCANDataField(JSONObject field, String node, int nodeId) throws CANParseException {
+  private static CANDataField parseCANDataField(JSONObject field, CANMessage message, Endianness endianness) throws CANParseException {
     String type;
     int position;
     try {
@@ -161,7 +162,8 @@ public class CANSpecParser {
           boolean signed = field.getBoolean("signed");
           double scale = field.getDouble("scale");
           int offset = Integer.parseInt(field.getString("offset").substring(2), 16);
-          canField = new CANNumericField(position, length, name, node, nodeId, unit, signed, scale, offset);
+          canField = new CANNumericField(position, length, name, message.getNode(), message.getId(),
+                  unit, signed, scale, offset, endianness);
           break;
         }
         case "bitmap": {
@@ -175,7 +177,7 @@ public class CANSpecParser {
             bitList.add(new CANBitField(bit.getString("name"),
                 bit.getInt("position")));
           }
-          canField = new CANBitmapField(position, length, name, node, nodeId, bitList);
+          canField = new CANBitmapField(position, length, name, message.getNode(), message.getId(), bitList);
           break;
         }
       }

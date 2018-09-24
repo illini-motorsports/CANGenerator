@@ -1,6 +1,5 @@
 package com.illinimotorsports.model.canspec;
 
-import com.illinimotorsports.model.Endianness;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -74,14 +73,13 @@ public class CANBitmapField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateCParseMap(Endianness endianness) {
+  public List<Map<String, String>> generateCParseMap() {
     List<Map<String, String>> bitList = new ArrayList<>();
     for(CANBitField bit: getBits()) {
       Map<String, String> fieldMap = new HashMap<>();
       fieldMap.put("type", "bit");
       fieldMap.put("pos", Integer.toString(getPosition()));
       fieldMap.put("len", Integer.toString(getLength()));
-      fieldMap.put("endian", endianness.toString());
       fieldMap.put("bitPos", Integer.toString(bit.getPosition()));
       fieldMap.put("comment", getName() + " " + bit.getName());
       bitList.add(fieldMap);
@@ -90,7 +88,7 @@ public class CANBitmapField extends CANDataField {
   }
 
   @Override
-  public List<Map<String, String>> generateDBCFieldDefs(String endianness) {
+  public List<Map<String, String>> generateDBCFieldDefs() {
     List<Map<String, String>> fields = new ArrayList<>();
     DecimalFormat df = new DecimalFormat("#");
     df.setMaximumFractionDigits(20);
@@ -117,12 +115,13 @@ public class CANBitmapField extends CANDataField {
   public List<String[]> generateFieldTableRow() {
     List<String[]> rows = new ArrayList<>();
     for(CANBitField bit: getBits()) {
-      String[] row = new String[5];
+      String[] row = new String[6];
       row[0] = bit.getName();
       row[1] = "bit";
       row[2] = "";
       row[3] = "";
       row[4] = "";
+      row[5] = "";
       rows.add(row);
     }
     return rows;
