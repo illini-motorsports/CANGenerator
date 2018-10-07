@@ -2,6 +2,30 @@
 
 This repository contains a program to generate various parsing functions, DBC files, and documentation from a JSON CAN specification.
 
+# Generating a Jar File
+
+## Prerequisites
+
+* [Java 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Apache Maven](https://maven.apache.org/download.cgi)
+* All other dependencies should be automatically pulled in by Maven!
+
+## Build steps
+
+* Make sure the Repository is at its latest revision
+* Navigate to the root of the project (where the pom.xml is)
+* Run the command:
+```
+mvn clean install
+```
+  which will build the project, run the tests, and package a jar file (This is untested on windows, but I believe it should work fine)
+* You can now use the jar file found in the target directory on any computer with java installed!
+* For this program to actaully be useful, you will also need the
+```
+can_spec.json
+```
+file located at the root directory of the project somewhere on your computer, so you can navigate to it with the CanGenerator's file explorer
+
 ## License
 ```
 The MIT License (MIT)
