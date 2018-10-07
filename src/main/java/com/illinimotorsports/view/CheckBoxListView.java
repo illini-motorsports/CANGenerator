@@ -20,8 +20,10 @@ public class CheckBoxListView extends JList<CheckBoxView> {
       @Override
       public void mousePressed(MouseEvent e) {
         int index = locationToIndex(e.getPoint());
-        JCheckBox box = getModel().getElementAt(index).getCheckBox();
-        box.setSelected(!box.isSelected());
+        if(index >= 0) {
+          JCheckBox box = getModel().getElementAt(index).getCheckBox();
+          box.setSelected(!box.isSelected());
+        }
         repaint();
       }
     });
