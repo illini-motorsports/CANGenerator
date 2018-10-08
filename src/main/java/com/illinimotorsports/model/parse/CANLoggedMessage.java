@@ -4,6 +4,8 @@ import com.illinimotorsports.model.Endianness;
 import com.illinimotorsports.model.canspec.CANDataField;
 import com.illinimotorsports.model.canspec.CANNumericField;
 
+import java.util.Arrays;
+
 public class CANLoggedMessage implements Comparable {
   private double timestamp;
   private int id;
@@ -52,17 +54,16 @@ public class CANLoggedMessage implements Comparable {
   }
 
   public double getNumericField(CANNumericField field) {
-    if(field.getPosition() + field.getLength() >= bytes.length) {
+    if(field.getPosition() + field.getLength() > bytes.length) {
       // TODO: Make custom exception for this error
       return 0;
     }
     // TODO: figure out how to deal with unsigned numbers
-    return (getHexField(field.getPosition(), field.getPosition(), field.getEndianness()) - field.getOffset()) * field.getScale();
+    return (getHexField(field.getPosition(), field.getLength(), field.getEndianness()) - field.getOffset()) * field.getScale();
   }
 
   private long getHexField(int pos, int len, Endianness endianness) {
     long hexOut = 0;
-    // TODO: Make sure this is right
     if(endianness == Endianness.BIG) {
       for(int i = 0; i < len; i++) {
         hexOut = hexOut | (bytes[pos + i] << (8*i));
