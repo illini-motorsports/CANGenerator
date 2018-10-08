@@ -63,4 +63,15 @@ public abstract class CANDataField {
   public int getNodeId() {
     return nodeId;
   }
+
+  @Override
+  public String toString() {
+    return "CANDataField{" +
+            "position=" + position +
+            ", length=" + length +
+            ", name='" + name + '\'' +
+            ", node='" + node + '\'' +
+            ", nodeId=" + nodeId +
+            '}';
+  }
 }

@@ -84,4 +84,13 @@ public class CANLoggedMessage implements Comparable {
     }
     return -1;
   }
+
+  @Override
+  public String toString() {
+    return "CANLoggedMessage{" +
+            "timestamp=" + timestamp +
+            ", id=" + id +
+            ", bytes=" + Arrays.toString(bytes) +
+            '}';
+  }
 }

@@ -177,4 +177,15 @@ public class CANNumericField extends CANDataField {
     fieldObj.put("values", values);
     return fieldObj;
   }
+
+  @Override
+  public String toString() {
+    return "CANNumericField{" +
+            "unit='" + unit + '\'' +
+            ", signed=" + signed +
+            ", scale=" + scale +
+            ", offset=" + offset +
+            ", endianness=" + endianness +
+            "} " + super.toString();
+  }
 }
