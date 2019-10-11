@@ -2,836 +2,6 @@
 	"version": "0.1",
 	"messages": [
 		{
-			"id": "0x050",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 6,
-			"bytes": [
-				{
-					"name": "Uptime",
-					"type": "number",
-					"unit": "s",
-					"signed": false,
-					"scale": 1,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "PCB Temperature",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.005,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "IC Temperature",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.005,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x051",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 0",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 1",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 2",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 3",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x052",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 4",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 5",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 6",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 7",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x053",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 8",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 9",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 10",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 11",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x054",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 12",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 13",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 14",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 15",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x055",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 16",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 17",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 18",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 19",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x056",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 20",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 21",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 22",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 23",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x057",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 24",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 25",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 26",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 27",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x058",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 28",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 29",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 30",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 31",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x059",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Analog Channel 32",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 33",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 34",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Analog Channel 35",
-					"type": "number",
-					"unit": "V",
-					"signed": false,
-					"scale": 0.001,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x05A",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Thermocouple 0",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Thermocouple 1",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Thermocouple 2",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Thermocouple 3",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x05B",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Thermocouple 4",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 0,
-					"length": 2
-				},
-				{
-					"name": "Thermocouple 5",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.25,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Avg Junction Temp",
-					"type": "number",
-					"unit": "C",
-					"signed": true,
-					"scale": 0.0625,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Thermocouple Fault",
-					"type": "bitmap",
-					"byte": 6,
-					"length": 1,
-					"bits": [
-						{
-							"name": "Thermocouple 0",
-							"position": 0
-						},
-						{
-							"name": "Thermocouple 1",
-							"position": 1
-						},
-						{
-							"name": "Thermocouple 2",
-							"position": 2
-						},
-						{
-							"name": "Thermocouple 3",
-							"position": 3
-						},
-						{
-							"name": "Thermocouple 4",
-							"position": 4
-						},
-						{
-							"name": "Thermocouple 5",
-							"position": 5
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "0x05C",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 8,
-			"bytes": [
-				{
-					"name": "Digital Input",
-					"type": "bitmap",
-					"byte": 0,
-					"length": 2,
-					"bits" : [
-						{
-							"name": "Digital Input 0",
-							"position": 0
-						},
-						{
-							"name": "Digital Input 1",
-							"position": 1
-						},
-						{
-							"name": "Digital Input 2",
-							"position": 2
-						},
-						{
-							"name": "Digital Input 3",
-							"position": 3
-						},
-						{
-							"name": "Digital Input 4",
-							"position": 4
-						},
-						{
-							"name": "Digital Input 5",
-							"position": 5
-						},
-						{
-							"name": "Digital Input 6",
-							"position": 6
-						},
-						{
-							"name": "Digital Input 7",
-							"position": 7
-						},
-						{
-							"name": "Digital Input 8",
-							"position": 8
-						},
-						{
-							"name": "Digital Input 9",
-							"position": 9
-						},
-						{
-							"name": "Digital Input 10",
-							"position": 10
-						},
-						{
-							"name": "Digital Input 11",
-							"position": 11
-						},
-						{
-							"name": "Digital Input 12",
-							"position": 12
-						},
-						{
-							"name": "Digital Input 13",
-							"position": 13
-						},
-						{
-							"name": "Digital Input 14",
-							"position": 14
-						},
-						{
-							"name": "Digital Input 15",
-							"position": 15
-						}
-					]
-				},
-				{
-					"name": "Frequency Counter 0",
-					"type": "number",
-					"unit": "Hz",
-					"signed": false,
-					"scale": 1,
-					"offset": "0x0",
-					"byte": 2,
-					"length": 2
-				},
-				{
-					"name": "Frequency Counter 1",
-					"type": "number",
-					"unit": "Hz",
-					"signed": false,
-					"scale": 1,
-					"offset": "0x0",
-					"byte": 4,
-					"length": 2
-				},
-				{
-					"name": "Frequency Counter 2",
-					"type": "number",
-					"unit": "Hz",
-					"signed": false,
-					"scale": 1,
-					"offset": "0x0",
-					"byte": 6,
-					"length": 2
-				}
-			]
-		},
-		{
-			"id": "0x05D",
-			"node": "SPM",
-			"bigEndian": true,
-			"dlc": 4,
-			"bytes": [
-				{
-					"name": "PGA Settings",
-					"type": "bitmap",
-					"byte": 0,
-					"length": 2,
-					"bits" : [
-						{
-							"name": "PGA 0 Bit 0",
-							"position": 0
-						},
-						{
-							"name": "PGA 0 Bit 1",
-							"position": 1
-						},
-						{
-							"name": "PGA 0 Bit 2",
-							"position": 2
-						},
-						{
-							"name": "PGA 1 Bit 0",
-							"position": 3
-						},
-						{
-							"name": "PGA 1 Bit 1",
-							"position": 4
-						},
-						{
-							"name": "PGA 1 Bit 2",
-							"position": 5
-						},
-						{
-							"name": "PGA 2 Bit 0",
-							"position": 6
-						},
-						{
-							"name": "PGA 2 Bit 1",
-							"position": 7
-						},
-						{
-							"name": "PGA 2 Bit 2",
-							"position": 8
-						},
-						{
-							"name": "PGA 3 Bit 0",
-							"position": 9
-						},
-						{
-							"name": "PGA 3 Bit 1",
-							"position": 10
-						},
-						{
-							"name": "PGA 3 Bit 2",
-							"position": 11
-						}
-					]
-				},
-				{
-					"name": "Frequency Counter Settings",
-					"type": "bitmap",
-					"byte": 2,
-					"length": 2,
-					"bits" : [
-						{
-							"name": "Freq 0 DIVA",
-							"position": 0
-						},
-						{
-							"name": "Freq 0 DIVB",
-							"position": 1
-						},
-						{
-							"name": "Freq 0 DIVC",
-							"position": 2
-						},
-						{
-							"name": "Freq 0 DIVD",
-							"position": 3
-						},
-						{
-							"name": "Freq 0 BYP",
-							"position": 4
-						},
-						{
-							"name": "Freq 1 DIVA",
-							"position": 5
-						},
-						{
-							"name": "Freq 1 DIVB",
-							"position": 6
-						},
-						{
-							"name": "Freq 1 DIVC",
-							"position": 7
-						},
-						{
-							"name": "Freq 1 DIVD",
-							"position": 8
-						},
-						{
-							"name": "Freq 1 BYP",
-							"position": 9
-						},
-						{
-							"name": "Freq 2 DIVA",
-							"position": 10
-						},
-						{
-							"name": "Freq 2 DIVB",
-							"position": 11
-						},
-						{
-							"name": "Freq 2 DIVC",
-							"position": 12
-						},
-						{
-							"name": "Freq 2 DIVD",
-							"position": 13
-						},
-						{
-							"name": "Freq 2 BYP",
-							"position": 14
-						}
-					]
-				}
-			]
-		},
-		{
 			"id": "0x070",
 			"node": "IMU",
 			"bigEndian": true,
@@ -1310,7 +480,7 @@
 					"type": "number",
 					"unit": "N",
 					"signed": true,
-					"scale": 0.05,
+					"scale": 0.01,
 					"offset": "0x0",
 					"byte": 4,
 					"length": 2
@@ -1372,6 +542,236 @@
 					"offset": "0x0",
 					"byte": 3,
 					"length": 1
+				}
+			]
+		},
+		{
+			"id": "0x203",
+			"node": "SGH",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x204",
+			"node": "SGH",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Raw Analog Voltage 1",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Strain 1",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Raw Analog Voltage 2",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Strain 2",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x205",
+			"node": "SGH",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Raw Analog Voltage 3",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Strain 3",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Raw Analog Voltage 4",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Strain 4",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x206",
+			"node": "SGH",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Raw Analog Voltage 5",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Strain 5",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Raw Analog Voltage 6",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Strain 6",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x207",
+			"node": "SGH",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Raw Analog Voltage 7",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Strain 7",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Raw Analog Voltage 8",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Strain 8",
+					"type": "number",
+					"unit": "ue",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
 				}
 			]
 		},
@@ -2473,6 +1873,959 @@
 					"offset": "0x0",
 					"byte": 3,
 					"length": 1
+				}
+			]
+		},
+		{
+			"id": "0x050",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 6,
+			"bytes": [
+				{
+					"name": "Uptime",
+					"type": "number",
+					"unit": "s",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "PCB Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "IC Temperature",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.005,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x051",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Rear Left Suspension Pot",
+					"type": "number",
+					"unit": "mm",
+					"signed": false,
+					"scale": 0.015,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Rear Right Suspension Pot",
+					"type": "number",
+					"unit": "mm",
+					"signed": false,
+					"scale": 0.015,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 2",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 3",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x052",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Radiator Inlet Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 4
+				},
+				{
+					"name": "Radiator Outlet Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.01,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 4
+				}
+			]
+		},
+		{
+			"id": "0x053",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 8",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 9",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 10",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 11",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x054",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 12",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 13",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 14",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 15",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x055",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 16",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 17",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 18",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 19",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x056",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 20",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 21",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 22",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 23",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x057",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 24",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 25",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 26",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 27",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x058",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 28",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 29",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 30",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 31",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x059",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Analog Channel 32",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 33",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 34",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 35",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x061",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Front Left Suspension Pot",
+					"type": "number",
+					"unit": "mm",
+					"signed": false,
+					"scale": 0.015,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Front Right Suspension Pot",
+					"type": "number",
+					"unit": "mm",
+					"signed": false,
+					"scale": 0.015,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 52",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Analog Channel 53",
+					"type": "number",
+					"unit": "V",
+					"signed": false,
+					"scale": 0.001,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05A",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Thermocouple 0",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 1",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 2",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 3",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05B",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Thermocouple 4",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple 5",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.25,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Avg Junction Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.0625,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Thermocouple Fault",
+					"type": "bitmap",
+					"byte": 6,
+					"length": 1,
+					"bits": [
+						{
+							"name": "Thermocouple 0",
+							"position": 0
+						},
+						{
+							"name": "Thermocouple 1",
+							"position": 1
+						},
+						{
+							"name": "Thermocouple 2",
+							"position": 2
+						},
+						{
+							"name": "Thermocouple 3",
+							"position": 3
+						},
+						{
+							"name": "Thermocouple 4",
+							"position": 4
+						},
+						{
+							"name": "Thermocouple 5",
+							"position": 5
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "0x05C",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Digital Input",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "Digital Input 0",
+							"position": 0
+						},
+						{
+							"name": "Digital Input 1",
+							"position": 1
+						},
+						{
+							"name": "Digital Input 2",
+							"position": 2
+						},
+						{
+							"name": "Digital Input 3",
+							"position": 3
+						},
+						{
+							"name": "Digital Input 4",
+							"position": 4
+						},
+						{
+							"name": "Digital Input 5",
+							"position": 5
+						},
+						{
+							"name": "Digital Input 6",
+							"position": 6
+						},
+						{
+							"name": "Digital Input 7",
+							"position": 7
+						},
+						{
+							"name": "Digital Input 8",
+							"position": 8
+						},
+						{
+							"name": "Digital Input 9",
+							"position": 9
+						},
+						{
+							"name": "Digital Input 10",
+							"position": 10
+						},
+						{
+							"name": "Digital Input 11",
+							"position": 11
+						},
+						{
+							"name": "Digital Input 12",
+							"position": 12
+						},
+						{
+							"name": "Digital Input 13",
+							"position": 13
+						},
+						{
+							"name": "Digital Input 14",
+							"position": 14
+						},
+						{
+							"name": "Digital Input 15",
+							"position": 15
+						}
+					]
+				},
+				{
+					"name": "Frequency Counter 0",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				},
+				{
+					"name": "Frequency Counter 1",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "Frequency Counter 2",
+					"type": "number",
+					"unit": "Hz",
+					"signed": false,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				}
+			]
+		},
+		{
+			"id": "0x05D",
+			"node": "SPM",
+			"bigEndian": true,
+			"dlc": 4,
+			"bytes": [
+				{
+					"name": "PGA Settings",
+					"type": "bitmap",
+					"byte": 0,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "PGA 0 Bit 0",
+							"position": 0
+						},
+						{
+							"name": "PGA 0 Bit 1",
+							"position": 1
+						},
+						{
+							"name": "PGA 0 Bit 2",
+							"position": 2
+						},
+						{
+							"name": "PGA 1 Bit 0",
+							"position": 3
+						},
+						{
+							"name": "PGA 1 Bit 1",
+							"position": 4
+						},
+						{
+							"name": "PGA 1 Bit 2",
+							"position": 5
+						},
+						{
+							"name": "PGA 2 Bit 0",
+							"position": 6
+						},
+						{
+							"name": "PGA 2 Bit 1",
+							"position": 7
+						},
+						{
+							"name": "PGA 2 Bit 2",
+							"position": 8
+						},
+						{
+							"name": "PGA 3 Bit 0",
+							"position": 9
+						},
+						{
+							"name": "PGA 3 Bit 1",
+							"position": 10
+						},
+						{
+							"name": "PGA 3 Bit 2",
+							"position": 11
+						}
+					]
+				},
+				{
+					"name": "Frequency Counter Settings",
+					"type": "bitmap",
+					"byte": 2,
+					"length": 2,
+					"bits" : [
+						{
+							"name": "Freq 0 DIVA",
+							"position": 0
+						},
+						{
+							"name": "Freq 0 DIVB",
+							"position": 1
+						},
+						{
+							"name": "Freq 0 DIVC",
+							"position": 2
+						},
+						{
+							"name": "Freq 0 DIVD",
+							"position": 3
+						},
+						{
+							"name": "Freq 0 BYP",
+							"position": 4
+						},
+						{
+							"name": "Freq 1 DIVA",
+							"position": 5
+						},
+						{
+							"name": "Freq 1 DIVB",
+							"position": 6
+						},
+						{
+							"name": "Freq 1 DIVC",
+							"position": 7
+						},
+						{
+							"name": "Freq 1 DIVD",
+							"position": 8
+						},
+						{
+							"name": "Freq 1 BYP",
+							"position": 9
+						},
+						{
+							"name": "Freq 2 DIVA",
+							"position": 10
+						},
+						{
+							"name": "Freq 2 DIVB",
+							"position": 11
+						},
+						{
+							"name": "Freq 2 DIVC",
+							"position": 12
+						},
+						{
+							"name": "Freq 2 DIVD",
+							"position": 13
+						},
+						{
+							"name": "Freq 2 BYP",
+							"position": 14
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "0x42A",
+			"node": "Right Half Shaft",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Bridge Output",
+					"type": "number",
+					"unit": "uV",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Bridge Battery Voltage",
+					"type": "number",
+					"unit": "mV",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				},
+				{
+					"name": "Bridge Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "RSSI",
+					"type": "number",
+					"unit": "dBm",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
+				}
+			]
+		},
+		{"id": "0x429",
+			"node": "Left Half Shaft",
+			"bigEndian": false,
+			"dlc": 8,
+			"bytes": [
+				{
+					"name": "Bridge Output",
+					"type": "number",
+					"unit": "uV",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 0,
+					"length": 2
+				},
+				{
+					"name": "Bridge Battery Voltage",
+					"type": "number",
+					"unit": "mV",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 6,
+					"length": 2
+				},
+				{
+					"name": "Bridge Temp",
+					"type": "number",
+					"unit": "C",
+					"signed": true,
+					"scale": 0.1,
+					"offset": "0x0",
+					"byte": 4,
+					"length": 2
+				},
+				{
+					"name": "RSSI",
+					"type": "number",
+					"unit": "dBm",
+					"signed": true,
+					"scale": 1,
+					"offset": "0x0",
+					"byte": 2,
+					"length": 2
 				}
 			]
 		}
